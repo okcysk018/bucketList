@@ -1,0 +1,17 @@
+  <header class= "header">
+    <div class="header__title">
+      <%= link_to "BucketList", root_path, class: "header__title--text" %>
+    </div>
+    <div class="header__right">
+      <% if user_signed_in?%>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        <%= link_to '新規投稿', new_post_path%>
+        <%= link_to current_user.nickname, user_path(current_user)%>
+        <%# TODO: ユーザ編集機能 %>
+        <%= link_to 'アカウント編集', edit_user_registration_path%>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path%>
+        <%= link_to '新規登録', new_user_registration_path%>
+      <% end %>
+    </div>
+  </header>

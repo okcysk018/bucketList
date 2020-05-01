@@ -1,0 +1,59 @@
+<h1>投稿詳細ページ</h1>
+  <% if user_signed_in? && current_user.id == @post.user.id %>
+    <%= link_to "編集",edit_post_path(@post.id)%>
+    <%= link_to "削除", post_path(@post.id), method: :delete%>
+  <% end %>
+  <div class="post">
+    <div class="post-title">
+      <%= @post.title %>
+    </div>
+    <%# 複数画像 %>
+    <div class="post-image">
+    </div>
+    <div class="post-description">
+      <%= simple_format @post.description %>
+    </div>
+    <div class="post-budget">
+      <%= "¥#{@post.budget.to_s(:delimited)}" %>
+    </div>
+    <%# 場所 %>
+    <div class="post-place">
+      <%= @post.place %>
+    </div>
+    <div class="post-deadline">
+      <%= @post.deadline %>
+    </div>
+    <div class="post-reputation">
+      <%= @post.reputation %>
+    </div>
+    <div class="post-priority">
+      <%= @post.priority %>
+    </div>
+    <div class="post-done_flag">
+      <%= @post.done_flag %>
+    </div>
+    <div class="post-private_flag">
+      <%= @post.private_flag %>
+    </div>
+  </div>
+  <div class="container">
+    <% if current_user %>
+      <%= form_with(model: [@post, @comment], local: true) do |f| %>
+        <%= f.text_area :text, placeholder: "コメントする", rows: "2" %>
+        <%= f.submit "SEND" %>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
+    <div class="comments">
+      <h4>＜コメント一覧＞</h4>
+      <% if @comments %>
+        <% @comments.each do |comment| %>
+          <p>
+            <strong><%= link_to comment.user.nickname, user_path(comment.user_id) %>：</strong>
+            <%= comment.text %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
