@@ -1,24 +1,120 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## アプリ名
+bucketList
 
-Things you may want to cover:
+## アプリケーション概要
+タスク管理共有アプリ
 
-* Ruby version
+## 機能一覧
+## 実装済機能
+- ユーザー登録、ログイン機能
+- タスク投稿機能
+- コメント機能
 
-* System dependencies
+## 実装予定機能
 
-* Configuration
+- サブタスク機能
+- カレンダー連携機能
+- ユーザフォロー機能
+- コミュニティ機能
+- いいね機能
+- 検索機能
+- SNS連携機能
+- 予実管理機能
+- その他
 
-* Database creation
+## 本番環境(デプロイ先　テストアカウント＆ID)
+デプロイ後、追記
 
-* Database initialization
+## 制作背景(意図)
+アプリ名のbucketListとは「死ぬまでにやりたい事リスト」という意味です。
 
-* How to run the test suite
+「死ぬまでにやりたい事リスト」をみんなで共有して、人生を豊かにしたい、という思いで作成しました。
 
-* Services (job queues, cache servers, search engines, etc.)
+## DEMO
+マークアップ後、追記
 
-* Deployment instructions
+# 使用技術
+### ■言語
+バックエンド
+Ruby 2.5.1
+フロントエンド
+jquery-rails 4.3.5
+### ◼︎フレームワーク
+Ruby on Rails 5.2.4.2
+### ◼︎データベース
+MySQL 0.5.3
+### ◼︎インフラ（予定）
+AWS EC2
+AWS S3
+### デプロイ（予定）
+Capistranoによる自動デプロイ
 
-* ...
+# DB設計
+## usersテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+| nickname | string | null: false|
+| email | string | null: false, unique: true |
+| password | string | null: false |
+
+### Association
+- has_many :posts, dependent: :destroy
+- has_many :comments, dependent: :destroy
+
+## commentsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+| text | text | null: false|
+| post_id |references|null: false, foreign_key: true|
+| user_id |references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :post
+- belongs_to :user
+
+## postsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+| title | string | null: false, add_index |
+| description | text |  |
+| deadline | date | null: false |
+| place | string |  |
+| reputation | integer |  |
+| priority | integer |  |
+| budget | integer | null: false |
+| done_flag | boolean |  |
+| private_flag | boolean |  |
+| user_id |references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- has_many :images
+- has_many :tasks, dependent: :destroy
+- has_many :comments, dependent: :destroy
+
+## imagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+| image | string | null: false |
+| post_id |references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :post
+
+## tasksテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+| name | string | null: false |
+| deadline | date | null: false |
+| done_flag | boolean |  |
+| post_id |references|null: false, foreign_key: true|
+
+### Association
+- has_many :posts
