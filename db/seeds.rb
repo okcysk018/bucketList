@@ -1,18 +1,3 @@
-# カテゴリー
-# Category.create(name: "グルメ")
-# Category.create(name: "住処")
-# Category.create(name: "人生計画")
-# Category.create(name: "アウトドア")
-# Category.create(name: "インドア")
-# Category.create(name: "エンターテイメント")
-# Category.create(name: "スポーツ")
-# Category.create(name: "恋愛")
-# Category.create(name: "健康")
-# Category.create(name: "旅行")
-# Category.create(name: "仕事")
-# Category.create(name: "スキル")
-# Category.create(name: "初体験")
-
 # 初期ユーザ
 User.create!(
   email: 'test@test.com',
@@ -33,3 +18,30 @@ Post.create!(
   private_flag: false,
   user_id: 1
 )
+
+# カテゴリータグ
+category = [
+  "グルメ",
+  "住処",
+  "人生計画",
+  "アウトドア",
+  "インドア",
+  "エンターテイメント",
+  "スポーツ",
+  "恋愛",
+  "健康",
+  "旅行",
+  "仕事",
+  "スキル",
+  "初体験"
+]
+
+category.each do |tag|
+  ActsAsTaggableOn::Tag.new(:name => tag).save
+  ActsAsTaggableOn::Tagging.new(
+    :tag_id => category.index(tag) + 1,
+    :taggable_type => "Post",
+    :taggable_id => 1,
+    :context => "categories"
+  ).save
+end

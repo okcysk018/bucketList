@@ -65,3 +65,7 @@ gem 'pry-rails'
 gem "font-awesome-sass"
 gem "devise"
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-ui-rails'
+gem 'jquery-rails'
+# gem 'rails4-autocomplete'
