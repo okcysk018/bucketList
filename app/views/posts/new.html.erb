@@ -21,6 +21,12 @@
   <%# </div> %>
   <div class='formContent'>
     <label class='label'>
+      カテゴリ
+    </label>
+    <%= f.text_field :category_list, value: @post.category_list.join(','), data: {role: "tagsinput"}, placeholder: "カテゴリを入力してください", class: "input"%>
+  </div>
+  <div class='formContent'>
+    <label class='label'>
       優 先 度
     </label>
     <%= f.select :priority, [1,2,3,4,5], include_blank: '-', class: "input"%>

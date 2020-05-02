@@ -1,6 +1,7 @@
 <h1>投稿詳細ページ</h1>
   <% if user_signed_in? && current_user.id == @post.user.id %>
-    <%= link_to "編集",edit_post_path(@post.id)%>
+    <%# TODO: 編集ページのturbolinksを非活動に %>
+    <%= link_to "編集",edit_post_path(@post.id), data: {"turbolinks"=>false} %>
     <%= link_to "削除", post_path(@post.id), method: :delete%>
   <% end %>
   <div class="post">
@@ -19,6 +20,10 @@
     <%# 場所 %>
     <div class="post-place">
       <%= @post.place %>
+    </div>
+    <%# カテゴリ %>
+    <div class="post-category">
+      <%= render 'posts/category_list', category_list: @post.category_list %>
     </div>
     <div class="post-deadline">
       <%= @post.deadline %>
