@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
+  before_action :set_category_tags_to_gon, only: [:edit, :new]
   before_action :move_to_login, except: [:index, :show]
   before_action :move_to_show, only: [:edit, :update, :destroy]
 
@@ -45,12 +46,6 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user)
   end
 
-  def autocomplete
-    category_tags = Post.tag_counts_on(:categories) #カテゴリータグを取得
-    category_tags_name = category_tags.where('name LIKE(?) AND id <= ?', "#{params[:term]}%", 13).pluck(:name) #初期値カテゴリータグをtagsテーブルのnameカラム前方一致で取得
-    render json: category_tags_name.to_json #前方一致で取得した値をjsonにする
-  end
-
   private
   def post_params
     params.require(:post).permit(
@@ -71,6 +66,11 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_category_tags_to_gon
+    # TODO:多階層カテゴリの実現およびcssの編集
+    gon.category_tags = Post.tag_counts_on(:categories).where('name LIKE(?) AND id <= ?', "#{params[:term]}%", 13).pluck(:name) #初期値カテゴリータグをtagsテーブルのnameカラム前方一致で取得
   end
 
   def move_to_login
