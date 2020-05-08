@@ -1,7 +1,8 @@
 @import "reset";
 @import "config/colors";
 @import "modules/flash";
+// TODO:不要→理由調査
 @import "bootstrap";
-@import "tagsinput";
+@import "jquery-ui";
 @import "jquery.tagit";
 @import "tagit.ui-zendesk";
