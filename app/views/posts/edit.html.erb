@@ -13,9 +13,31 @@
     </label>
     <%= f.text_area :description, placeholder: "詳細やメモを入力してください", class: "input"%>
   </div>
-  <%# <div class='formContent'>
-    <%= f.text_field :title, placeholder: "画像を入力してください", class: "input"%>
-  <%# </div> %>
+  <div class='formContent'>
+      <div class="form-image">
+        <div class="form-image__title">
+          <label class='label'>
+            画　　像
+          </label>
+        </div>
+        <div class="form-image-box">
+          <div class="form-image-box__main">
+            <div class="form-image-box__main__preview"></div>
+            <div class="form-image-box__main__uploader">
+              <%= f.fields_for :images do |image|%>
+                <%# TODO: {data: {index: "#{@post.images.count}"}}の実現 %>
+                <%# TODO: uploader出ねえ %>
+                <div class="image-file_group">
+                  <%# TODO: icon出す %>
+                  <i class="fa fa-camera"></i>
+                  <%= image.file_field :image, name: "post[images_attributes][#{@post.images.count}][image]", id: "item_photos_attributes_#{@post.images.count}_image", class:'image-file'%>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
   <%# <div class='formContent'>
     <%= f.text_field :title, placeholder: "場所を入力してください", class: "input"%>
   <%# </div> %>
