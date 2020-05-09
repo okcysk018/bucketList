@@ -11,6 +11,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.images.build
+    # @post.images.build()
   end
 
   def create

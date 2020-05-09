@@ -8,8 +8,21 @@
     <div class="post-title">
       <%= @post.title %>
     </div>
-    <%# 複数画像 %>
+    <%# TODO: 複数画像 スライド表示%>
     <div class="post-image">
+      <div class="post-image__main">
+        <% if @post.images.present? %>
+          <%= image_tag "#{@post.images[0].image.url}", size: "280x173"%>
+        <% end %>
+      <div>
+      <div class="post-image__gallery">
+        <% if @post.images.present? %>
+          <%= @post.images.each do |image|%>
+            <%# TODO: 画像テーブル情報を隠す %>
+            <%= image_tag "#{image.image.url}", size: "100x100", class: "images-gallery"%>
+          <% end %>
+        <% end %>
+      <div>
     </div>
     <div class="post-description">
       <%= simple_format @post.description %>

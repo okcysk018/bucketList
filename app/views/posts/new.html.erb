@@ -13,9 +13,29 @@
     </label>
     <%= f.text_area :description, placeholder: "詳細やメモを入力してください", class: "input"%>
   </div>
-  <%# <div class='formContent'>
-    <%= f.text_field :title, placeholder: "画像を入力してください", class: "input"%>
-  <%# </div> %>
+  <div class='formContent'>
+      <div class="form-image">
+        <div class="form-image__title">
+          <label class='label'>
+            画　　像
+          </label>
+        </div>
+        <div class="form-image-box">
+          <div class="form-image-box__main">
+            <div class="form-image-box__main__preview"></div>
+            <div class="form-image-box__main__uploader">
+              <%= f.fields_for :images do |image|%>
+                <div class="image-file_group" data-index="image.index">
+                  <%# TODO: icon出す %>
+                  <i class="fa fa-camera"></i>
+                  <%= image.file_field :image, class:'image-file', required: true %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
   <%# <div class='formContent'>
     <%= f.text_field :title, placeholder: "場所を入力してください", class: "input"%>
   <%# </div> %>
@@ -23,6 +43,7 @@
     <label class='label'>
       カテゴリ
     </label>
+    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する、クラスで発火してる？ %>
     <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "field"%>
   </div>
   <div class='formContent'>
