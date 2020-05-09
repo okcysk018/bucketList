@@ -15,7 +15,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.timestamps
 
       # 外部キー
-      t.integer :user_id
+      t.integer :user_id, foreign_key: true
     end
     # TODO:ロールバック時のエラー回避
     # add_index :posts, :title

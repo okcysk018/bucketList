@@ -1,6 +1,6 @@
 # 初期ユーザ
 User.create!(
-  email: 'test@test.com',
+  email: 'test@email.com',
   nickname: 'test_user',
   password: 'tttttttt'
 )
