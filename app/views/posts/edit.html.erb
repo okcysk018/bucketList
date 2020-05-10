@@ -14,29 +14,43 @@
     <%= f.text_area :description, placeholder: "詳細やメモを入力してください", class: "input"%>
   </div>
   <div class='formContent'>
-      <div class="form-image">
-        <div class="form-image__title">
-          <label class='label'>
-            画　　像
-          </label>
-        </div>
-        <div class="form-image-box">
-          <div class="form-image-box__main">
-            <div class="form-image-box__main__preview"></div>
-            <div class="form-image-box__main__uploader">
-              <%= f.fields_for :images do |image|%>
-                <%# TODO: {data: {index: "#{@post.images.count}"}}の実現 %>
-                <%# TODO: uploader出ねえ %>
-                <div class="image-file_group">
-                  <%# TODO: icon出す %>
-                  <i class="fa fa-camera"></i>
-                  <%= image.file_field :image, name: "post[images_attributes][#{@post.images.count}][image]", id: "item_photos_attributes_#{@post.images.count}_image", class:'image-file'%>
+    <div class="form-image">
+      <div class="form-image__title">
+        <label class='label'>
+          画　　像
+        </label>
+      </div>
+      <div class="form-image-box">
+        <div class="form-image-box__main">
+          <div class="form-image-box__main__preview"></div>
+            <% if @post.persisted? %>
+              <% @post.images.each_with_index do |image, i|%>
+                <%# TODO: exmain-box__main__previews__view{data: {index: "#{i}"}}の実現 %>
+                <div class= "form-image-box__main__previews__view" data-index="#{i}">
+                  <div class="form-image-box__main__previews__view__image">
+                    <%= image_tag image.image.url, data: { index: i }, class: 'input_images', width: "120", height: '120'%>
+                      <div class="image-remove form-image-box__main__previews__view__delete">
+                        削除
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
-              <% end %>
-            </div>
+              <%= f.fields_for :images do |image|%>
+                <%= image.check_box :_destroy, include_hidden: false, data:{ index: image.index },class: 'hidden-destroy'%>
+              <% end %>
+            <% end %>
+          <div class="form-image-box__main__uploader">
+            <label class="form-image-box__main__uploader__label">
+              <%# TODO: {data: {index: "#{@post.images.count}"}}の実現 %>
+              <div class="image-file_group">
+                <i class="fa fa-camera"></i>
+                <%= f.file_field :image, name: "post[images_attributes][#{@post.images.count}][image]", id: "post_photos_attributes_#{@post.images.count}_image", class:'image-file'%>
+              </div>
+            </label>
           </div>
         </div>
       </div>
+    </div>
   </div>
   <%# <div class='formContent'>
     <%= f.text_field :title, placeholder: "場所を入力してください", class: "input"%>

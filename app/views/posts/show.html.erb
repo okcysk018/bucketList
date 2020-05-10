@@ -17,8 +17,7 @@
       <div>
       <div class="post-image__gallery">
         <% if @post.images.present? %>
-          <%= @post.images.each do |image|%>
-            <%# TODO: 画像テーブル情報を隠す %>
+          <% @post.images.each do |image|%>
             <%= image_tag "#{image.image.url}", size: "100x100", class: "images-gallery"%>
           <% end %>
         <% end %>

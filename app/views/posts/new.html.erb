@@ -26,7 +26,6 @@
             <div class="form-image-box__main__uploader">
               <%= f.fields_for :images do |image|%>
                 <div class="image-file_group" data-index="image.index">
-                  <%# TODO: icon出す %>
                   <i class="fa fa-camera"></i>
                   <%= image.file_field :image, class:'image-file', required: true %>
                 </div>
