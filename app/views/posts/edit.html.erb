@@ -22,30 +22,30 @@
       </div>
       <div class="form-image-box">
         <div class="form-image-box__main">
-          <div class="form-image-box__main__preview"></div>
-            <% if @post.persisted? %>
-              <% @post.images.each_with_index do |image, i|%>
-                <%# TODO: exmain-box__main__previews__view{data: {index: "#{i}"}}の実現 %>
-                <div class= "form-image-box__main__previews__view" data-index="#{i}">
-                  <div class="form-image-box__main__previews__view__image">
-                    <%= image_tag image.image.url, data: { index: i }, class: 'input_images', width: "120", height: '120'%>
-                      <div class="image-remove form-image-box__main__previews__view__delete">
-                        削除
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              <%= f.fields_for :images do |image|%>
-                <%= image.check_box :_destroy, include_hidden: false, data:{ index: image.index },class: 'hidden-destroy'%>
-              <% end %>
-            <% end %>
+          <div class="form-image-box__main__previews"></div>
+            <label class="exmain-box__main__uploader__label">
+              <% if @post.persisted? %>
+                <% @post.images.each_with_index do |image, i|%>
+                  <%= tag.div class: "form-image-box__main__previews__view", data: {index: "#{i}"} do%>
+                    <div class="form-image-box__main__previews__view__image">
+                      <%= image_tag image.image.url, data: { index: i }, class: 'input_images', width: "120", height: '120'%>
+                        <div class="image-remove form-image-box__main__previews__view__delete">
+                          削除
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                <%= f.fields_for :images do |image|%>
+                  <%= image.check_box :_destroy, include_hidden: false, data:{ index: image.index },class: 'hidden-destroy'%>
+                <% end %>
+              <% end %>
+            </label>
           <div class="form-image-box__main__uploader">
             <label class="form-image-box__main__uploader__label">
-              <%# TODO: {data: {index: "#{@post.images.count}"}}の実現 %>
-              <div class="image-file_group">
+              <%= tag.div class: "image-file_group", data: {index: "#{@post.images.count}"} do%>
                 <i class="fa fa-camera"></i>
                 <%= f.file_field :image, name: "post[images_attributes][#{@post.images.count}][image]", id: "post_photos_attributes_#{@post.images.count}_image", class:'image-file'%>
-              </div>
+              <% end %>
             </label>
           </div>
         </div>

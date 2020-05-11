@@ -1,15 +1,6 @@
-// ===============================================================
-// 出品ページ
-// 複数画像出品
-// ===============================================================
+$(document).on('turbolinks:load', function(){
 
-
-// $(document).ready(function() {
-$(document).on('turbolinks:load', function() {
-  // $(window).on('load', function() {
   // プレビュー用のimgタグを生成する関数
-
-  console.log("ja")
   const buildImg = (index, url)=> {
     const html = `<div class= "form-image-box__main__previews__view" data-index="${index}">
                     <div class="form-image-box__main__previews__view__image">
@@ -37,6 +28,7 @@ $(document).on('turbolinks:load', function() {
   lastIndex = $('.image-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
 
+  // TODO:コメントアウト戻す
   $('.hidden-destroy').hide();
 
   $('.form-image-box__main').on('change', '.image-file', function(e) {
@@ -50,9 +42,11 @@ $(document).on('turbolinks:load', function() {
       img.setAttribute('image', blobUrl);
     } else {  // 新規画像追加の処理
       $('.form-image-box__main__previews').append(buildImg(targetIndex, blobUrl));
+      console.log(fileIndex[0]) // TODO: デバッグ用
       // fileIndexの先頭の数字を使ってinputを作る
       $('.form-image-box__main__uploader__label').prepend(buildFileField(fileIndex[0]));
-      $(this).css({'display':'none'});
+      // TODO:コメントアウト戻す
+      // $(this).css({'display':'none'});
       fileIndex.shift();
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
@@ -70,10 +64,5 @@ $(document).on('turbolinks:load', function() {
     // 画像入力欄が0個にならないようにしておく
     if ($('.image-file').length == 0) $('.form-image-box__main__uploader__label').prepend(buildFileField(fileIndex[0]));
   });
-});
 
-// $(function(){
-//   $(".post-box__show img").hover(function(){
-//     $(".post-box__photo img").attr("src", $(this).attr('src'));
-//   })
-// })
+});
