@@ -23,12 +23,12 @@
         <div class="form-image-box">
           <div class="form-image-box__main">
             <div class="form-image-box__main__previews"></div>
-            <div class="form-image-box__main__uploader">
-              <label class="exmain-box__main__uploader__label">
+            <div class="form-image-box__main__uploaders">
+              <label class="form-image-box__main__uploaders__label">
                 <%= f.fields_for :images do |image|%>
                   <%= tag.div class: "image-file_group", data: {index: "#{image.index}"} do%>
                     <i class="fa fa-camera"></i>
-                    <%= image.file_field :image, class:'image-file', required: true %>
+                    <%= image.file_field :image, class:'image-file-uploader', required: true %>
                   <% end %>
                 <% end %>
               </label>

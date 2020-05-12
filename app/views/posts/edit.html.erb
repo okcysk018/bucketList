@@ -23,7 +23,7 @@
       <div class="form-image-box">
         <div class="form-image-box__main">
           <div class="form-image-box__main__previews"></div>
-            <label class="exmain-box__main__uploader__label">
+            <label class="exmain-box__main__uploaders__label">
               <% if @post.persisted? %>
                 <% @post.images.each_with_index do |image, i|%>
                   <%= tag.div class: "form-image-box__main__previews__view", data: {index: "#{i}"} do%>
@@ -40,11 +40,11 @@
                 <% end %>
               <% end %>
             </label>
-          <div class="form-image-box__main__uploader">
-            <label class="form-image-box__main__uploader__label">
+          <div class="form-image-box__main__uploaders">
+            <label class="form-image-box__main__uploaders__label">
               <%= tag.div class: "image-file_group", data: {index: "#{@post.images.count}"} do%>
                 <i class="fa fa-camera"></i>
-                <%= f.file_field :image, name: "post[images_attributes][#{@post.images.count}][image]", id: "post_photos_attributes_#{@post.images.count}_image", class:'image-file'%>
+                <%= f.file_field :image, name: "post[images_attributes][#{@post.images.count}][image]", id: "post_photos_attributes_#{@post.images.count}_image", class:'image-file-uploader'%>
               <% end %>
             </label>
           </div>
