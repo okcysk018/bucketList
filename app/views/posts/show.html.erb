@@ -14,14 +14,14 @@
         <% if @post.images.present? %>
           <%= image_tag "#{@post.images[0].image.url}", size: "280x173"%>
         <% end %>
-      <div>
+      </div>
       <div class="post-image__gallery">
         <% if @post.images.present? %>
           <% @post.images.each do |image|%>
             <%= image_tag "#{image.image.url}", size: "100x100", class: "images-gallery"%>
           <% end %>
         <% end %>
-      <div>
+      </div>
     </div>
     <div class="post-description">
       <%= simple_format @post.description %>

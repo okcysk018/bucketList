@@ -9,6 +9,7 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :budget, presence: true
-  # validates :images, presence: true, length: {minimum: 1, maximum: 10}
+  # TODO: バリデーション
+  # validates :images, presence: true, length: {maximum: 10}
 
 end
