@@ -11,6 +11,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.images.build
+    # @post.images.build()
   end
 
   def create
@@ -58,7 +60,9 @@ class PostsController < ApplicationController
       :reputation,
       :done_flag,
       :private_flag,
-      :category_list
+      :category_list,
+      images_attributes: [:id, :image, :_destroy]
+      # images_attributes: [:id, {image: []}, :_destroy]
     ).merge(
       user_id: current_user.id
     );
