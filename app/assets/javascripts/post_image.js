@@ -22,8 +22,12 @@ $(document).on('turbolinks:load', function(){
                   </div>`;
     return html;
   }
+
+
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  // TODO:デバッグ用の画像枚数の上限を変数宣言、最終的にはfileIndex.lengthで良い
+  const imgLimit = 3
   // 既に使われているindexを除外
   lastIndex = $('.image-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
@@ -38,11 +42,10 @@ $(document).on('turbolinks:load', function(){
     const blobUrl = window.URL.createObjectURL(file);
 
     // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
-    // FIXME: 画像変更previewも同時に変更できるように修正したい, blobUrlが画像編集時に効かない
+    // FIXME: 画像変更previewも同時に変更できるように修正したい, blobUrlが画像編集時に効かない、不要か？
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('image', blobUrl);
-    } else if ($('.form-image-box__main__previews__view').length < 5) {  // 新規画像追加の処理
-      // TODO:画像のバリデーションを10枚に変更
+    } else {  // 新規画像追加の処理
       $('.form-image-box__main__previews').append(buildImg(targetIndex, blobUrl));
       // 配列fileIndexの要素である先頭の数字を使ってinputアップローダを作る
       $('.form-image-box__main__uploaders__label').append(buildFileField(fileIndex[0]));
@@ -52,31 +55,33 @@ $(document).on('turbolinks:load', function(){
       fileIndex.shift();
       // 先頭の要素を削除された配列要素の末尾の数に1足した要素を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-    } else { //11枚目がアップロードされた時の処理
-      alert("アップロードできる画像の枚数は10枚までです");
-      //11枚目をdisabledでアップロードされないようにする
-      $(this).attr('disabled', "disabled");
+      // 枚数上限を超えた際はアップローダのクリックと選択を無効化する
+      if ($('.image-file-uploader').length > imgLimit) {
+        $(`#post_images_attributes_${targetIndex + 1}_image`).attr('disabled', "disabled");
+        $(`.form-image-box__main__uploaders__label`).css({'pointer-events':'none'});
+      }
     }
   });
   // 削除ボタンの設定
   $('.form-image-box__main').on('click', '.image-remove', function() {
     const targetIndex = $(this).prev().data('index');
-    // 該当indexを振られているチェックボックスを取得する
+    // 該当indexを振られている削除チェックボックスを取得する
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
-    $(this).parent().remove();
+    // プレビューとアップローダの削除
     $(`div[data-index="${targetIndex}"]`).remove();
     // 画像入力欄が0個にならないようにしておく
     if ($('.image-file-uploader').length == 0) $('.form-image-box__main__uploaders__label').prepend(buildFileField(fileIndex[0]));
-    // 削除時に画像が10個以内の場合はアップローダのdisabled属性も削除
-    if ($('.image-file-uploader').length <= 5) {
-      //FIXME: ファイルを上書きしないと見えない状態でアップロードされる
+    // 削除時に画像が枚数上限以内の場合はアップローダの選択とクリック無効を削除
+    if ($('.image-file-uploader').length <= imgLimit) {
       $(".image-file-uploader").removeAttr('disabled');
+      $(`.form-image-box__main__uploaders__label`).css('pointer-events', '');
     }
   });
 });
 
+// 投稿編集画面の画像フォーカス
 $(function(){
   $(".post-image__gallery img").hover(function(){
     $(".post-image__main img").attr("src", $(this).attr('src'));

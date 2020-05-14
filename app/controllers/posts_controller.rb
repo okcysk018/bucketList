@@ -62,6 +62,7 @@ class PostsController < ApplicationController
       :private_flag,
       :category_list,
       images_attributes: [:id, :image, :_destroy]
+      # images_attributes: [:id, {image: []}, :_destroy]
     ).merge(
       user_id: current_user.id
     );
