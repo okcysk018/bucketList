@@ -22,7 +22,6 @@
         </div>
         <div class="form-image-box">
           <div class="form-image-box__main">
-            <div class="form-image-box__main__previews"></div>
             <div class="form-image-box__main__uploaders">
               <label class="form-image-box__main__uploaders__label">
                 <%= f.fields_for :images do |image|%>
@@ -34,6 +33,7 @@
                 <% end %>
               </label>
             </div>
+            <div class="form-image-box__main__previews"></div>
           </div>
         </div>
       </div>
