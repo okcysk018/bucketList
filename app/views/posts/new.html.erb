@@ -38,15 +38,22 @@
         </div>
       </div>
   </div>
-  <%# <div class='formContent'>
-    <%= f.text_field :title, placeholder: "場所を入力してください", class: "input"%>
-  <%# </div> %>
+  <div class='formContent'>
+    <label class='label'>
+      場　　所
+    </label>
+    <%= f.text_field :place, placeholder: "目的地を入力してください", class: "input"%>
+    <%= form_with url: map_posts_path, method: :get do |f|%>
+      <%= f.text_field :place %>
+    <% end %>
+    <div id="map"></div>
+  </div>
   <div class='formContent'>
     <label class='label'>
       カテゴリ
     </label>
-    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する、クラスで発火してる？ %>
-    <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "field"%>
+    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する%>
+    <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "field"%>
   </div>
   <div class='formContent'>
     <label class='label'>

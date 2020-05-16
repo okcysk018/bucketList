@@ -48,6 +48,15 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user)
   end
 
+  def map
+    results = Geocoder.search(params[:place])
+    @lating = results.first.coordinates
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def post_params
     params.require(:post).permit(
@@ -74,6 +83,7 @@ class PostsController < ApplicationController
 
   def set_category_tags_to_gon
     # TODO:多階層カテゴリの実現およびcssの編集
+    # TODO:モデルに記述？
     gon.category_tags = Post.tag_counts_on(:categories).where('name LIKE(?) AND id <= ?', "#{params[:term]}%", 13).pluck(:name) #初期値カテゴリータグをtagsテーブルのnameカラム前方一致で取得
   end
 
