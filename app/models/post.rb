@@ -12,8 +12,9 @@ class Post < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   validates :title, presence: true
-  validates :budget, presence: true
   # TODO: バリデーション
-  # validates :images, presence: true, length: {maximum: 10}
+  # validates :images, length: {maximum: 10}
+  # validates :budget, presence: true
+  # validates :deadline, presence: true
 
 end

@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
   before_action :set_category_tags_to_gon, only: [:edit, :new]
+  before_action :set_geocorder_to_gon, only: [:edit, :new]
   before_action :move_to_login, except: [:index, :show]
   before_action :move_to_show, only: [:edit, :update, :destroy]
 
@@ -12,7 +13,6 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post.images.build
-    # @post.images.build()
   end
 
   def create
@@ -49,7 +49,7 @@ class PostsController < ApplicationController
   end
 
   def map
-    results = Geocoder.search(params[:place])
+    results = Geocoder.search(params[:address])
     @lating = results.first.coordinates
 
     respond_to do |format|
@@ -61,7 +61,9 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :title,
-      :place,
+      :address,
+      :latitude,
+      :longitude,
       :priority,
       :deadline,
       :budget,
@@ -85,6 +87,10 @@ class PostsController < ApplicationController
     # TODO:多階層カテゴリの実現およびcssの編集
     # TODO:モデルに記述？
     gon.category_tags = Post.tag_counts_on(:categories).where('name LIKE(?) AND id <= ?', "#{params[:term]}%", 13).pluck(:name) #初期値カテゴリータグをtagsテーブルのnameカラム前方一致で取得
+  end
+
+  def set_geocorder_to_gon
+    # gon.geocorder = Geocoder.search(params[:address]).first.coordinates
   end
 
   def move_to_login
