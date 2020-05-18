@@ -80,7 +80,7 @@
     <label class='label'>
       期　　日
     </label>
-    <%= f.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.year+30, use_month_numbers: true, class: "input", date_separator: ' / '%>
+    <%= raw sprintf (f.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.since(30.year).year, use_month_numbers: true, class: "input", date_separator: '%s'),'年 ', '月 '%>日
   </div>
   <div class='formContent'>
     <label class='label'>

@@ -32,6 +32,7 @@
     <%# 場所 %>
     <div class="post-address">
       <%= @post.address %>
+      <div id="map"></div>
     </div>
     <%# カテゴリ %>
     <div class="post-category">
@@ -74,3 +75,5 @@
       <% end %>
     </div>
   </div>
+
+<%= javascript_include_tag 'post_map.js' %>
