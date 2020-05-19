@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
   before_action :set_category_tags_to_gon, only: [:edit, :new]
-  before_action :set_geocorder_to_gon, only: [:edit, :new]
+  before_action :set_geocorder_to_gon, only: [:show]
   before_action :move_to_login, except: [:index, :show]
   before_action :move_to_show, only: [:edit, :update, :destroy]
 
@@ -90,7 +90,9 @@ class PostsController < ApplicationController
   end
 
   def set_geocorder_to_gon
-    # gon.geocorder = Geocoder.search(params[:address]).first.coordinates
+    if @post.address
+      gon.geocorder = Geocoder.search(@post.address).first.coordinates
+    end
   end
 
   def move_to_login
