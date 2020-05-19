@@ -9,13 +9,10 @@ User.create!(
 Post.create!(
   title: '初期データ',
   description: '初期データ',
-  place: nil,
   deadline: nil,
   budget: 1000,
-  reputation: nil,
-  priority: nil,
-  done_flag: false,
-  private_flag: false,
+  done_flag: true,
+  private_flag: true,
   user_id: 1
 )
 

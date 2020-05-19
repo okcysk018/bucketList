@@ -22,31 +22,34 @@
         </div>
         <div class="form-image-box">
           <div class="form-image-box__main">
-            <div class="form-image-box__main__previews"></div>
             <div class="form-image-box__main__uploaders">
               <label class="form-image-box__main__uploaders__label">
                 <%= f.fields_for :images do |image|%>
                   <%= tag.div data: {index: "#{image.index}"}, class: "image-file_group" do%>
                     <i class="fa fa-camera"></i>
-                    <%= image.file_field :image, class:'image-file-uploader', required: true %>
+                    <%= image.file_field :image, class:'image-file-uploader' %>
                     <%# <%= image.file_field :images, class:'image-file-uploader', required: true ,multiple: true %>
                   <% end %>
                 <% end %>
               </label>
             </div>
+            <div class="form-image-box__main__previews"></div>
           </div>
         </div>
       </div>
   </div>
-  <%# <div class='formContent'>
-    <%= f.text_field :title, placeholder: "場所を入力してください", class: "input"%>
-  <%# </div> %>
+  <div class='formContent'>
+    <label class='label'>
+      場　　所
+    </label>
+    <%= f.text_field :address, placeholder: "目的地を入力してください", class: "input-address"%>
+  </div>
   <div class='formContent'>
     <label class='label'>
       カテゴリ
     </label>
-    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する、クラスで発火してる？ %>
-    <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "field"%>
+    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する、class名がデバイスと被っているので必ず変更%>
+    <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "field"%>
   </div>
   <div class='formContent'>
     <label class='label'>
@@ -64,7 +67,7 @@
     <label class='label'>
       期　　日
     </label>
-    <%= f.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.since(30.year).year, use_month_number: true, class: "input"%>
+    <%= raw sprintf (f.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.since(30.year).year, use_month_numbers: true, class: "input", date_separator: '%s'),'年 ', '月 '%>日
   </div>
   <div class='formContent'>
     <label class='label'>
@@ -87,3 +90,7 @@
 
   <%= f.submit "送信"%>
 <% end %>
+
+<%= javascript_include_tag 'tag-it.js' %>
+<%= javascript_include_tag 'autocomplete.js' %>
+<%= javascript_include_tag 'post_image.js' %>
