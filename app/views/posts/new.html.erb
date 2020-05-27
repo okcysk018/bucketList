@@ -5,7 +5,7 @@
     <label class='label'>
       タイトル
     </label>
-    <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "input"%>
+    <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "input"%>
   </div>
   <div class='formContent'>
     <label class='label'>
@@ -48,8 +48,8 @@
     <label class='label'>
       カテゴリ
     </label>
-    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する、class名がデバイスと被っているので必ず変更%>
-    <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "field"%>
+    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する%>
+    <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "category-field"%>
   </div>
   <div class='formContent'>
     <label class='label'>
@@ -86,6 +86,18 @@
       達 成 済
     </label>
     <%= f.check_box :done_flag, class: "check"%>
+  </div>
+
+  <%# TODO:サブタスクの設定 現状未記入でもDB登録されてしまうのでサブタスク追加ボタンで追加する仕様にする？　未記入の場合でも登録されない方法は？%>
+  <div class='formContent'>
+    <label class='label'>
+      タ ス ク
+    </label>
+    <%= f.fields_for :tasks do |task|%>
+      <%= task.check_box :done_flag, class: "check"%>
+      <%= task.text_field :title, placeholder: "サブタスクタイトルを入力してください", class: "input"%>
+      <%= raw sprintf (task.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.since(30.year).year, use_month_numbers: true, class: "input", date_separator: '%s'),'年 ', '月 '%>日
+    <% end %>
   </div>
 
   <%= f.submit "送信"%>

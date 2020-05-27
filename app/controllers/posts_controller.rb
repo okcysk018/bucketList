@@ -13,6 +13,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post.images.build
+    @post.tasks.build
   end
 
   def create
@@ -72,7 +73,8 @@ class PostsController < ApplicationController
       :done_flag,
       :private_flag,
       :category_list,
-      images_attributes: [:id, :image, :_destroy]
+      images_attributes: [:id, :image, :_destroy],
+      tasks_attributes: [:id, :title, :done_flag, :deadline, :_destroy]
       # images_attributes: [:id, {image: []}, :_destroy]
     ).merge(
       user_id: current_user.id
@@ -90,7 +92,7 @@ class PostsController < ApplicationController
   end
 
   def set_geocorder_to_gon
-    if @post.address
+    if @post.address.present?
       gon.geocorder = Geocoder.search(@post.address).first.coordinates
     end
   end
