@@ -3,13 +3,13 @@ class CreatePosts < ActiveRecord::Migration[5.2]
     create_table :posts do |t|
 
       # TODO:バリデーションかける
-      t.string  :title,      null: false
+      t.string  :title,       null: false
       t.text    :description
       t.string  :address
       t.float   :latitude
       t.float   :longitude
-      t.date    :deadline
-      t.integer :budget
+      t.date    :deadline,    null: false
+      t.integer :budget,      null: false
       t.integer :reputation
       t.integer :priority
       t.boolean :done_flag
