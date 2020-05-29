@@ -88,16 +88,48 @@
     <%= f.check_box :done_flag, class: "check"%>
   </div>
 
-  <%# TODO:サブタスクの設定 現状未記入でもDB登録されてしまうのでサブタスク追加ボタンで追加する仕様にする？　未記入の場合でも登録されない方法は？%>
-  <div class='formContent'>
-    <label class='label'>
-      タ ス ク
-    </label>
-    <%= f.fields_for :tasks do |task|%>
-      <%= task.check_box :done_flag, class: "check"%>
-      <%= task.text_field :title, placeholder: "サブタスクタイトルを入力してください", class: "input"%>
-      <%= raw sprintf (task.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.since(30.year).year, use_month_numbers: true, class: "input", date_separator: '%s'),'年 ', '月 '%>日
-    <% end %>
+  <div class='formContent tasklist'>
+    <div class='formContent__titleBar'>
+      <i class="fas fa-tasks"></i>
+      <div class='formContent__titleBar__titleMemu'>
+        <h5 class='formContent__titleBar__formTitle'>タスクリスト</h5>
+        <div class='formContent__titleBar__titleMemu'>
+          <div class='formContent__titleBar__titleMemu__menuOptions'>
+            <%# TODO:達成済表示/非表示機能実装 %>
+            <span class='hideButton-achieveTask btn btn-light'>
+              <i class="fas fa-minus"></i>
+              達成済タスクを非表示
+            </span>
+            <span class='displayButton-achieveTask btn btn-light'>
+              <i class="fas fa-chevron-down"></i>
+              達成済タスクを表示
+            </span>
+            <span class='openButton-tasklist btn btn-light'>
+              <i class="fa fa-plus"></i>
+              タスクリストを追加
+            </span>
+            <span class='deleteButton-tasklist btn btn-light'>
+              <i class="fas fa-trash-alt"></i>
+              タスクリストを削除
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='formContent__progressBar'>
+      <div class='tasklist-progress-percentage'>0%</div>
+      <div class='tasklist-progressBar progress'>
+        <div class='tasklist-progressBar-current progress-bar-striped bg-primary' style='width:50%'>0%</div>
+      </div>
+    </div>
+    <div class='taskFormArea'>
+      <%= f.fields_for :tasks do |task|%>
+      <% end %>
+    </div>
+    <span class='addButton-task btn btn-light'>
+      <i class="fa fa-plus"></i>
+      タスクを追加
+    </span>
   </div>
 
   <%= f.submit "送信"%>
@@ -106,3 +138,4 @@
 <%= javascript_include_tag 'tag-it.js' %>
 <%= javascript_include_tag 'autocomplete.js' %>
 <%= javascript_include_tag 'post_image.js' %>
+<%= javascript_include_tag 'post_tasks.js' %>

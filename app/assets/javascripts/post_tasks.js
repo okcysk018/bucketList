@@ -1,89 +1,134 @@
 $(document).on('turbolinks:load', function(){
-
-  // プレビュー用のimgタグを生成する関数
-  const buildImg = (index, url)=> {
-    const html = `<div class= "form-image-box__main__previews__view" data-index="${index}">
-                    <div class="form-image-box__main__previews__view__image">
-                      <img class="image${index} input_images", data-index="${index}", src="${url}", width="120px", height="120px"%>
-                        <div class="image-remove form-image-box__main__previews__view__delete">
-                          削除
-                        </div>
-                    </div>
+  // サブタスクリストのフォームを生成する関数
+  // TODO:オプションの省略
+  const buildTaskForm = (index)=> {
+    const html = `<div data-index="${index}" class="taskForm_group">
+                    <input name="post[tasks_attributes][${index}][done_flag]" type="hidden" value="0">
+                    <input class="check" type="checkbox" value="1" name="post[tasks_attributes][${index}][done_flag]" id="post_tasks_attributes_${index}_done_flag">
+                    <input placeholder="サブタスクタイトルを入力してください" required="required" class="input" type="text" name="post[tasks_attributes][${index}][title]" id="post_tasks_attributes_${index}_title">
+                    <select id="post_tasks_attributes_${index}_deadline_1i" name="post[tasks_attributes][${index}][deadline(1i)]">
+                      <option value="">---</option>
+                      <option value="2020">2020</option>
+                      <option value="2021">2021</option>
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
+                      <option value="2026">2026</option>
+                      <option value="2027">2027</option>
+                      <option value="2028">2028</option>
+                      <option value="2029">2029</option>
+                      <option value="2030">2030</option>
+                      <option value="2031">2031</option>
+                      <option value="2032">2032</option>
+                      <option value="2033">2033</option>
+                      <option value="2034">2034</option>
+                      <option value="2035">2035</option>
+                      <option value="2036">2036</option>
+                      <option value="2037">2037</option>
+                      <option value="2038">2038</option>
+                      <option value="2039">2039</option>
+                      <option value="2040">2040</option>
+                      <option value="2041">2041</option>
+                      <option value="2042">2042</option>
+                      <option value="2043">2043</option>
+                      <option value="2044">2044</option>
+                      <option value="2045">2045</option>
+                      <option value="2046">2046</option>
+                      <option value="2047">2047</option>
+                      <option value="2048">2048</option>
+                      <option value="2049">2049</option>
+                      <option value="2050">2050</option>
+                    </select>
+                      年
+                    <select id="post_tasks_attributes_${index}_deadline_2i" name="post[tasks_attributes][${index}][deadline(2i)]">
+                      <option value="">---</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                      月
+                    <select id="post_tasks_attributes_${index}_deadline_3i" name="post[tasks_attributes][${index}][deadline(3i)]">
+                      <option value="">---</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20">20</option>
+                      <option value="21">21</option>
+                      <option value="22">22</option>
+                      <option value="23">23</option>
+                      <option value="24">24</option>
+                      <option value="25">25</option>
+                      <option value="26">26</option>
+                      <option value="27">27</option>
+                      <option value="28">28</option>
+                      <option value="29">29</option>
+                      <option value="30">30</option>
+                      <option value="31">31</option>
+                    </select>
+                      日
+                    <span data-index="${index}" class="deleteButton-task btn btn-light">
+                      <i class="fas fa-backspace"></i>
+                      削除
+                    </span>
                   </div>`;
     return html;
   }
-  // 画像用のinputを生成する関数
-  const buildFileField = (num)=> {
-    const html = `<div data-index="${num}" class="image-file_group">
-                    <i class="fa fa-camera"></i>
-                    <input class="image-file-uploader" type="file"
-                    name="post[images_attributes][${num}][image]"
-                    id="post_images_attributes_${num}_image">
-                  </div>`;
-    return html;
-  }
+  let targetIndex = $('.taskForm_group').length;
 
-
-  // file_fieldのnameに動的なindexをつける為の配列
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-  // TODO:デバッグ用の画像枚数の上限を変数宣言、最終的にはfileIndex.lengthで良い
-  const imgLimit = 3
-  // 既に使われているindexを除外
-  lastIndex = $('.image-file_group:last').data('index');
-  fileIndex.splice(0, lastIndex);
+  const taskLimit = 3
 
   // 編集画面描画時の削除チェックボックスを非表示に
-  $('.hidden-destroy').hide();
+  // $('.hidden-destroy').hide();
 
-  $('.form-image-box__main').on('change', '.image-file-uploader', function(e) {
-    const targetIndex = $(this).parent().data('index');
-    // ファイルのブラウザ上でのURLを取得する
-    const file = e.target.files[0];
-    const blobUrl = window.URL.createObjectURL(file);
+  // タスク追加ボタン押下時の関数
+  $('.tasklist').on('click', '.addButton-task', function() {
+    console.log(targetIndex);// TODO:編集時のチェック
 
-    // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
-    // FIXME: 画像変更previewも同時に変更できるように修正したい, blobUrlが画像編集時に効かない、不要か？
-    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
-      img.setAttribute('image', blobUrl);
-    } else {  // 新規画像追加の処理
-      $('.form-image-box__main__previews').append(buildImg(targetIndex, blobUrl));
-      // 配列fileIndexの要素である先頭の数字を使ってinputアップローダを作る
-      $('.form-image-box__main__uploaders__label').append(buildFileField(fileIndex[0]));
-      // inputアップローダの親要素ごと非表示に（カメラアイコンも非表示にするため)
-      $(this).parent().hide();
-      // 配列の先頭の要素を削除
-      fileIndex.shift();
-      // 先頭の要素を削除された配列要素の末尾の数に1足した要素を追加する
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-      // 枚数上限を超えた際はアップローダのクリックと選択を無効化する
-      if ($('.image-file-uploader').length > imgLimit) {
-        $(`#post_images_attributes_${targetIndex + 1}_image`).attr('disabled', "disabled");
-        $(`.form-image-box__main__uploaders__label`).css({'pointer-events':'none'});
-      }
+    $('.taskFormArea').append(buildTaskForm(targetIndex));
+    // サブタスク上限数を超えた際は追加ボタンのクリックと選択を無効化する
+    if ($('.taskForm_group').length >= taskLimit) {
+      $(this).css({'pointer-events':'none'});
+      $(this).removeClass('btn-light');
+      $(this).addClass('btn-danger');
     }
+    // targetIndexを追加
+    targetIndex += 1
   });
   // 削除ボタンの設定
-  $('.form-image-box__main').on('click', '.image-remove', function() {
-    const targetIndex = $(this).prev().data('index');
-    // 該当indexを振られている削除チェックボックスを取得する
-    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-    // もしチェックボックスが存在すればチェックを入れる
-    if (hiddenCheck) hiddenCheck.prop('checked', true);
-    // プレビューとアップローダの削除
-    $(`div[data-index="${targetIndex}"]`).remove();
-    // 画像入力欄が0個にならないようにしておく
-    if ($('.image-file-uploader').length == 0) $('.form-image-box__main__uploaders__label').prepend(buildFileField(fileIndex[0]));
-    // 削除時に画像が枚数上限以内の場合はアップローダの選択とクリック無効を削除
-    if ($('.image-file-uploader').length <= imgLimit) {
-      $(".image-file-uploader").removeAttr('disabled');
-      $(`.form-image-box__main__uploaders__label`).css('pointer-events', '');
+  $('.tasklist').on('click', '.deleteButton-task', function() {
+    console.log($('.tasklist'));
+    $(this).parent().remove();
+
+    if ($('.taskForm_group').length <= taskLimit) {
+      $(".addButton-task").css('pointer-events', '');
+      $(".addButton-task").removeClass('btn-danger');
+      $(".addButton-task").addClass('btn-light');
     }
   });
 });
-
-// 投稿編集画面の画像フォーカス
-$(function(){
-  $(".post-image__gallery img").hover(function(){
-    $(".post-image__main img").attr("src", $(this).attr('src'));
-  })
-})
