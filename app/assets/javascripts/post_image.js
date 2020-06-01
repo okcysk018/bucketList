@@ -27,6 +27,7 @@ $(document).on('turbolinks:load', function(){
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
   // TODO:デバッグ用の画像枚数の上限を変数宣言、最終的にはfileIndex.lengthで良い
+  // TODO:上限値変更時はhtmlも変更すること！！
   const imgLimit = 3
   // 既に使われているindexを除外
   lastIndex = $('.image-file_group:last').data('index');
@@ -34,6 +35,12 @@ $(document).on('turbolinks:load', function(){
 
   // 編集画面描画時の削除チェックボックスを非表示に
   $('.hidden-destroy').hide();
+
+  // 編集画面描画時に枚数上限の際はアップローダのクリックと選択を無効化する
+  if ($('.form-image-box__main__previews__view').length >= imgLimit) {
+    $(`#post_images_attributes_${imgLimit}_image`).attr('disabled', "disabled");
+    $(`.form-image-box__main__uploaders__label`).css({'pointer-events':'none'});
+  }
 
   $('.form-image-box__main').on('change', '.image-file-uploader', function(e) {
     const targetIndex = $(this).parent().data('index');

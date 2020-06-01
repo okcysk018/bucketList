@@ -5,7 +5,7 @@
     <label class='label'>
       タイトル
     </label>
-    <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "input"%>
+    <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "input"%>
   </div>
   <div class='formContent'>
     <label class='label'>
@@ -48,8 +48,8 @@
     <label class='label'>
       カテゴリ
     </label>
-    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する、class名がデバイスと被っているので必ず変更%>
-    <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "field"%>
+    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する%>
+    <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "category-field"%>
   </div>
   <div class='formContent'>
     <label class='label'>
@@ -88,9 +88,36 @@
     <%= f.check_box :done_flag, class: "check"%>
   </div>
 
+  <div class='formContent tasklist'>
+    <div class='formContent__titleBar'>
+      <i class="fas fa-tasks"></i>
+      <div class='formContent__titleBar__titleMemu'>
+        <h5 class='formContent__titleBar__formTitle'>タスクリスト</h5>
+        <div class='formContent__titleBar__titleMemu'>
+          <div class='formContent__titleBar__titleMemu__menuOptions'>
+            <%# TODO:達成済表示/非表示機能実装 %>
+            <%# <span class='hideButton-achieveTask btn btn-light'>
+              <i class="fas fa-minus"></i>
+              達成済タスクを非表示
+            </span> %>
+            <%# <span class='displayButton-achieveTask btn btn-light'>
+              <i class="fas fa-chevron-down"></i>
+              達成済タスクを表示
+            </span> %>
+            <span class='openButton-tasklist btn btn-light btn-flex'>
+              <i class="fa fa-plus"></i>
+              タスクリストを追加
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <%= f.submit "送信"%>
 <% end %>
 
 <%= javascript_include_tag 'tag-it.js' %>
 <%= javascript_include_tag 'autocomplete.js' %>
 <%= javascript_include_tag 'post_image.js' %>
+<%= javascript_include_tag 'post_tasks.js' %>
