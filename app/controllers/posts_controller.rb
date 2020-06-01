@@ -12,8 +12,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.images.build
-    @post.tasks.build
+    @post.images.new
+    @post.tasks.new
   end
 
   def create

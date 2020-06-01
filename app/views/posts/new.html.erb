@@ -96,40 +96,22 @@
         <div class='formContent__titleBar__titleMemu'>
           <div class='formContent__titleBar__titleMemu__menuOptions'>
             <%# TODO:達成済表示/非表示機能実装 %>
-            <span class='hideButton-achieveTask btn btn-light'>
+            <%# <span class='hideButton-achieveTask btn btn-light'>
               <i class="fas fa-minus"></i>
               達成済タスクを非表示
-            </span>
-            <span class='displayButton-achieveTask btn btn-light'>
+            </span> %>
+            <%# <span class='displayButton-achieveTask btn btn-light'>
               <i class="fas fa-chevron-down"></i>
               達成済タスクを表示
-            </span>
-            <span class='openButton-tasklist btn btn-light'>
+            </span> %>
+            <span class='openButton-tasklist btn btn-light btn-flex'>
               <i class="fa fa-plus"></i>
               タスクリストを追加
-            </span>
-            <span class='deleteButton-tasklist btn btn-light'>
-              <i class="fas fa-trash-alt"></i>
-              タスクリストを削除
             </span>
           </div>
         </div>
       </div>
     </div>
-    <div class='formContent__progressBar'>
-      <div class='tasklist-progress-percentage'>0%</div>
-      <div class='tasklist-progressBar progress'>
-        <div class='tasklist-progressBar-current progress-bar-striped bg-primary' style='width:50%'>0%</div>
-      </div>
-    </div>
-    <div class='taskFormArea'>
-      <%= f.fields_for :tasks do |task|%>
-      <% end %>
-    </div>
-    <span class='addButton-task btn btn-light'>
-      <i class="fa fa-plus"></i>
-      タスクを追加
-    </span>
   </div>
 
   <%= f.submit "送信"%>

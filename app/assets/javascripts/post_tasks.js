@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function(){
-  // サブタスクリストのフォームを生成する関数
+  // サブタスクのフォームを生成する関数
   // TODO:オプションの省略
   const buildTaskForm = (index)=> {
     const html = `<div data-index="${index}" class="taskForm_group">
@@ -99,36 +99,106 @@ $(document).on('turbolinks:load', function(){
                   </div>`;
     return html;
   }
-  let targetIndex = $('.taskForm_group').length;
 
+  // サブタスクリストのフォームを生成する関数
+  // TODO:進行率の表示
+  function buildTasklistForm(){
+    // const html = `<div class="formContent__progressBar">
+    //                 <div class="tasklist-progress-percentage">0%</div>
+    //                 <div class="tasklist-progressBar progress">
+    //                   <div class="tasklist-progressBar-current progress-bar-striped bg-primary" style="width:50%"></div>
+    //                 </div>
+    //               </div>
+    const html = `<div class="taskFormArea">
+                  </div>
+                  <span class="addButton-task btn btn-light">
+                    <i class="fa fa-plus"></i>
+                    タスクを追加
+                  </span>`;
+    return html;
+  }
+
+
+  function buildTasklistDeleteBtn(){
+    const html = `<span class="deleteButton-tasklist btn btn-light">
+                    <i class="fas fa-trash-alt"></i>
+                    タスクリストを削除
+                  </span>`
+    return html;
+  }
+
+  function buildTasklistOpenBtn(){
+    const html = `<span class="openButton-tasklist btn btn-light">
+                    <i class="fa fa-plus"></i>
+                    タスクリストを追加
+                  </span>`
+    return html;
+  }
+
+  // サブタスクの識別番号の初期値設定
+  let setIndex = $('.taskForm_group').length;
+  // サブタスクの上限数
   const taskLimit = 3
 
-  // 編集画面描画時の削除チェックボックスを非表示に
   // $('.hidden-destroy').hide();
+
+  // 編集画面描画時サブタスク上限数を超えている際は追加ボタンのクリックと選択を無効化する
+  if ($('.taskForm_group').length >= taskLimit) {
+    $('.addButton-task').css({'pointer-events':'none'});
+    $('.addButton-task').removeClass('btn-light');
+    $('.addButton-task').addClass('btn-danger');
+  }
 
   // タスク追加ボタン押下時の関数
   $('.tasklist').on('click', '.addButton-task', function() {
-    console.log(targetIndex);// TODO:編集時のチェック
 
-    $('.taskFormArea').append(buildTaskForm(targetIndex));
+    $('.taskFormArea').append(buildTaskForm(setIndex));
     // サブタスク上限数を超えた際は追加ボタンのクリックと選択を無効化する
     if ($('.taskForm_group').length >= taskLimit) {
       $(this).css({'pointer-events':'none'});
       $(this).removeClass('btn-light');
       $(this).addClass('btn-danger');
     }
-    // targetIndexを追加
-    targetIndex += 1
+    // setIndexを加算
+    setIndex += 1
   });
   // 削除ボタンの設定
   $('.tasklist').on('click', '.deleteButton-task', function() {
-    console.log($('.tasklist'));
-    $(this).parent().remove();
+    const targetIndex = $(this).data('index');
+    // 該当indexを振られているチェックボックスを取得する
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    // もしチェックボックスが存在すればチェックを入れる
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
 
+    $(this).parent().remove();
+    // サブタスクが上限以内の場合、削除ボタン非活性を解除する
     if ($('.taskForm_group').length <= taskLimit) {
       $(".addButton-task").css('pointer-events', '');
       $(".addButton-task").removeClass('btn-danger');
       $(".addButton-task").addClass('btn-light');
     }
+
+    // TODO:フォームが存在しない場合、タスク追加ボタンと進行バーを削除
+    // if ($('.taskForm_group').length == 0) {
+    //   $('.formContent__titleBar__titleMemu__menuOptions').append(buildTasklistOpenBtn);
+    //   $('.addButton-task').remove();
+    //   $('.formContent__progressBar').remove();
+    //   $('taskFormArea').addClass('.hidden-edit');
+    //   $('.taskFormArea').removeClass();
+    // }
   });
+  // タスクリスト追加ボタンの設定
+  $('.tasklist').on('click', '.openButton-tasklist', function() {
+    $('.tasklist').append(buildTasklistForm);
+    // $(this).parent().append(buildTasklistDeleteBtn);
+    $(this).remove();
+  });
+
+  // TODO:タスクリスト削除ボタンの設定
+  // $('.tasklist').on('click', '.deleteButton-tasklist', function() {
+  //   $('.taskForm_group').remove();
+  //   $(this).parent().append(buildTasklistOpenBtn);
+  //   $(this).remove();
+  // });
+
 });
