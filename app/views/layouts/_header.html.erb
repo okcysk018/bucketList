@@ -1,19 +1,25 @@
-  <header class= "header">
-    <div class="header__title">
-      <%= link_to "BucketList", root_path, class: "header__title--text" %>
+  <nav class= "navbar main-header">
+    <%= link_to root_path, class: "navbar-brand main-header__title" do%>
+      <img src="../../assets/MyBucketList-logo.png" class= "main-header__title--text" width="200" height="50">
+    <%end%>
+    <button class="navbar-toggler main-header__right" type='button' data-toggle="collapse" data-target="#main-header-menu" aria-controls="main-header-menu" aria-expanded="false" aria-label="Toggle navigation">
+      <%# <span class="navbar-toggler-icon"></span> %>
+      <i class="fas fa-bars navbar-toggler-icon"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="main-header-menu">
+      <div class="navbar-nav">
+        <% if user_signed_in?%>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          <%# TODO: turbolinksの有無 %>
+          <%# <%= link_to '新規投稿', new_post_path, data: {"turbolinks"=>false}%>
+          <%= link_to '新規投稿', new_post_path%>
+          <%= link_to 'マイページ', user_path(current_user)%>
+          <%# TODO: ユーザ編集機能 %>
+          <%= link_to 'アカウント編集', edit_user_registration_path%>
+        <% else %>
+          <%= link_to 'ログイン', new_user_session_path%>
+          <%= link_to '新規登録', new_user_registration_path%>
+        <% end %>
+      </div>
     </div>
-    <div class="header__right">
-      <% if user_signed_in?%>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-        <%# TODO: turbolinksの有無 %>
-        <%# <%= link_to '新規投稿', new_post_path, data: {"turbolinks"=>false}%>
-        <%= link_to '新規投稿', new_post_path%>
-        <%= link_to current_user.nickname, user_path(current_user)%>
-        <%# TODO: ユーザ編集機能 %>
-        <%= link_to 'アカウント編集', edit_user_registration_path%>
-      <% else %>
-        <%= link_to 'ログイン', new_user_session_path%>
-        <%= link_to '新規登録', new_user_registration_path%>
-      <% end %>
-    </div>
-  </header>
+  </nav>
