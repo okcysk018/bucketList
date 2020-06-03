@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function(){
   const buildImg = (index, url)=> {
     const html = `<div class= "form-image-box__main__previews__view" data-index="${index}">
                     <div class="form-image-box__main__previews__view__image">
-                      <img class="image${index} input_images", data-index="${index}", src="${url}", width="120px", height="120px"%>
+                      <img class="image${index} input_images", data-index="${index}", src="${url}", width="200px", height="150px"%>
                         <div class="image-remove form-image-box__main__previews__view__delete">
                           削除
                         </div>
@@ -15,7 +15,8 @@ $(document).on('turbolinks:load', function(){
   // 画像用のinputを生成する関数
   const buildFileField = (num)=> {
     const html = `<div data-index="${num}" class="image-file_group">
-                    <i class="fa fa-camera"></i>
+                    <i class="fa fa-camera fa-2x"></i>
+                    <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>
                     <input class="image-file-uploader" type="file"
                     name="post[images_attributes][${num}][image]"
                     id="post_images_attributes_${num}_image">
@@ -28,7 +29,7 @@ $(document).on('turbolinks:load', function(){
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
   // TODO:デバッグ用の画像枚数の上限を変数宣言、最終的にはfileIndex.lengthで良い
   // TODO:上限値変更時はhtmlも変更すること！！
-  const imgLimit = 3
+  const imgLimit = 10
   // 既に使われているindexを除外
   lastIndex = $('.image-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);

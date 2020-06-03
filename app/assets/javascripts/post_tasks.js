@@ -4,8 +4,8 @@ $(document).on('turbolinks:load', function(){
   const buildTaskForm = (index)=> {
     const html = `<div data-index="${index}" class="taskForm_group">
                     <input name="post[tasks_attributes][${index}][done_flag]" type="hidden" value="0">
-                    <input class="check" type="checkbox" value="1" name="post[tasks_attributes][${index}][done_flag]" id="post_tasks_attributes_${index}_done_flag">
-                    <input placeholder="サブタスクタイトルを入力してください" required="required" class="input" type="text" name="post[tasks_attributes][${index}][title]" id="post_tasks_attributes_${index}_title">
+                    <input class="post-tasks-done" type="checkbox" value="1" name="post[tasks_attributes][${index}][done_flag]" id="post_tasks_attributes_${index}_done_flag">
+                    <input placeholder="サブタスクタイトルを入力してください" required="required" class="post-tasks-title" type="text" name="post[tasks_attributes][${index}][title]" id="post_tasks_attributes_${index}_title">
                     <select id="post_tasks_attributes_${index}_deadline_1i" name="post[tasks_attributes][${index}][deadline(1i)]">
                       <option value="">---</option>
                       <option value="2020">2020</option>

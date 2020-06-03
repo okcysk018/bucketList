@@ -42,7 +42,7 @@
     opacity: 1;
   }
   #post-card-img-overlay{
-    positiaon:		absolute;
+    position:		absolute;
     opacity:		0;
     background-color:	rgba(0,0,0,0.4);
     -webkit-transition:	all 0.2s ease;
@@ -50,3 +50,127 @@
   }
 }
 
+// post-new
+.formContent{
+  border-bottom:1px solid $light_gray;
+  padding: 30px;
+  &__titleBar{
+    display: flex;
+    justify-content: space-between;
+    &__formTitle{
+      width: 150px;
+      display: flex;
+      justify-content: space-between;
+      .fa-tasks{
+        font-size: 1.4rem;
+      }
+    }
+  }
+  .taskFormArea{
+    .taskForm_group{
+      margin-bottom: 5px;
+      .post-tasks-title{
+        width: 65%;
+      }
+    }
+  }
+}
+.form-submit{
+  padding: 30px 45%;
+  align-items: center;
+}
+
+.form-image-box{
+  &__main{
+    &__previews{
+      display: flex;
+      flex-flow: wrap;
+      &__view{
+        width: 19%;
+        margin: 10px 5px;
+        .image-remove{
+          color: $blue;
+          text-align: center;
+        }
+      }
+    }
+    &__uploaders{
+      &__label{
+        width: 100%;
+        background-color: $gray;
+        border: 1px dashed rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        position: relative;
+        .image-file_group{
+          i{
+            position: absolute;
+            left: 50%;
+            top: 30%;
+          }
+          p{
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            top: 60%;
+          }
+          .image-file-uploader{
+            width: 100%;
+            height: 150px;
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.form-group-sideSet{
+  display: flex;
+  justify-content: space-between;
+  .post-budget{
+    display: flex;
+    justify-content: space-between;
+    width: 16rem;
+    &-priceTag{
+      font-size: 1.5rem;
+    }
+    #post-budget{
+      width: 14rem;
+    }
+  }
+  #post-address{
+    width: 60%;
+  }
+  .post-category{
+    width: 60%;
+  }
+}
+
+// TODO:レーティングの実装
+.p-rating {
+  /* Center the content */
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  font-size: 18px;
+}
+.p-rating .p-rating-star:hover,
+.p-rating .p-rating-star:hover ~ .p-rating-star {
+  color: transparent;
+}
+.p-rating .p-rating-star:hover:before,
+.p-rating .p-rating-star:hover ~ .p-rating-star:before {
+  color: gold;
+  content: '\2605';
+  left: 0;
+  position: absolute;
+}
+.p-rating-star {
+  /* Reset styles for button */
+  background-color: transparent;
+  border: transparent;
+  margin: 0 2px;
+  padding: 0;
+  /* Used to position the hover state */
+  position: relative;
+}
