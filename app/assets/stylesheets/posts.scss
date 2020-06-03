@@ -6,41 +6,26 @@
 }
 .contents{
   background-color: $light_gray;
-  padding-top: 30px;
+  padding: 30px 0;
 }
-.post-index{
-  background-color: white;
-  padding: 30px;
-}
-
 .main-page{
   min-height: 100vh;
   position: relative;
-  padding-bottom: 120px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
-// ヘッダー
-.main-header{
-  display: flex;
-  justify-content: space-between;
+.post-page{
+  background-color: white;
+  padding: 30px;
 }
-#main-header-menu{
-}
-
-
-
-
-
-
 
 // フッター
 .main-footer-base{
   width: 100vw;
   background-color: #F9F9F9;
   padding: 30px;
-  position: absolute;
+  // position: absolute;
   bottom: 0;
-.main-footer{
+  .main-footer{
     display: flex;
     justify-content: space-between;
     .main-footer-menu{
@@ -50,7 +35,6 @@
 }
 
 // post-index
-
 #post-card-info{
   overflow: hidden;
   position: relative;
@@ -58,7 +42,7 @@
     opacity: 1;
   }
   #post-card-img-overlay{
-    position:		absolute;
+    positiaon:		absolute;
     opacity:		0;
     background-color:	rgba(0,0,0,0.4);
     -webkit-transition:	all 0.2s ease;
