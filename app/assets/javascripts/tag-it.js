@@ -24,7 +24,10 @@
 *   jQuery v1.4+
 *   jQuery UI v1.8+
 */
-(function($) {
+
+$(document).on('turbolinks:load', function(){
+
+// (function($) {
 
     $.widget('ui.tagit', {
         options: {
@@ -589,5 +592,5 @@
         }
 
     });
-})(jQuery);
+});
 

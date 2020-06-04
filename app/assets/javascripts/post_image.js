@@ -27,9 +27,8 @@ $(document).on('turbolinks:load', function(){
 
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-  // TODO:デバッグ用の画像枚数の上限を変数宣言、最終的にはfileIndex.lengthで良い
   // TODO:上限値変更時はhtmlも変更すること！！
-  const imgLimit = 10
+  const imgLimit = fileIndex.length
   // 既に使われているindexを除外
   lastIndex = $('.image-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);

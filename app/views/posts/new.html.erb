@@ -31,19 +31,20 @@
                 <%= f.fields_for :images do |image|%>
                   <%= tag.div data: {index: "#{image.index}"}, class: "image-file_group" do%>
                     <i class="fa fa-camera fa-2x"></i>
-                    <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>
+                    <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>	
                     <%= image.file_field :image, class:'image-file-uploader' %>
                     <%# <%= image.file_field :images, class:'image-file-uploader', required: true ,multiple: true %>
                   <% end %>
                 <% end %>
               </label>
             </div>
-            <%# TODO:画像サイズの調整とレスポンシヴ%>
+            <%# TODO:画像サイズの調整とレスポンシヴ,カードにする%>
             <div class="form-image-box__main__previews"></div>
           </div>
         </div>
       </div>
     </div>
+
     <div class='formContent'>
       <div class="form-group form-group-sideSet">
         <label class='label' for='post-deadline'>
@@ -54,7 +55,6 @@
           <%= raw sprintf (f.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.since(30.year).year, use_month_numbers: true, class: "input form-control", id:'post-deadline', date_separator: '%s'),'年 ', '月 '%>日
         </div>
       </div>
-
       <div class="form-group form-group-sideSet">
         <label class='label' for='post-budget'>
           予　　算
@@ -65,14 +65,12 @@
           <%= f.number_field :budget, class: "form-control", id: "post-budget", required: true %>
         </div>
       </div>
-
       <div class="form-group form-group-sideSet">
         <label class='label' for= "post-address">
           場　　所
         </label>
         <%= f.text_field :address, placeholder: "目的地を入力してください", class: "form-control input-address", id: "post-address"%>
       </div>
-
       <div class="form-group-sideSet">
         <label class='label' for= "post-category">
           カテゴリ
@@ -82,7 +80,6 @@
           <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "category-field", id: "post-category"%>
         </div>
       </div>
-
       <div class="form-group form-group-sideSet">
         <label class='label' for="post-priority">
           優 先 度
@@ -139,16 +136,7 @@
         </div>
         <div class='formContent__titleBar__titleMemu'>
           <div class='formContent__titleBar__titleMemu__menuOptions'>
-            <%# TODO:達成済表示/非表示機能実装 %>
-            <%# <span class='hideButton-achieveTask btn btn-light'>
-              <i class="fas fa-minus"></i>
-              達成済タスクを非表示
-            </span> %>
-            <%# <span class='displayButton-achieveTask btn btn-light'>
-              <i class="fas fa-chevron-down"></i>
-              達成済タスクを表示
-            </span> %>
-            <span class='openButton-tasklist btn btn-light btn-flex'>
+            <span class='openButton-tasklist btn btn-light'>
               <i class="fa fa-plus"></i>
               タスクリストを追加
             </span>
@@ -163,7 +151,7 @@
   <% end %>
 </div>
 
-<%= javascript_include_tag 'tag-it.js' %>
 <%= javascript_include_tag 'autocomplete.js' %>
+<%= javascript_include_tag 'tag-it.js' %>
 <%= javascript_include_tag 'post_image.js' %>
 <%= javascript_include_tag 'post_tasks.js' %>

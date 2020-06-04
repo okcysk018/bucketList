@@ -1,9 +1,6 @@
 .ui-helper-hidden-accessible {
   display: none;
 }
-#map{
-  height: 400px;
-}
 .contents{
   background-color: $light_gray;
   padding: 30px 0;
@@ -50,7 +47,7 @@
   }
 }
 
-// post-new
+// post-new,edit
 .formContent{
   border-bottom:1px solid $light_gray;
   padding: 30px;
@@ -58,9 +55,9 @@
     display: flex;
     justify-content: space-between;
     &__formTitle{
-      width: 150px;
+      width: 200px;
       display: flex;
-      justify-content: space-between;
+      justify-content: start;
       .fa-tasks{
         font-size: 1.4rem;
       }
@@ -173,4 +170,8 @@
   padding: 0;
   /* Used to position the hover state */
   position: relative;
+}
+
+#map{
+  height: 400px;
 }
