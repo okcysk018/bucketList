@@ -88,9 +88,9 @@ $(document).on('turbolinks:load', function(){
   });
 });
 
-// 投稿編集画面の画像フォーカス
+// 投稿詳細画面の画像フォーカス
 $(function(){
-  $(".post-image__gallery img").hover(function(){
-    $(".post-image__main img").attr("src", $(this).attr('src'));
+  $(".post-image-gallery img").hover(function(){
+    $(".post-main-image img").attr("src", $(this).attr('src'));
   })
 })

@@ -54,6 +54,8 @@
   &__titleBar{
     display: flex;
     justify-content: space-between;
+    border-bottom:1px solid $light_gray;
+    margin-bottom: 10px;
     &__formTitle{
       width: 200px;
       display: flex;
@@ -172,6 +174,105 @@
   position: relative;
 }
 
-#map{
-  height: 400px;
+//post-show
+.post-info{
+  padding: 30px 0;
+  border-bottom:1px solid $light_gray;
+  &__post-title{
+    text-align: center;
+  }
+  &__post-flags{
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  &__post-category{
+    text-align: center;
+  }
+  &__post-reputation{
+    position: relative;
+    height: 20px;
+    width: 80px;
+    left: 45%;
+    .post-reputation-front{
+      position: absolute;
+      color: #ffcc33;
+    }
+    .post-reputation-back{
+      color: $gray;
+      position: absolute;
+    }
+  }
+
+  &__post-images{
+    text-align: center;
+    .post-main-image{
+      background-color: $light_gray;
+      margin: 10px 0;
+    }
+    .images-gallery{
+      margin: 10px 0;
+    }
+  }
+
+
+
+  #map{
+    height: 400px;
+  }
+
+  // TODO:mixin
+  &__tasks-titleBar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    &__formTitle{
+      width: 200px;
+      display: flex;
+      justify-content: start;
+      .fa-tasks{
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  &__post-tasks{
+    padding-bottom: 10px;
+    .post-task-info{
+      display: flex;
+      .fa-check{
+        margin: 5px;
+      }
+    }
+  }
+
+  &__post-btns{
+    text-align: center;
+    .post-edit-btn{
+      margin-right: 30px;
+      width: 100px;
+    }
+    .post-delete-btn{
+      margin-left: 30px;
+      width: 100px;
+    }
+  }
+
+  &__commentForm{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    #comment-form{
+      width: 500px;
+      margin: 10px 0;
+    }
+  }
+  &__post-comments{
+    text-align: center;
+  }
+
 }
+
+// TODO:タスク一覧化機能実装時の参考
+// .test{
+//   font-family: 'Bradley Hand','Segoe Script','Segoe Print',sans-serif;/*手書き風のフォント*/
+// }
