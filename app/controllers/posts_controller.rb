@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :set_geocorder_to_gon, only: [:show]
   before_action :move_to_login, except: [:index, :show]
   before_action :move_to_show, only: [:edit, :update, :destroy]
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :new, :create]
 
   def index
     @posts = Post.includes(:user).order("id DESC")

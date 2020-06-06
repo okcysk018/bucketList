@@ -14,6 +14,10 @@
   background-color: white;
   padding: 30px;
 }
+.user-page{
+  background-color: white;
+  padding: 30px;
+}
 
 // フッター
 .main-footer-base{
@@ -214,8 +218,6 @@
     }
   }
 
-
-
   #map{
     height: 400px;
   }
@@ -241,6 +243,10 @@
       display: flex;
       .fa-check{
         margin: 5px;
+      }
+      .fa-circle{
+        margin: 5px;
+        font-size: 0.5em;
       }
     }
   }
