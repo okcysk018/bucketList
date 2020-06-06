@@ -43,22 +43,20 @@
     </div>
   </div>
     <%# TODO: 複数画像 スライド表示%>
-  <div class='post-info'>
-    <div class="post-info__post-images">
-      <div class="post-main-image">
-        <% if @post.images.present? %>
+  <% if @post.images.present? %>
+    <div class='post-info'>
+      <div class="post-info__post-images">
+        <div class="post-main-image">
           <%= image_tag "#{@post.images[0].image.url}", size: "500x280"%>
-        <% end %>
-      </div>
-      <div class="post-image-gallery">
-        <% if @post.images.present? %>
+        </div>
+        <div class="post-image-gallery">
           <% @post.images.each do |image|%>
             <%= image_tag "#{image.image.url}", size: "20%x100", class: "images-gallery"%>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
   <div class="post-info">
     <div class="post-description">
       <%= simple_format @post.description %>
