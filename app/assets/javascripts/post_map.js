@@ -4,7 +4,6 @@ $(document).on('turbolinks:load',
   function initMap(){
     // $(".input-address").on('keyup', function(){
 
-    console.log("TODO:debug")
     if (gon.geocorder == null){
       gon.geocorder = [0, 0]
     }
