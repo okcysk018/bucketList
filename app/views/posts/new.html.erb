@@ -1,19 +1,23 @@
-<h1>新規投稿</h1>
+<div class='post-page container'>
 
-<%= form_with(model: @post, local: true) do |f| %>
-  <div class='formContent'>
-    <label class='label'>
-      タイトル
-    </label>
-    <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "input"%>
-  </div>
-  <div class='formContent'>
-    <label class='label'>
-      詳　　細
-    </label>
-    <%= f.text_area :description, placeholder: "詳細やメモを入力してください", class: "input"%>
-  </div>
-  <div class='formContent'>
+  <%= form_with(model: @post, local: true) do |f| %>
+    <div class='formContent'>
+      <div class='form-group'>
+        <label class='label' for='post-title'>
+          タスクタイトル
+          <span class="badge badge-info">必須</span>
+        </label>
+        <%= f.text_field :title, placeholder: "タイトルを入力してください", class: "form-control", id:'post-title'%>
+      </div>
+      <div class='form-group'>
+        <label class='label' for='post-description'>
+          タスク詳細
+        </label>
+        <%= f.text_area :description, placeholder: "タスクに関する詳細やメモを入力してください", class: "form-control", id:'post-description'%>
+      </div>
+    </div>
+
+    <div class='formContent'>
       <div class="form-image">
         <div class="form-image__title">
           <label class='label'>
@@ -24,87 +28,115 @@
           <div class="form-image-box__main">
             <div class="form-image-box__main__uploaders">
               <label class="form-image-box__main__uploaders__label">
-                <%= f.fields_for :images do |image|%>
+                <%= f.fields_for :images do |image|%>
                   <%= tag.div data: {index: "#{image.index}"}, class: "image-file_group" do%>
-                    <i class="fa fa-camera"></i>
+                    <i class="fa fa-camera fa-2x"></i>
+                    <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>	
                     <%= image.file_field :image, class:'image-file-uploader' %>
                     <%# <%= image.file_field :images, class:'image-file-uploader', required: true ,multiple: true %>
                   <% end %>
                 <% end %>
               </label>
             </div>
+            <%# TODO:画像サイズの調整とレスポンシヴ,カードにする%>
             <div class="form-image-box__main__previews"></div>
           </div>
         </div>
       </div>
-  </div>
-  <div class='formContent'>
-    <label class='label'>
-      場　　所
-    </label>
-    <%= f.text_field :address, placeholder: "目的地を入力してください", class: "input-address"%>
-  </div>
-  <div class='formContent'>
-    <label class='label'>
-      カテゴリ
-    </label>
-    <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する%>
-    <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "category-field"%>
-  </div>
-  <div class='formContent'>
-    <label class='label'>
-      優 先 度
-    </label>
-    <%= f.select :priority, [1,2,3,4,5], include_blank: '-', class: "input"%>
-  </div>
-  <div class='formContent'>
-    <label class='label'>
-      評　　価
-    </label>
-    <%= f.select :reputation, [1,2,3,4,5], include_blank: '-', class: "input"%>
-  </div>
-  <div class='formContent'>
-    <label class='label'>
-      期　　日
-    </label>
-    <%= raw sprintf (f.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.since(30.year).year, use_month_numbers: true, class: "input", date_separator: '%s'),'年 ', '月 '%>日
-  </div>
-  <div class='formContent'>
-    <label class='label'>
-      予　　算
-    </label>
-    <%= f.text_field :budget, placeholder: "日本円を入力してください", class: "input"%>
-  </div>
-  <div class='formContent'>
-    <label class='label'>
-      非 公 開
-    </label>
-    <%= f.check_box :private_flag, class: "check"%>
-  </div>
-  <div class='formContent'>
-    <label class='label'>
-      達 成 済
-    </label>
-    <%= f.check_box :done_flag, class: "check"%>
-  </div>
+    </div>
 
-  <div class='formContent tasklist'>
-    <div class='formContent__titleBar'>
-      <i class="fas fa-tasks"></i>
-      <div class='formContent__titleBar__titleMemu'>
-        <h5 class='formContent__titleBar__formTitle'>タスクリスト</h5>
+    <div class='formContent'>
+      <div class="form-group form-group-sideSet">
+        <label class='label' for='post-deadline'>
+          期　　日
+          <span class="badge badge-info">必須</span>
+        </label>
+        <div class='post-deadline'>
+          <%= raw sprintf (f.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.since(30.year).year, use_month_numbers: true, class: "input form-control", id:'post-deadline', date_separator: '%s'),'年 ', '月 '%>日
+        </div>
+      </div>
+      <div class="form-group form-group-sideSet">
+        <label class='label' for='post-budget'>
+          予　　算
+          <span class="badge badge-info">必須</span>
+        </label>
+        <div class='post-budget'>
+          <span class='post-budget-priceTag'>¥</span>
+          <%= f.number_field :budget, class: "form-control", id: "post-budget", required: true %>
+        </div>
+      </div>
+      <div class="form-group form-group-sideSet">
+        <label class='label' for= "post-address">
+          場　　所
+        </label>
+        <%= f.text_field :address, placeholder: "目的地を入力してください", class: "form-control input-address", id: "post-address"%>
+      </div>
+      <div class="form-group-sideSet">
+        <label class='label' for= "post-category">
+          カテゴリ
+        </label>
+        <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する%>
+        <div class='post-category'>
+          <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "category-field", id: "post-category"%>
+        </div>
+      </div>
+      <div class="form-group form-group-sideSet">
+        <label class='label' for="post-priority">
+          優 先 度
+        </label>
+        <%= f.select :priority, [1,2,3,4,5], include_blank: '他のタスクとの優先度合を選択します', class: "form-control", id:"post-priority"%>
+        <%# TODO:レーティングの実装 %>
+        <%# レーティングサンプルコード %>
+        <%# <div class="p-rating">
+          <button class="p-rating-star">☆</button>
+          <button class="p-rating-star">☆</button>
+          <button class="p-rating-star">☆</button>
+          <button class="p-rating-star">☆</button>
+          <button class="p-rating-star">☆</button>
+        </div> %>
+
+        <%# NOTE:ラジオボタンをdisplay:noneで別口でレーティングを実装してJSで同期させる？ %>
+        <%# <div class="p-rating"> %>
+          <%# <%=f.radio_button :priority, 1, class: "p-rating-star"%>
+          <%# <%=f.radio_button :priority, 2, class:"p-rating-star"%>
+          <%# <%=f.radio_button :priority, 3, class:"p-rating-star"%>
+          <%# <%=f.radio_button :priority, 4, class:"p-rating-star"%>
+          <%# <%=f.radio_button :priority, 5, class:"p-rating-star"%>
+        <%# </div> %>
+      </div>
+    </div>
+
+    <div class='formContent'>
+      <div class='form-group form-check'>
+        <%= f.check_box :private_flag, class: "form-check-input"%>
+        <label class='form-check-label'>
+          非 公 開 に す る
+        </label>
+      </div>
+      <%# TODO:達成済の場合、評価必須、JS実装 %>
+      <div class='form-group form-check'>
+        <%= f.check_box :done_flag, class: "form-check-input"%>
+        <label class='form-check-label'>
+          達 成 済 に す る
+        </label>
+      </div>
+      <div class="form-group form-group-sideSet">
+        <label class='label' for="post-reputation">
+          評　　価
+        </label>
+        <%= f.select :reputation, [1,2,3,4,5], include_blank: '-', class: "form-control", id:"post-reputation"%>
+      </div>
+    </div>
+
+    <div class='formContent tasklist'>
+      <div class='formContent__titleBar'>
+        <div class='formContent__titleBar__formTitle'>
+          <i class="fas fa-tasks"></i>
+          <h5>タスクリスト</h5>
+        </div>
         <div class='formContent__titleBar__titleMemu'>
           <div class='formContent__titleBar__titleMemu__menuOptions'>
-            <%# TODO:達成済表示/非表示機能実装 %>
-            <%# <span class='hideButton-achieveTask btn btn-light'>
-              <i class="fas fa-minus"></i>
-              達成済タスクを非表示
-            </span> %>
-            <%# <span class='displayButton-achieveTask btn btn-light'>
-              <i class="fas fa-chevron-down"></i>
-              達成済タスクを表示
-            </span> %>
-            <span class='openButton-tasklist btn btn-light btn-flex'>
+            <span class='openButton-tasklist btn btn-light'>
               <i class="fa fa-plus"></i>
               タスクリストを追加
             </span>
@@ -112,12 +144,14 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <%= f.submit "送信"%>
-<% end %>
+    <div class='form-submit'>
+      <%= f.submit "登録する", class:'btn btn-info btn-lg'%>
+    </div>
+  <% end %>
+</div>
 
-<%= javascript_include_tag 'tag-it.js' %>
 <%= javascript_include_tag 'autocomplete.js' %>
+<%= javascript_include_tag 'tag-it.js' %>
 <%= javascript_include_tag 'post_image.js' %>
 <%= javascript_include_tag 'post_tasks.js' %>

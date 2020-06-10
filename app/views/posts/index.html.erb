@@ -1,13 +1,23 @@
-<h1>トップページ</h1>
-<% if @posts%>
-  <% @posts.each do |post| %>
-    <div class="post">
-      <div class="post-name">
-        <%= post.title %>
-      </div>
-      <div class="post-date">
-        投稿日時：<%= post.created_at %>
-      </div>
-    </div>
-  <% end %>
-<% end %>
+<div class='post-page container'>
+  <div class="card-columns card-list">
+    <% @posts.each do |post| %>
+      <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
+        <div class="card bg-dark" style="width:21rem; height:9.18rem;" id="post-card-info">
+          <% if post.images.present?%>
+            <%# TODO:carouselの実装 %>
+            <%# <%= link_to image_tag("/uploads/image/image/#{post.images.first.id}/#{post.images.first[:image]}", size: '238x105'), post_path(post.id), class: "card-img" %>
+            <%= image_tag("/uploads/image/image/#{post.images.first.id}/#{post.images.first[:image]}", size: '334x145', class: "card-img") %>
+          <%else%>
+            <%# <%= link_to image_tag("noImage.jpg", size: '238x105', alt: 'sample-image'), post_path(post.id), class: "card-img"%>
+            <%= image_tag("noImage.jpg", size: '334x145', alt: 'sample-image', class: "card-img")%>
+          <%end%>
+          <%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;" do %>
+            <h5 class="card-title"><%= post.title %></h5>
+            <%# TODO:カードに表示するデータを考える %>
+            <%# <p class="card-text">投稿日時：<%= post.created_at %>
+          <%end%>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<div>
