@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: bucket_production
-  username: bucket
-  password: <%= ENV['BUCKET_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
