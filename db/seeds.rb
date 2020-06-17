@@ -9,7 +9,7 @@ User.create!(
 Post.create!(
   title: '初期データ',
   description: '初期データ',
-  deadline: nil,
+  deadline: 2020-01-01,
   budget: 1000,
   done_flag: true,
   private_flag: true,
