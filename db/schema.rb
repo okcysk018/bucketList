@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 2020_05_27_055550) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.date "deadline"
-    t.integer "budget"
+    t.date "deadline", null: false
+    t.integer "budget", null: false
     t.integer "reputation"
     t.integer "priority"
     t.boolean "done_flag"
