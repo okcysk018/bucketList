@@ -2,19 +2,5 @@
   <h4 class="user-posts">
     <%= @user.nickname %>さんの投稿一覧
   </h4>
-  <div class="card-columns card-list">
-    <% @posts.each do |post| %>
-      <div class="card bg-dark" style="width:21rem; height:9.18rem;" id="post-card-info">
-        <% if post.images.present?%>
-          <%# TODO:indexとのテンプレート化 %>
-          <%= image_tag("/uploads/image/image/#{post.images.first.id}/#{post.images.first[:image]}", size: '334x145', class: "card-img") %>
-        <%else%>
-          <%= image_tag("noImage.jpg", size: '334x145', alt: 'sample-image', class: "card-img")%>
-        <%end%>
-        <%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;" do %>
-          <h5 class="card-title"><%= post.title %></h5>
-        <%end%>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'layouts/card-list'%>
 </div>

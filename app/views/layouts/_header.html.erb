@@ -1,6 +1,9 @@
   <nav class= "navbar main-header">
     <%= link_to root_path, class: "navbar-brand main-header__title" do%>
-      <img src="../../assets/MyBucketList-logo.png" class= "main-header__title--text" width="200" height="50">
+      <%# TODO:本番環境で相対パスの場合は反映されない要調査、images必要？ %>
+      <%# <img src="../../assets/MyBucketList-logo.png" class="main-header__title--text" width="200" height="50" alt='bucketist-top-page'> %>
+      <%= image_tag "MyBucketList-logo.png", size: '200x50', class: "main-header__title--text", alt: "bucketList-top-page" %>
+
     <%end%>
     <button class="btn btn-light dropdown-toggle main-header__right" type='button' id='main-header-dropdown' data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
       <i class="fas fa-bars navbar-toggler-icon"></i>
