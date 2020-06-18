@@ -32,6 +32,7 @@ bucketList
 
 ## 本番環境(デプロイ先　テストアカウント＆ID)
 デプロイURL：　         http://54.238.83.189/
+
 テストアカウントID/PASS：  post@email.com / pppppppp
 
 ## 制作背景(意図)
@@ -40,7 +41,7 @@ bucketList
 「死ぬまでにやりたい事リスト」をみんなで共有して、人生を豊かにしたい、という思いで作成しました。
 
 ## DEMO
-![bucketList-prototype](https://user-images.githubusercontent.com/60644410/84983160-264a9980-b173-11ea-89fc-5289267efcbd.jpg)
+![](https://i.gyazo.com/9ac6f32b94cf7aadb6c4f3b89e636363.jpg)
 
 # 使用技術
 ### ■言語
@@ -59,7 +60,7 @@ AWS S3
 Capistranoによる自動デプロイ
 
 # DB設計
-![](https://i.gyazo.com/ec58039efabfc211bcd50a0aeb4048db.png)
+![](https://i.gyazo.com/976c811fec7c4b68f0aab916cb433091.png)
 
 ## usersテーブル
 
@@ -129,7 +130,3 @@ Capistranoによる自動デプロイ
 
 ### Association
 - has_many :posts
-
-## taggingsテーブル
-## tagsテーブル
-ライブラリのため省略
