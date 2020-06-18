@@ -1,4 +1,4 @@
-// TODO:post_tasks.js読み込みエラー回避のためファイル名を変更（require_treeの読込順を最後に）
+// TODO:require_treeの読込順によるpost_tasks.js読込エラー回避のためapplication.jsで直接指定
 $(document).on('turbolinks:load',
 
   // let mapInstance

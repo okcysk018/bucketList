@@ -4,6 +4,16 @@ User.create!(
   nickname: 'test_user',
   password: 'tttttttt'
 )
+User.create!(
+  email: 'post@email.com',
+  nickname: 'post_user',
+  password: 'pppppppp'
+)
+User.create!(
+  email: 'show@email.com',
+  nickname: 'show_user',
+  password: 'ssssssss'
+)
 
 # 初期データ
 Post.create!(
@@ -26,9 +36,134 @@ Post.create!(
       done_flag: true,
       private_flag: true,
       user_id: 1
+    },
+    {
+      title: '筋トレ',
+      description: '初期データ',
+      deadline: '2025-12-31',
+      budget: 10000,
+      reputation: 4,
+      priority: 4,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '世界一周',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 1000000,
+      reputation: 5,
+      priority: 5,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '結婚',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      reputation: 3,
+      priority: 5,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'スカイダイビング',
+      description: '初期データ',
+      deadline: '2025-12-31',
+      budget: 50000,
+      reputation: 3,
+      priority: 3,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '乗馬',
+      description: '初期データ',
+      deadline: '2025-12-31',
+      budget: 10000,
+      reputation: 2,
+      priority: 2,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'キリマンジャロ登頂',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 1000000,
+      reputation: 1,
+      priority: 1,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'キューバ旅行',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'ラスベガス旅行',
+      description: '初期データ複数タスク',
+      deadline: '2030-12-31',
+      budget: 100000,
+      address: 'ラスベガス',
+      latitude: 36.1673,
+      longitude: -115.149,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'スキューバダイビング',
+      description: '初期データ場所',
+      deadline: '2030-12-31',
+      budget: 100000,
+      address: '沖縄',
+      latitude: 26.3344,
+      longitude: 127.806,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'スペイン旅行',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'ラグビー',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
     }
   ]
 )
+
+Task.create!([
+  {
+    title: 'カジノ',
+    post_id: 10,
+  },
+  {
+    title: 'グランドキャニオン',
+    post_id: 10,
+  },
+  {
+    title: 'ソルトレイクシティ',
+    post_id: 10,
+  },
+  {
+    title: 'ベラージオ噴水',
+    post_id: 10,
+  },
+])
 
 # カテゴリータグ
 category = [
@@ -56,3 +191,91 @@ category.each do |tag|
     :context => "categories"
   ).save
 end
+
+# TODO:省略可？
+ActsAsTaggableOn::Tagging.create!([
+  {
+    :tag_id => 5,
+    :taggable_type => "Post",
+    :taggable_id => 3,
+    :context => "categories"
+  },
+  {
+    :tag_id => 9,
+    :taggable_type => "Post",
+    :taggable_id => 3,
+    :context => "categories"
+  },
+  {
+    tag_id: 3,
+    taggable_type: "Post",
+    taggable_id: 4,
+    context: "categories"
+  },
+  {
+    tag_id: 10,
+    taggable_type: "Post",
+    taggable_id: 4,
+    context: "categories"
+  },
+  {
+    tag_id: 3,
+    taggable_type: "Post",
+    taggable_id: 5,
+    context: "categories"
+  },
+  {
+    tag_id: 8,
+    taggable_type: "Post",
+    taggable_id: 5,
+    context: "categories"
+  },
+  {
+    tag_id: 4,
+    taggable_type: "Post",
+    taggable_id: 6,
+    context: "categories"
+  },
+  {
+    tag_id: 6,
+    taggable_type: "Post",
+    taggable_id: 6,
+    context: "categories"
+  },
+  {
+    tag_id: 13,
+    taggable_type: "Post",
+    taggable_id: 6,
+    context: "categories"
+  },
+  {
+    tag_id: 13,
+    taggable_type: "Post",
+    taggable_id: 7,
+    context: "categories"
+  },
+  {
+    tag_id: 4,
+    taggable_type: "Post",
+    taggable_id: 7,
+    context: "categories"
+  },
+  {
+    tag_id: 6,
+    taggable_type: "Post",
+    taggable_id: 7,
+    context: "categories"
+  },
+  {
+    tag_id: 7,
+    taggable_type: "Post",
+    taggable_id: 7,
+    context: "categories"
+  },
+  {
+    tag_id: 12,
+    taggable_type: "Post",
+    taggable_id: 7,
+    context: "categories"
+  },
+])

@@ -9,7 +9,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.float   :latitude
       t.float   :longitude
       t.date    :deadline,    null: false
-      t.integer :budget,      null: false
+      t.integer :budget,      null: false, precision: 7
       t.integer :reputation
       t.integer :priority
       t.boolean :done_flag

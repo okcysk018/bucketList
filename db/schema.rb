@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_055550) do
     t.boolean "private_flag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.integer "user_id", null: false
   end
 
   create_table "taggings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
