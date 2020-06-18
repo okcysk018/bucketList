@@ -11,11 +11,12 @@ bucketList
 - ユーザー登録、ログイン機能
 - タスク投稿機能
 - コメント機能
+- 画像投稿機能
+- サブタスク管理機能
+- GoogleMapAPI
 
 ## 実装予定機能
 
-- 画像投稿機能
-- サブタスク管理機能
 - 検索機能
 - カレンダー連携機能
 - ユーザフォロー機能
@@ -25,11 +26,13 @@ bucketList
 - 予実管理機能
 - 管理者機能
 - アカウント管理機能
+- 動画投稿機能
 
 - その他
 
 ## 本番環境(デプロイ先　テストアカウント＆ID)
-デプロイ後、追記
+デプロイURL：　         http://54.238.83.189/
+テストアカウントID/PASS：  post@email.com / pppppppp
 
 ## 制作背景(意図)
 アプリ名のbucketListとは「死ぬまでにやりたい事リスト」という意味です。
@@ -37,7 +40,7 @@ bucketList
 「死ぬまでにやりたい事リスト」をみんなで共有して、人生を豊かにしたい、という思いで作成しました。
 
 ## DEMO
-マークアップ後、追記
+![bucketList-prototype](https://user-images.githubusercontent.com/60644410/84983160-264a9980-b173-11ea-89fc-5289267efcbd.jpg)
 
 # 使用技術
 ### ■言語
@@ -49,13 +52,15 @@ jquery-rails 4.3.5
 Ruby on Rails 5.2.4.2
 ### ◼︎データベース
 MySQL 0.5.3
-### ◼︎インフラ（予定）
+### ◼︎インフラ
 AWS EC2
 AWS S3
-### デプロイ（予定）
+### デプロイ
 Capistranoによる自動デプロイ
 
 # DB設計
+![](https://i.gyazo.com/ec58039efabfc211bcd50a0aeb4048db.png)
+
 ## usersテーブル
 
 |Column|Type|Options|
@@ -87,7 +92,9 @@ Capistranoによる自動デプロイ
 | title | string | null: false, add_index |
 | description | text |  |
 | deadline | date | null: false |
-| place | string |  |
+| address | string |  |
+| latitude | float |  |
+| longitude | float |  |
 | reputation | integer |  |
 | priority | integer |  |
 | budget | integer | null: false |
@@ -115,10 +122,14 @@ Capistranoによる自動デプロイ
 
 |Column|Type|Options|
 |------|----|-------|
-| name | string | null: false |
+| title | string | null: false |
 | deadline | date | null: false |
 | done_flag | boolean |  |
 | post_id |references|null: false, foreign_key: true|
 
 ### Association
 - has_many :posts
+
+## taggingsテーブル
+## tagsテーブル
+ライブラリのため省略
