@@ -138,7 +138,7 @@ $(document).on('turbolinks:load', function(){
   // サブタスクの識別番号の初期値設定
   let setIndex = $('.taskForm_group').length;
   // サブタスクの上限数
-  const taskLimit = 3
+  const taskLimit = 10
 
   // $('.hidden-destroy').hide();
 

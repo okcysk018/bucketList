@@ -14,10 +14,10 @@ class Post < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   # TODO: バリデーション
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 40 }
   validates :images, length: {maximum: 10}
   validates :tasks, length: {maximum: 10}
-  validates :budget, presence: true
+  validates :budget, presence: true, inclusion: 0..9999999
   validates :deadline, presence: true
 
 end

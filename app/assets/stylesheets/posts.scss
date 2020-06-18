@@ -1,4 +1,4 @@
-// $light_grayにてエラーになるため
+// TODO:$light_grayにてエラーになるため
 @import "config/colors";
 
 .ui-helper-hidden-accessible {
@@ -79,8 +79,12 @@
     }
   }
   .taskFormArea{
+    padding: 15px 0;
     .taskForm_group{
       margin-bottom: 5px;
+      .post-tasks-done{
+        margin: 0 5px;
+      }
       .post-tasks-title{
         width: 65%;
       }
