@@ -283,68 +283,68 @@ ActsAsTaggableOn::Tagging.create!([
 
 Image.create!([
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/1.Apple.jpeg"),
+    image:  open("#{Rails.root}/db/images/1.Apple.jpeg"),
     post_id: 2,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/2.gollira.jpeg"),
+    image:  open("#{Rails.root}/db/images/2.gollira.jpeg"),
     post_id: 2,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/3.rap.png"),
+    image:  open("#{Rails.root}/db/images/3.rap.png"),
     post_id: 2,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/4.pants.png"),
+    image:  open("#{Rails.root}/db/images/4.pants.png"),
     post_id: 2,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/5.noImage.jpg"),
+    image:  open("#{Rails.root}/db/images/5.noImage.jpg"),
     post_id: 2,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/6.muscle.jpeg"),
+    image:  open("#{Rails.root}/db/images/6.muscle.jpeg"),
     post_id: 3,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/7.world.jpeg"),
+    image:  open("#{Rails.root}/db/images/7.world.jpeg"),
     post_id: 4,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/8.marriage.jpeg"),
+    image:  open("#{Rails.root}/db/images/8.marriage.jpeg"),
     post_id: 5,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/9.skyDiving.jpeg"),
+    image:  open("#{Rails.root}/db/images/9.skyDiving.jpeg"),
     post_id: 6,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/10.horseRide.jpeg"),
+    image:  open("#{Rails.root}/db/images/10.horseRide.jpeg"),
     post_id: 7,
   },
 
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/11.killimanjaro.jpeg"),
+    image:  open("#{Rails.root}/db/images/11.killimanjaro.jpeg"),
     post_id: 8,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/12.cuba.jpeg"),
+    image:  open("#{Rails.root}/db/images/12.cuba.jpeg"),
     post_id: 9,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/13.vegas.jpeg"),
+    image:  open("#{Rails.root}/db/images/13.vegas.jpeg"),
     post_id: 10,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/14.sucuba.jpeg"),
+    image:  open("#{Rails.root}/db/images/14.sucuba.jpeg"),
     post_id: 11,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/15.spain.jpeg"),
+    image:  open("#{Rails.root}/db/images/15.spain.jpeg"),
     post_id: 12,
   },
   {
-    image:  open("#{Rails.root}/app/assets/images/seed/16.rugby.jpeg"),
+    image:  open("#{Rails.root}/db/images/16.rugby.jpeg"),
     post_id: 13,
   },
 ])
