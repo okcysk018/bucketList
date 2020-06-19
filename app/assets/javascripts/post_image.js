@@ -27,7 +27,7 @@ $(document).on('turbolinks:load', function(){
 
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-  // TODO:上限値変更時はhtmlも変更すること！！
+  // 上限値をfileIndexの要素数に設定
   const imgLimit = fileIndex.length
   // 既に使われているindexを除外
   lastIndex = $('.image-file_group:last').data('index');
@@ -49,7 +49,7 @@ $(document).on('turbolinks:load', function(){
     const blobUrl = window.URL.createObjectURL(file);
 
     // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
-    // FIXME: 画像変更previewも同時に変更できるように修正したい, blobUrlが画像編集時に効かない、不要か？
+    // TODO: 画像変更previewも同時に変更できるように修正したい, blobUrlが画像編集時に効かない、不要か？
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('image', blobUrl);
     } else {  // 新規画像追加の処理

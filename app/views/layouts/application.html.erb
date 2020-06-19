@@ -8,7 +8,7 @@
     <%= include_gon "init": true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%# TODO:APIキーの暗号化、エラーの解消 %>
-    <%# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U&callback=initMap" async defer></script> %>
+    <%# CHANGED:<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U&callback=initMap" async defer></script> %>
     <%# 他のビューでのエラー回避のためcallback無効化、require tree でいけるか？ %>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U"></script>
   </head>

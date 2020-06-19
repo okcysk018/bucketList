@@ -1,15 +1,15 @@
   <div class="card-columns card-list">
     <% @posts.each do |post| %>
-      <%# TODO:コントローラかモデルに記述でif文省略可能？ %>
+      <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
       <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
         <div class="card bg-dark" style="width:21rem; height:9.18rem;" id="post-card-info">
           <% if post.images.present?%>
             <%# TODO:carouselの実装 %>
-            <%# <%= link_to image_tag("/uploads/image/image/#{post.images.first.id}/#{post.images.first[:image]}", size: '238x105'), post_path(post.id), class: "card-img" %>
+            <%# CHANGED:<%= link_to image_tag("/uploads/image/image/#{post.images.first.id}/#{post.images.first[:image]}", size: '238x105'), post_path(post.id), class: "card-img" %>
             <%# S3対応 %>
             <%= image_tag("#{post.images[0].image.url}", size: '334x145', class: "card-img") %>
           <%else%>
-            <%# <%= link_to image_tag("noImage.jpg", size: '238x105', alt: 'sample-image'), post_path(post.id), class: "card-img"%>
+            <%# CHANGED:<%= link_to image_tag("noImage.jpg", size: '238x105', alt: 'sample-image'), post_path(post.id), class: "card-img"%>
             <%= image_tag("noImage.jpg", size: '334x145', alt: 'sample-image', class: "card-img")%>
           <%end%>
           <%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;" do %>

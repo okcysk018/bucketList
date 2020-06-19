@@ -1,4 +1,4 @@
-// TODO:require_treeの読込順によるpost_tasks.js読込エラー回避のためapplication.jsで直接指定
+// WARN:require_treeの読込順によるpost_tasks.js読込エラー回避のためapplication.jsで直接指定
 $(document).on('turbolinks:load',
 
   // let mapInstance

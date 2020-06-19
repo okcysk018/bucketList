@@ -124,8 +124,8 @@ $(document).on('turbolinks:load', function(){
                 this.options.singleFieldNode = this.element;
                 this.element.addClass('tagit-hidden-field');
             } else {
-                // TODO: jquery3による変更
-                // this.tagList = this.element.find('ul, ol').andSelf().last();
+                // NOTE: jquery3による変更
+                // CHANGED:this.tagList = this.element.find('ul, ol').andSelf().last();
                 this.tagList = this.element.find('ul, ol').addBack().last();
             }
 

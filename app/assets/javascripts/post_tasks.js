@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
   // サブタスクのフォームを生成する関数
-  // TODO:オプションの省略
+  // HACK:オプションの省略
   const buildTaskForm = (index)=> {
     const html = `<div data-index="${index}" class="taskForm_group">
                     <input name="post[tasks_attributes][${index}][done_flag]" type="hidden" value="0">
