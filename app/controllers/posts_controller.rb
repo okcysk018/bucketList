@@ -48,6 +48,8 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
+    # TODO:値を渡す
+    googleMapAPIKey = Rails.application.credentials.google_map_key
   end
 
   def map

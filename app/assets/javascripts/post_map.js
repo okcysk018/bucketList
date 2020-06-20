@@ -5,9 +5,7 @@ $(document).on('turbolinks:load',
   function initMap(){
     // $(".input-address").on('keyup', function(){
 
-    if (gon.geocorder == null){
-      gon.geocorder = [0, 0]
-    }
+    if (!gon.geocorder) {gon.geocorder = [0, 0]}
     let coordinates = {lat: gon.geocorder[0], lng: gon.geocorder[1]};
 
     let mapInstance = new google.maps.Map(document.getElementById('map'), {

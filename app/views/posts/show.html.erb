@@ -1,3 +1,9 @@
+  <head>
+    <%# TODO:APIキーの暗号化、エラーの解消 %>
+    <%# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U&callback=initMap" async defer></script> %>
+    <%# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U"></script> %>
+  </head>
+
 <div class='post-page container'>
   <div class='post-info'>
     <h1 class="post-info__post-title">
@@ -42,7 +48,7 @@
       <%end%>
     </div>
   </div>
-    <%# TODO: 複数画像 スライド表示%>
+    <%# TODO: 複数画像 スライド表示 caroulsel%>
   <% if @post.images.present? %>
     <div class='post-info'>
       <div class="post-info__post-images">
@@ -117,8 +123,7 @@
     <div class='post-info'>
       <div class='post-info__post-btns'>
 
-        <%# TODO: 編集ページのturbolinks %>
-        <%# <%= link_to "編集",edit_post_path(@post.id), data: {"turbolinks"=>false} %>
+        <%# CHANGED:<%= link_to "編集",edit_post_path(@post.id), data: {"turbolinks"=>false} %>
         <%= link_to "編集",edit_post_path(@post.id), class:'btn btn-info btn-lg post-edit-btn' %>
         <%= link_to "削除", post_path(@post.id), class:'btn btn-info btn-lg post-delete-btn', method: :delete%>
       </div>
@@ -151,3 +156,5 @@
     </div>
   </div>
 </div>
+
+<%# <%= javascript_include_tag 'post_map.js' %>

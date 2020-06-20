@@ -79,9 +79,10 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'gon'
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'fog-aws'
+gem 'carrierwave' # 画像アップロード
+gem 'mini_magick' # 画像編集（リサイズなど）
+gem 'fog-aws' # S3対応
 # gem 'dropzonejs-rails'
 gem 'geocoder'
 # gem 'gmaps4rails'
+gem 'jquery-turbolinks' # turbolinksとgoogleMapの競合回避
