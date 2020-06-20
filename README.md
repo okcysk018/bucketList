@@ -41,7 +41,7 @@ bucketList
 「死ぬまでにやりたい事リスト」をみんなで共有して、人生を豊かにしたい、という思いで作成しました。
 
 ## DEMO
-![](https://i.gyazo.com/9ac6f32b94cf7aadb6c4f3b89e636363.jpg)
+![](https://i.gyazo.com/db6307fbd7da35dad44f5ccd7c268b6b.jpg)
 
 # 使用技術
 ### ■言語
