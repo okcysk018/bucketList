@@ -1,0 +1,29 @@
+@mixin post-reputation($left-per){
+  position: relative;
+  height: 20px;
+  width: 80px;
+  left: $left-per;
+  .post-reputation-front{
+    position: absolute;
+    color: #ffcc33;
+  }
+  .post-reputation-back{
+    color: $gray;
+    position: absolute;
+  }
+}
+
+// TODO:mixin
+@mixin tasks-titleBar{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  &__formTitle{
+    width: 200px;
+    display: flex;
+    justify-content: start;
+    .fa-tasks{
+      font-size: 1.4rem;
+    }
+  }
+}

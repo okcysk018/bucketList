@@ -102,7 +102,7 @@ Post.create!(
       description: '初期データ',
       deadline: '2030-12-31',
       budget: 100000,
-      private_flag: false,
+      private_flag: true,
       user_id: 2
     },
     {
@@ -133,6 +133,7 @@ Post.create!(
       deadline: '2030-12-31',
       budget: 100000,
       private_flag: false,
+      done_flag: true,
       user_id: 2
     },
     {
@@ -175,7 +176,7 @@ category = [
   "インドア",
   "エンターテイメント",
   "スポーツ",
-  "恋愛",
+  "愛",
   "健康",
   "旅行",
   "仕事",

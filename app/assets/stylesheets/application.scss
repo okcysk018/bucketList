@@ -1,7 +1,6 @@
 @import "reset";
 @import "config/colors";
 @import "modules/flash";
-// TODO:不要→理由調査
 @import "bootstrap";
 @import "jquery-ui";
 @import "font-awesome-sprockets";
@@ -10,4 +9,10 @@
 @import "tagit.ui-zendesk";
 // @import "dropzone/basic";
 // @import "dropzone/dropzone";
-@import "posts";
+@import "mixin/mixin";
+@import "page";
+@import "modules/header-footer";
+@import "modules/post/index";
+@import "modules/post/new";
+@import "modules/post/show";
+@import "modules/user/show";

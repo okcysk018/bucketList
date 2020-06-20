@@ -1,0 +1,29 @@
+// NOTE:$light_grayにてエラーになるため
+@import "config/colors";
+
+.ui-helper-hidden-accessible {
+  display: none;
+}
+.contents{
+  background-color: $light_gray;
+  padding: 30px 0;
+}
+.main-page{
+  min-height: 100vh;
+  position: relative;
+  box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+.post-page{
+  background-color: white;
+  padding: 30px;
+}
+.user-page{
+  background-color: white;
+  padding: 30px;
+}
+.user-posts{
+  text-align: center;
+  border-bottom:1px solid $light_gray;
+  margin: 30px 0;
+  padding: 10px 0;
+}

@@ -1,0 +1,15 @@
+// フッター
+.main-footer-base{
+  width: 100vw;
+  background-color: #F9F9F9;
+  padding: 30px;
+  // position: absolute;
+  bottom: 0;
+  .main-footer{
+    display: flex;
+    justify-content: space-between;
+    .main-footer-menu{
+      text-align: center;
+    }
+  }
+}
