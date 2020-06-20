@@ -2,21 +2,80 @@
     <% @posts.each do |post| %>
       <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
       <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
-        <div class="card bg-dark" style="width:21rem; height:9.18rem;" id="post-card-info">
+        <div class="card" style="width:15rem;" id="post-card-info">
           <% if post.images.present?%>
-            <%# TODO:carouselの実装 %>
-            <%# CHANGED:<%= link_to image_tag("/uploads/image/image/#{post.images.first.id}/#{post.images.first[:image]}", size: '238x105'), post_path(post.id), class: "card-img" %>
-            <%# S3対応 %>
-            <%= image_tag("#{post.images[0].image.url}", size: '334x145', class: "card-img") %>
+            <%# NOTE:post-map.jsの挙動エラー回避のためにturbolinksをOFF %>
+            <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link", 'data-no-turbolink'=>true %>
           <%else%>
-            <%# CHANGED:<%= link_to image_tag("noImage.jpg", size: '238x105', alt: 'sample-image'), post_path(post.id), class: "card-img"%>
-            <%= image_tag("noImage.jpg", size: '334x145', alt: 'sample-image', class: "card-img")%>
+            <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id), 'data-no-turbolink'=>true%>
           <%end%>
-          <%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;" do %>
-            <h5 class="card-title"><%= post.title %></h5>
-            <%# TODO:カードに表示するデータを考える %>
-            <%# <p class="card-text">投稿日時：<%= post.created_at %>
-          <%end%>
+          <%# CHANGED:<%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;", 'data-no-turbolink' => true do %>
+          <%# <%end%>
+          <%# <div class= "card-img-overlay text-white" id= "post-card-img-overlay"> %>
+            <%# <div class='card-post-user'> %>
+              <%# <%= link_to post.user.nickname, user_path(post.user.id), class:"card-post-user-link"%>
+            <%# </div> %>
+          <%# </div> %>
+
+          <div class='card-body'>
+            <%= link_to post.title, post_path(post.id), class:"card-title", 'data-no-turbolink'=>true%>
+            <%# HACK:showと共有テンプレにしたいけど引数違う %>
+            <div class="card-post-flags">
+              <% if post.done_flag.present? %>
+                <div class="badge badge-success p-2">
+                  <i class="far fa-check-square"></i>
+                  達成済
+                </div>
+              <%end%>
+              <% if post.private_flag.present? %>
+                <div class="badge badge-warning p-2">
+                  <i class="fas fa-lock"></i>
+                  非公開
+                </div>
+              <%end%>
+            </div>
+            <%if post.reputation %>
+              <div class="card-post-reputation">
+                <div class="post-reputation-back">
+                  ★★★★★
+                </div>
+                <div class="post-reputation-front">
+                  <% case post.reputation %>
+                  <% when 1%>
+                    ★
+                  <% when 2%>
+                    ★★
+                  <% when 3%>
+                    ★★★
+                  <% when 4%>
+                    ★★★★
+                  <% when 5%>
+                    ★★★★★
+                  <%end%>
+                </div>
+              </div>
+            <%end%>
+            <div class='card-post-user'>
+              <%= link_to post.user.nickname, user_path(post.user.id), class:"card-post-user-link" %>
+            </div>
+          </div>
+          <div class='card-footer'>
+            <div class='card-footer-btns d-flex'>
+              <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                <i class="fa fa-plus"></i>
+                追加
+              </button>
+              <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                <i class="far fa-check-circle"></i>
+                達成済
+              </button>
+              <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                <i class="far fa-thumbs-up"></i>
+                いいね
+              </button>
+              <%= render 'layouts/modal-message'%>
+            </div>
+          </div>
         </div>
       <% end %>
     <% end %>
