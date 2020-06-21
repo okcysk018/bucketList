@@ -137,13 +137,271 @@ Post.create!(
       user_id: 2
     },
     {
-      title: 'ラグビー',
+      title: 'ラグビー観戦',
       description: '初期データ',
       deadline: '2030-12-31',
       budget: 100000,
       private_flag: false,
       user_id: 2
-    }
+    },
+    {
+      title: 'ダンス習得',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 10000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'バンジージャンプ挑戦',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 10000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'ルービックキューブ全面揃える',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 1000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'バク転習得',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'イタリア旅行',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'エジプト旅行',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'プログラミング習得',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'サーフィン',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 10000,
+      private_flag: false,
+      done_flag: true,
+      user_id: 2
+    },
+    {
+      title: 'ペットを飼う',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'パンケーキ食べたい',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 1000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'シュールストレミングに挑戦',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 1000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'ドリアンを食べる',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 10000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '引っ越し',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 500000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '高層マンションに住む',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 1000000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '転職する',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'ディベートスキルを磨く',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 10000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '副業する',
+      description: '初期データ',
+      deadline: '2020-12-31',
+      budget: 0,
+      private_flag: true,
+      user_id: 2
+    },
+    {
+      title: '昇進',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '相撲観戦',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 10000,
+      private_flag: false,
+      done_flag: true,
+      user_id: 2
+    },
+    {
+      title: '南極に行く',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 1000000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '一目惚れする',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '活火山の噴火口を見る',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'ボランティアをする',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'オリンピック観戦',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 10000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'ポーカーの大会に出場',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '水切りできるようになる',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '太く短く生きる',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '農業体験',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: '一生分の夜遊びを1日でする',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'バーで初対面の美女にカクテルを奢る',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 100000,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'バイクツーリングする',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 0,
+      private_flag: false,
+      user_id: 2
+    },
+    {
+      title: 'アメリカ横断',
+      description: '初期データ',
+      deadline: '2030-12-31',
+      budget: 500000,
+      private_flag: false,
+      user_id: 2
+    },
   ]
 )
 
@@ -167,11 +425,12 @@ Task.create!([
   },
 ])
 
+
 # カテゴリータグ
 category = [
   "グルメ",
   "住処",
-  "人生計画",
+  "人生",
   "アウトドア",
   "インドア",
   "エンターテイメント",
@@ -194,93 +453,32 @@ category.each do |tag|
   ).save
 end
 
-# TODO:省略可？
-ActsAsTaggableOn::Tagging.create!([
-  {
-    :tag_id => 5,
-    :taggable_type => "Post",
-    :taggable_id => 3,
-    :context => "categories"
-  },
-  {
-    :tag_id => 9,
-    :taggable_type => "Post",
-    :taggable_id => 3,
-    :context => "categories"
-  },
-  {
-    tag_id: 3,
-    taggable_type: "Post",
-    taggable_id: 4,
-    context: "categories"
-  },
-  {
-    tag_id: 10,
-    taggable_type: "Post",
-    taggable_id: 4,
-    context: "categories"
-  },
-  {
-    tag_id: 3,
-    taggable_type: "Post",
-    taggable_id: 5,
-    context: "categories"
-  },
-  {
-    tag_id: 8,
-    taggable_type: "Post",
-    taggable_id: 5,
-    context: "categories"
-  },
-  {
-    tag_id: 4,
-    taggable_type: "Post",
-    taggable_id: 6,
-    context: "categories"
-  },
-  {
-    tag_id: 6,
-    taggable_type: "Post",
-    taggable_id: 6,
-    context: "categories"
-  },
-  {
-    tag_id: 13,
-    taggable_type: "Post",
-    taggable_id: 6,
-    context: "categories"
-  },
-  {
-    tag_id: 13,
-    taggable_type: "Post",
-    taggable_id: 7,
-    context: "categories"
-  },
-  {
-    tag_id: 4,
-    taggable_type: "Post",
-    taggable_id: 7,
-    context: "categories"
-  },
-  {
-    tag_id: 6,
-    taggable_type: "Post",
-    taggable_id: 7,
-    context: "categories"
-  },
-  {
-    tag_id: 7,
-    taggable_type: "Post",
-    taggable_id: 7,
-    context: "categories"
-  },
-  {
-    tag_id: 12,
-    taggable_type: "Post",
-    taggable_id: 7,
-    context: "categories"
-  },
-])
+tags_relatedPostIds = [
+  [23,24],
+  [26,27],
+  [4,5,22,40,42,43],
+  [6,7,8,15,21,35,41,44],
+  [3,14,16,20,38],
+  [13,14,32,37,38,39,42],
+  [3,7,8,11,13,14,17,21,32,37],
+  [5,22],
+  [3,40],
+  [4,8,9,10,12,18,19,33,44,45],
+  [28,29,30,31],
+  [14,16,20,29]
+]
+
+tags_relatedPostIds.each_with_index do |tags_relatedPostIds, i|
+  idx = i + 1
+  tags_relatedPostIds.each do |id|
+    ActsAsTaggableOn::Tagging.create!(
+      taggable_id: id,
+      tag_id: idx,
+      taggable_type: "Post",
+      context: "categories"
+    )
+  end
+end
 
 Image.create!([
   {
@@ -303,49 +501,14 @@ Image.create!([
     image:  open("#{Rails.root}/db/images/5.noImage.jpg"),
     post_id: 2,
   },
-  {
-    image:  open("#{Rails.root}/db/images/6.muscle.jpeg"),
-    post_id: 3,
-  },
-  {
-    image:  open("#{Rails.root}/db/images/7.world.jpeg"),
-    post_id: 4,
-  },
-  {
-    image:  open("#{Rails.root}/db/images/8.marriage.jpeg"),
-    post_id: 5,
-  },
-  {
-    image:  open("#{Rails.root}/db/images/9.skyDiving.jpeg"),
-    post_id: 6,
-  },
-  {
-    image:  open("#{Rails.root}/db/images/10.horseRide.jpeg"),
-    post_id: 7,
-  },
-
-  {
-    image:  open("#{Rails.root}/db/images/11.killimanjaro.jpeg"),
-    post_id: 8,
-  },
-  {
-    image:  open("#{Rails.root}/db/images/12.cuba.jpeg"),
-    post_id: 9,
-  },
-  {
-    image:  open("#{Rails.root}/db/images/13.vegas.jpeg"),
-    post_id: 10,
-  },
-  {
-    image:  open("#{Rails.root}/db/images/14.sucuba.jpeg"),
-    post_id: 11,
-  },
-  {
-    image:  open("#{Rails.root}/db/images/15.spain.jpeg"),
-    post_id: 12,
-  },
-  {
-    image:  open("#{Rails.root}/db/images/16.rugby.jpeg"),
-    post_id: 13,
-  },
 ])
+
+# HACK:ハードコーディング避けたい
+default_image_file=["6.muscle.jpeg","7.world.jpeg","8.marriage.jpeg","9.skyDiving.jpeg","10.horseRide.jpeg","11.killimanjaro.jpeg","12.cuba.jpeg","13.vegas.jpeg","14.sucuba.jpeg","15.spain.jpeg","16.rugby.jpeg","17.dance.jpeg","18.bungee.jpeg","19.cube.jpeg","20.backflip.jpeg","21.Italia.jpeg","22.Egypt.jpeg","23.programing.jpeg","24.surfing.jpeg","25.pet.jpeg","26.bread-cake.jpeg","27.Surrealism.jpeg","28.durian.jpeg","29.moving.jpeg","30.skyscrapers.jpeg","31.job-change.jpeg","32.debate.jpeg","33.freelancer.jpeg","34.promotion.jpeg","35.sumo.jpeg","36.Atlantic.jpeg","37.love_at_first_sight.jpeg","38.volcano.jpeg","39.volunteer.jpeg","40.Olympic.jpeg","41.poker.jpeg","42.DucksAndDrakes.jpeg","43.life.jpeg","44.agriculture.jpeg","45.nightlife.jpeg","46.cocktail.jpeg","47.bike.jpeg","48.across_America.jpeg"]
+
+default_image_file.each.with_index(3) do |name, i|
+  Image.create!(
+    image:  open("#{Rails.root}/db/images/#{name}"),
+    post_id: i,
+  )
+end
