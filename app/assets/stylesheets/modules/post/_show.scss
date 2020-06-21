@@ -18,9 +18,23 @@
 
   &__post-images{
     text-align: center;
-    .post-main-image{
+    #post-main-image{
       background-color: $light_gray;
       margin: 10px 0;
+    }
+    li{
+      border-radius: 9999px;
+      height: 0.5rem;
+      width: 0.5rem;
+
+      /* Active dot */
+      background-color: rgba(0, 0, 0, .3);
+
+      /* Inactive dot */
+      // background-color: transparent;
+      background-color: white;
+      border: 1px solid white ;
+
     }
     .images-gallery{
       margin: 10px 0;

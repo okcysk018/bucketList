@@ -4,10 +4,8 @@ $(document).on('turbolinks:load', function(){
   const buildImg = (index, url)=> {
     const html = `<div class= "form-image-box__main__previews__view" data-index="${index}">
                     <div class="form-image-box__main__previews__view__image">
-                      <img class="image${index} input_images", data-index="${index}", src="${url}", width="200px", height="150px"%>
-                        <div class="image-remove form-image-box__main__previews__view__delete">
-                          削除
-                        </div>
+                      <img class="image${index} input_images", data-index="${index}", src="${url}">
+                      <div class="image-remove">削除</div>
                     </div>
                   </div>`;
     return html;

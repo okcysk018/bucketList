@@ -40,10 +40,8 @@
                 <% @post.images.each_with_index do |image, i|%>
                   <%= tag.div class: "form-image-box__main__previews__view", data: {index: "#{i}"} do%>
                     <div class="form-image-box__main__previews__view__image">
-                      <%= image_tag image.image.url, data: { index: i }, class: 'input_images', width: "200", height: '150'%>
-                        <div class="image-remove form-image-box__main__previews__view__delete">
-                          削除
-                        </div>
+                      <%= image_tag image.image.url, data: { index: i }, class: 'input_images'%>
+                        <div class="image-remove">削除</div>
                       <% end %>
                     </div>
                   <% end %>

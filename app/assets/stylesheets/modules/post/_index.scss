@@ -11,16 +11,21 @@
   .card:hover{
     box-shadow:3px 3px 6px rgba(0,0,0,0.5);
   }
-  .card-title{
-    font-weight: bold;
-  }
-  .card-post-reputation{
-    @include post-reputation(0%);
-  }
-  .card-post-user{
-    width: 100%;
-    text-align: right;
-    opacity: 0.3;
+  .card-body{
+    padding: 0.8rem;
+    .card-title{
+      font-weight: bold;
+    }
+    .card-post-reputation{
+      @include post-reputation(0%);
+    }
+    .card-post-user{
+      width: 100%;
+      text-align: right;
+      opacity: 0.3;
+      font-size: 0.8rem;
+      padding-top: 10px;
+    }
   }
   .card-footer{
     padding: 0;

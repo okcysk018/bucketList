@@ -56,7 +56,7 @@
               </div>
             <%end%>
             <div class='card-post-user'>
-              <%= link_to post.user.nickname, user_path(post.user.id), class:"card-post-user-link" %>
+              <%= link_to "投稿者：#{post.user.nickname}", user_path(post.user.id), class:"card-post-user-link" %>
             </div>
           </div>
           <div class='card-footer'>
