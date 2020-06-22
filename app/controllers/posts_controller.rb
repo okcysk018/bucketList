@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   before_action :set_geocorder_to_gon, only: [:show]
   before_action :move_to_login, except: [:index, :show]
   before_action :move_to_show, only: [:edit, :update, :destroy]
+  before_action :move_to_index_not_login, except: [:index, :new, :create]
   before_action :move_to_index, except: [:index, :new, :create]
 
   def index
@@ -103,6 +104,14 @@ class PostsController < ApplicationController
   def move_to_login
     unless user_signed_in?
       redirect_to new_user_session_path, alert: "ログインしてください"
+    end
+  end
+
+  def move_to_index_not_login
+    unless user_signed_in?
+      if @post.private_flag.present?
+        redirect_to root_path, alert: "非公開の投稿です"
+      end
     end
   end
 

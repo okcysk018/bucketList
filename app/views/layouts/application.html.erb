@@ -13,6 +13,14 @@
     <%# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U"></script> %>
     <%= tag.script src:'https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U'%>
     <%#  Rails.application.credentials.google_map_key%>
+    <script>
+      $(function() {
+        setTimeout("$('.notification').fadeOut('slow')", 2000);
+        // TODO:1枚ずつfadeIn
+        // setTimeout("$('.card').fadeIn('slow')", 5000);
+      });
+    </script>
+
   </head>
   <body>
     <%= render 'layouts/header'%>
