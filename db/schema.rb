@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2020_05_27_055550) do
     t.integer "budget", null: false
     t.integer "reputation"
     t.integer "priority"
-    t.boolean "done_flag"
-    t.boolean "private_flag"
+    t.boolean "done_flag", default: false
+    t.boolean "private_flag", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
