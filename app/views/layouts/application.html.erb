@@ -16,11 +16,12 @@
     <script>
       $(function() {
         setTimeout("$('.notification').fadeOut('slow')", 2000);
-        // TODO:1枚ずつfadeIn
-        // setTimeout("$('.card').fadeIn('slow')", 5000);
       });
     </script>
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
   </head>
   <body>
     <%= render 'layouts/header'%>
@@ -30,6 +31,6 @@
         <%= yield %>
       </div>
     </div>
-    <%= render 'layouts/footer'%>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

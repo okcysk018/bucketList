@@ -1,12 +1,20 @@
 // post-index
 .card-list{
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
   column-count: 4;
+
   //NOTE:bootstrapによる文字色変更を回避
   a {
     color: black;
   }
   a:hover {
     color: black;
+  }
+  .card{
+    width:15rem;
+    // NOTE:animation.css御実装に伴い不要
+    // display: none;
   }
   .card:hover{
     box-shadow:3px 3px 6px rgba(0,0,0,0.5);

@@ -1,5 +1,7 @@
 {
   "name": "bucket",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "animate.css": "^4.1.0"
+  }
 }

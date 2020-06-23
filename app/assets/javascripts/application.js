@@ -21,3 +21,4 @@
 //= require turbolinks
 //= require post_tasks
 //= require_tree .
+//= require jquery.jscroll.min.js

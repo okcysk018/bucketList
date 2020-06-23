@@ -1,8 +1,8 @@
-  <div class="card-columns card-list">
+  <div class="card-columns card-list jscroll">
     <% @posts.each do |post| %>
       <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
       <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
-        <div class="card" style="width:15rem;" id="post-card-info">
+        <div class="card animate__animated animate__fadeInDown" id="post-card-info">
           <% if post.images.present?%>
             <%# NOTE:post-map.jsの挙動エラー回避のためにturbolinksをOFF %>
             <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link", 'data-no-turbolink'=>true %>
@@ -79,4 +79,10 @@
         </div>
       <% end %>
     <% end %>
+    <%# TODO:ページネーションとcard-columnsの競合回避 %>
+    <%# <%= paginate @posts %>
+    <%# TODO:kaminariのコントローラでの機能強化対応 %>
+    <%# <%= link_to_prev_page @posts, '前のページ', class:"prev"%>
+    <%# <%= link_to_next_page @posts, '次のページ', class:"next"%>
+
   </div>
