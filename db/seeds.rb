@@ -391,6 +391,34 @@ Post.create!([
     done_flag: true,
     user_id: 2
   },
+  {
+    title: '感謝の手紙を書く',
+    description: '初期データ',
+    deadline: '2030-12-31',
+    budget: 0,
+    user_id: 2
+  },
+  {
+    title: 'トライアスロン挑戦',
+    description: '初期データ',
+    deadline: '2030-12-31',
+    budget: 100000,
+    user_id: 2
+  },
+  {
+    title: '飛行機を操縦する',
+    description: '初期データ',
+    deadline: '2030-12-31',
+    budget: 100000,
+    user_id: 2
+  },
+  {
+    title: '月に行く',
+    description: '初期データ',
+    deadline: '2030-12-31',
+    budget: 1000000,
+    user_id: 2
+  },
 ])
 
 # 初期データサブタスク
@@ -456,16 +484,16 @@ end
 tags_relatedPostIds = [
   [23,24],  # "グルメ",
   [26,27],  # "住処",
-  [4,5,22,40,42,43,47],  # "人生",
-  [6,7,8,15,21,35,41,44],  # "アウトドア",
+  [4,5,22,40,42,43,47,50],  # "人生",
+  [6,7,8,15,21,35,41,44,51,52],  # "アウトドア",
   [3,14,16,20,38,46],  # "インドア",
-  [13,14,32,37,38,39,42],  # "エンターテイメント",
-  [3,7,8,11,13,14,17,21,32,37],  # "スポーツ",
-  [5,22],  # "愛",
-  [3,40],  # "健康",
-  [4,8,9,10,12,18,19,33,44,45,48,49],  # "旅行",
+  [13,14,32,37,38,39,42,51],  # "エンターテイメント",
+  [3,7,8,11,13,14,17,21,32,37,51],  # "スポーツ",
+  [5,22,50],  # "愛",
+  [3,40,51],  # "健康",
+  [4,8,9,10,12,18,19,33,44,45,48,49,53],  # "旅行",
   [28,29,30,31],  # "仕事",
-  [14,16,20,29,46,47]  # "スキル",
+  [14,16,20,29,46,47,52]  # "スキル",
 ]
 
 tags_relatedPostIds.each_with_index do |tags_relatedPostIds, i|
@@ -504,7 +532,7 @@ Image.create!([
 ])
 
 # HACK:ハードコーディング避けたい
-default_image_file=["6.muscle.jpeg","7.world.jpeg","8.marriage.jpeg","9.skyDiving.jpeg","10.horseRide.jpeg","11.killimanjaro.jpeg","12.cuba.jpeg","13.vegas.jpeg","14.sucuba.jpeg","15.spain.jpeg","16.rugby.jpeg","17.dance.jpeg","18.bungee.jpeg","19.cube.jpeg","20.backflip.jpeg","21.Italia.jpeg","22.Egypt.jpeg","23.programing.jpeg","24.surfing.jpeg","25.pet.jpeg","26.breadCake.jpeg","27.Surrealism.jpeg","28.durian.jpeg","29.moving.jpeg","30.skyscrapers.jpeg","31.jobChange.jpeg","32.debate.jpeg","33.freelancer.jpeg","34.promotion.jpeg","35.sumo.jpeg","36.Atlantic.jpeg","37.love_at_first_sight.jpeg","38.volcano.jpeg","39.volunteer.jpeg","40.Olympic.jpeg","41.poker.jpeg","42.DucksAndDrakes.jpeg","43.life.jpeg","44.agriculture.jpeg","45.nightlife.jpeg","46.cocktail.jpeg","47.bike.jpeg","48.across_America.jpeg","49.languages.jpeg","50.investMyLife.jpeg","51.Turkey.jpeg","52.India.jpeg"]
+default_image_file=["6.muscle.jpeg","7.world.jpeg","8.marriage.jpeg","9.skyDiving.jpeg","10.horseRide.jpeg","11.killimanjaro.jpeg","12.cuba.jpeg","13.vegas.jpeg","14.sucuba.jpeg","15.spain.jpeg","16.rugby.jpeg","17.dance.jpeg","18.bungee.jpeg","19.cube.jpeg","20.backflip.jpeg","21.Italia.jpeg","22.Egypt.jpeg","23.programing.jpeg","24.surfing.jpeg","25.pet.jpeg","26.breadCake.jpeg","27.Surrealism.jpeg","28.durian.jpeg","29.moving.jpeg","30.skyscrapers.jpeg","31.jobChange.jpeg","32.debate.jpeg","33.freelancer.jpeg","34.promotion.jpeg","35.sumo.jpeg","36.Atlantic.jpeg","37.love_at_first_sight.jpeg","38.volcano.jpeg","39.volunteer.jpeg","40.Olympic.jpeg","41.poker.jpeg","42.DucksAndDrakes.jpeg","43.life.jpeg","44.agriculture.jpeg","45.nightlife.jpeg","46.cocktail.jpeg","47.bike.jpeg","48.across_America.jpeg","49.languages.jpeg","50.investMyLife.jpeg","51.Turkey.jpeg","52.India.jpeg","53.letter.jpeg","54.triathlon.jpeg","55.pilot.jpeg","56.moon.jpeg"]
 
 default_image_file.each.with_index(3) do |name, i|
   Image.create!(

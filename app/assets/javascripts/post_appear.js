@@ -1,16 +1,17 @@
 $(document).on('turbolinks:load', function(){
 
-  // NOTE:animate.cssの実装により不要
-  // var timer;
-  // var count = $(".card").length;
-  // var index = 0;
-  // timer = setInterval(function() {
-  //   $(".card").eq(index).fadeIn('slow');
-  //   index ++;
-  //   if(index == count) {
-  //     clearInterval(timer);
-  //   };
-  // }, 500);
+  var timer;
+  var count = $(".card").length;
+  var index = 0;
+  timer = setInterval(function() {
+    // $(".card").eq(index).fadeIn('slow');
+    $(".card").eq(index).css({'display':'block'});
+    $(".card").eq(index).addClass('animate__fadeInDown');
+    index ++;
+    if(index == count) {
+      clearInterval(timer);
+    };
+  }, 200);
 
     $('.jscroll').jscroll({
       // 無限に追加する要素は、どこに入れる？
@@ -28,12 +29,12 @@ $(document).on('turbolinks:load', function(){
       scrollPosition = $(window).height() + $(window).scrollTop();
       if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
 
-        // REVIEW:不要確認
         var timer;
         var count = $(".card").length;
         var index = 0;
         timer = setInterval(function() {
-          $(".card").eq(index).fadeIn('slow');
+          $(".card").eq(index).css({'display':'block'});
+          $(".card").eq(index).addClass('animate__fadeInDown');
           index ++;
           if(index == count) {
             clearInterval(timer);
