@@ -28,8 +28,8 @@ $(document).on('turbolinks:load', function(){
       // 無限に追加する要素は、どこに入れる？
       contentSelector: '.jscroll',
       // 次のページにいくためのリンクの場所は？ ＞aタグの指定
-      nextSelector: 'span.next a',
-      // nextSelector: '.next',
+      // nextSelector: 'span.next a',
+      nextSelector: 'a.next',
       // nextSelector: 'span.next:last a',
       // 読み込み中の表示はどうする？
       loadingHtml: buildLoadingSpinner()
@@ -40,6 +40,7 @@ $(document).on('turbolinks:load', function(){
       scrollHeight = $(document).height();
       scrollPosition = $(window).height() + $(window).scrollTop();
       if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.1) {
+        console.log('TODO:')
 
         // TODO:カードのフェードイン実装 cardのdisplay:noneが必要だが挙動不審になる
         // $(".jscroll").css({'display':'block'});
@@ -61,8 +62,8 @@ $(document).on('turbolinks:load', function(){
         $('.jscroll').jscroll({
           contentSelector: '.jscroll',
           // nextSelector: 'span.next:last a',
-          nextSelector: 'span.next a',
-          // nextSelector: '.next',
+          // nextSelector: 'span.next a',
+          nextSelector: 'a.next',
           loadingHtml: buildLoadingSpinner()
         });
       }
