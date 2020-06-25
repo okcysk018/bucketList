@@ -15,6 +15,15 @@ $(document).on('turbolinks:load', function(){
   //   };
   // }, 200);
 
+  function buildLoadingSpinner(){
+    const html = `<div class='spinner-center'>
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>`
+    return html;
+  }
+
     $('.jscroll').jscroll({
       // 無限に追加する要素は、どこに入れる？
       contentSelector: '.jscroll',
@@ -23,7 +32,7 @@ $(document).on('turbolinks:load', function(){
       // nextSelector: '.next',
       // nextSelector: 'span.next:last a',
       // 読み込み中の表示はどうする？
-      loadingHtml: '読み込み中'
+      loadingHtml: buildLoadingSpinner()
     });
 
     $(window).on('scroll', function() {
@@ -54,7 +63,7 @@ $(document).on('turbolinks:load', function(){
           // nextSelector: 'span.next:last a',
           nextSelector: 'span.next a',
           // nextSelector: '.next',
-          loadingHtml: '読み込み中'
+          loadingHtml: buildLoadingSpinner()
         });
       }
     });
