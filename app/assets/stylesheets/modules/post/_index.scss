@@ -3,6 +3,7 @@
   -webkit-column-count: 4;
   -moz-column-count: 4;
   column-count: 4;
+  // position: relative;
 
   //NOTE:bootstrapによる文字色変更を回避
   a {
@@ -11,15 +12,30 @@
   a:hover {
     color: black;
   }
+  .jscroll-inner{
+    // width: 90vw;
+    // height: 100%;
+    // position: relative;
+  }
+  .jscroll-added{
+    // position: absolute;
+    // height: 100%;
+    // width: 90vw;
+    // right: 50vw;
+    // left: 50vw;
+    // bottom: 0;
+  }
   .card{
     width:15rem;
-    display: none;;
+    height: 100%;
+    // display: none;
   }
   .card:hover{
     box-shadow:3px 3px 6px rgba(0,0,0,0.5);
   }
   .card-body{
     padding: 0.8rem;
+    height: 100%;
     .card-title{
       font-weight: bold;
     }
@@ -36,6 +52,7 @@
   }
   .card-footer{
     padding: 0;
+    height: 100%;
     &-btns{
       margin-bottom: 0;
     }

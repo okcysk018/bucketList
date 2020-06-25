@@ -1,4 +1,6 @@
-  <div class="card-columns card-list jscroll">
+  <div class='jscroll'>
+  <%# <div class="card-columns card-list" style="column-count: 4"> %>
+  <div class="card-columns card-list">
     <% @posts.each do |post| %>
       <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
       <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
@@ -80,9 +82,10 @@
       <% end %>
     <% end %>
     <%# TODO:ページネーションとcard-columnsの競合回避 %>
-    <%# <%= paginate @posts %>
+    <%= paginate @posts%>
     <%# TODO:kaminariのコントローラでの機能強化対応 %>
     <%# <%= link_to_prev_page @posts, '前のページ', class:"prev"%>
     <%# <%= link_to_next_page @posts, '次のページ', class:"next"%>
+    </div>
 
   </div>
