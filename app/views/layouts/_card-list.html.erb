@@ -82,7 +82,7 @@
         <% end %>
       <% end %>
       <%# NOTE:kaminariの機能強化対応 spanタグなしだと最後のページしか読み込まない %>
-      <span style="{display:none;}"><%= link_to_next_page @posts, '次のページ', class:"next" %></span>
+      <span><%= link_to_next_page @posts, '次のページ', class:"next", style:"display:none" %></span>
     </div>
 
   </div>

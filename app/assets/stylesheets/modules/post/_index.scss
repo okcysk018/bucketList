@@ -1,4 +1,18 @@
 // post-index
+.jscroll-inner{
+  // width: 90vw;
+  // height: 100%;
+  // position: relative;
+}
+.jscroll-added{
+  // position: absolute;
+  // min-height: 100vh;
+  // width: 90vw;
+  // right: 50vw;
+  // left: 50vw;
+  // bottom: 0;
+}
+
 .card-list{
   -webkit-column-count: 4;
   -moz-column-count: 4;
@@ -12,23 +26,10 @@
   a:hover {
     color: black;
   }
-  .jscroll-inner{
-    // width: 90vw;
-    // height: 100%;
-    // position: relative;
-  }
-  .jscroll-added{
-    // position: absolute;
-    // height: 100%;
-    // width: 90vw;
-    // right: 50vw;
-    // left: 50vw;
-    // bottom: 0;
-  }
   .card{
+    // width:0rem;
     width:15rem;
-    height: 100%;
-    // display: none;
+    display: none;
   }
   .card:hover{
     box-shadow:3px 3px 6px rgba(0,0,0,0.5);
@@ -74,6 +75,8 @@
 
 .spinner-center{
   text-align: center;
+  // TODO:複数読込防止のためスピナーの高さを調整→要：別の方法模索
+  height: 10000vh;
 }
 
 //TODO:overlay実装用
