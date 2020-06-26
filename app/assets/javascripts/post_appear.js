@@ -1,20 +1,6 @@
 $(document).on('turbolinks:load', function(){
 
-  // TODO:カードのフェードイン実装 cardのdisplay:noneが必要だが挙動不審になる
-  // var timer;
-  // var count = $(".card").length;
-  // var index = 0;
-  // timer = setInterval(function() {
-  // //   // $(".card").eq(index).fadeIn('slow');
-  // // $(".card").eq(index).css({'width':'15rem'});
-  // // $(".card").eq(index).css({'display':'block'});
-  // $(".card").eq(index).addClass('animate__fadeInDown');
-  //   index ++;
-  //   if(index == count) {
-  //     clearInterval(timer);
-  //   };
-  // }, 200);
-
+  // 読込中の表示
   function buildLoadingSpinner(){
     const html = `<div class='spinner-center'>
                     <div class="spinner-border" role="status">
