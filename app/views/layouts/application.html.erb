@@ -10,8 +10,8 @@
     <%# TODO:APIキーの暗号化、エラーの解消 %>
     <%# CHANGED:<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U&callback=initMap" async defer></script> %>
     <%# NOTE:他のビューでのエラー回避のためcallback無効化 %>
-    <%# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U"></script> %>
-    <%= tag.script src:'https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U'%>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U"></script>
+    <%# <%= tag.script src:'https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U'%>
     <%#  Rails.application.credentials.google_map_key%>
     <script>
       $(function() {
