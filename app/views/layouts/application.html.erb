@@ -10,9 +10,20 @@
     <%# TODO:APIキーの暗号化、エラーの解消 %>
     <%# CHANGED:<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U&callback=initMap" async defer></script> %>
     <%# NOTE:他のビューでのエラー回避のためcallback無効化 %>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U"></script>
-    <%# <%= tag.script src:'https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U'%>
+    <%# <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U&libraries=places"></script> %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U&libraries=places"></script>
+    <%# <%= tag.script src:'https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U'%>
     <%#  Rails.application.credentials.google_map_key%>
+    <%# https://maps.googleapis.com/maps/api/place/nearbysearch/json
+      ?location=-33.8670522,151.1957362
+      &radius=500
+      &types=food
+      &name=harbour
+      &key=YOUR_API_KEY %>
+    <%# テキスト検索リクエスト %>
+    <%# https://maps.googleapis.com/maps/api/place/findplacefromtext/output?parameters %>
+    <%# オートコンプリート %>
+    <%# <script async defer src="https://maps.googleapis.com/maps/api/place/autocomplete/output?parameters?key=AIzaSyDTHhHhDXRaxmXA9UDo3GiJkRMBo0K5j6U"></script> %>
     <script>
       $(function() {
         setTimeout("$('.notification').fadeOut('slow')", 2000);
