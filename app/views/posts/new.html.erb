@@ -38,97 +38,17 @@
                 <% end %>
               </label>
             </div>
-            <%# TODO:画像サイズの調整とレスポンシヴ,カードにする%>
+            <%# TODO:レスポンシヴ,カードにする%>
             <div class="form-image-box__main__previews"></div>
           </div>
         </div>
       </div>
     </div>
+  <% end %>
 
-    <div class='formContent'>
-      <div class="form-group form-group-sideSet">
-        <label class='label' for='post-deadline'>
-          期　　日
-          <span class="badge badge-info">必須</span>
-        </label>
-        <div class='post-deadline'>
-          <%= raw sprintf (f.date_select :deadline, prompt: '---', start_year:Time.now.year, end_year:Time.now.since(30.year).year, use_month_numbers: true, class: "input form-control", id:'post-deadline', date_separator: '%s'),'年 ', '月 '%>日
-        </div>
-      </div>
-      <div class="form-group form-group-sideSet">
-        <label class='label' for='post-budget'>
-          予　　算
-          <span class="badge badge-info">必須</span>
-        </label>
-        <div class='post-budget'>
-          <span class='post-budget-priceTag'>¥</span>
-          <%= f.number_field :budget, class: "form-control", id: "post-budget", required: true %>
-        </div>
-      </div>
-      <div class="form-group form-group-sideSet">
-        <label class='label' for= "post-address">
-          場　　所
-        </label>
-        <%= f.text_field :address, placeholder: "目的地を入力してください", class: "form-control input-address", id: "post-address", autocomplete: "off"%>
-        <%= f.text_field :place_id, class: "form-control input-placeID", id: "post-placeID", readonly: "readonly"%>
-      </div>
-      <div class="form-group-sideSet">
-        <label class='label' for= "post-category">
-          カテゴリ
-        </label>
-        <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する%>
-        <div class='post-category'>
-          <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "category-field", id: "post-category"%>
-        </div>
-      </div>
-      <div class="form-group form-group-sideSet">
-        <label class='label' for="post-priority">
-          優 先 度
-        </label>
-        <%= f.select :priority, [1,2,3,4,5], include_blank: '他のタスクとの優先度合を選択します', class: "form-control", id:"post-priority"%>
-        <%# TODO:レーティングの実装 %>
-        <%# レーティングサンプルコード %>
-        <%# <div class="p-rating">
-          <button class="p-rating-star">☆</button>
-          <button class="p-rating-star">☆</button>
-          <button class="p-rating-star">☆</button>
-          <button class="p-rating-star">☆</button>
-          <button class="p-rating-star">☆</button>
-        </div> %>
+  <%= render 'layouts/post-form'%>
 
-        <%# NOTE:ラジオボタンをdisplay:noneで別口でレーティングを実装してJSで同期させる？ %>
-        <%# <div class="p-rating"> %>
-          <%# <%=f.radio_button :priority, 1, class: "p-rating-star"%>
-          <%# <%=f.radio_button :priority, 2, class:"p-rating-star"%>
-          <%# <%=f.radio_button :priority, 3, class:"p-rating-star"%>
-          <%# <%=f.radio_button :priority, 4, class:"p-rating-star"%>
-          <%# <%=f.radio_button :priority, 5, class:"p-rating-star"%>
-        <%# </div> %>
-      </div>
-    </div>
-
-    <div class='formContent'>
-      <div class='form-group form-check'>
-        <%= f.check_box :private_flag, class: "form-check-input"%>
-        <label class='form-check-label'>
-          非 公 開 に す る
-        </label>
-      </div>
-      <%# TODO:達成済の場合、評価必須、JS実装 %>
-      <div class='form-group form-check'>
-        <%= f.check_box :done_flag, class: "form-check-input"%>
-        <label class='form-check-label'>
-          達 成 済 に す る
-        </label>
-      </div>
-      <div class="form-group form-group-sideSet">
-        <label class='label' for="post-reputation">
-          評　　価
-        </label>
-        <%= f.select :reputation, [1,2,3,4,5], include_blank: '-', class: "form-control", id:"post-reputation"%>
-      </div>
-    </div>
-
+  <%= form_with(model: @post, local: true) do |f| %>
     <div class='formContent tasklist'>
       <div class='formContent__titleBar'>
         <div class='formContent__titleBar__formTitle'>

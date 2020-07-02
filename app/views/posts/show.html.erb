@@ -112,10 +112,10 @@
     </div>
   </div>
 
-
   <%# 場所 %>
   <% if @post.address.present? %>
     <div class='post-info'>
+      <div class="post-info__post-placeID"><%= @post.place_id %></div>
       <div class="post-info__post-address">
         <div id="map"></div>
       </div>

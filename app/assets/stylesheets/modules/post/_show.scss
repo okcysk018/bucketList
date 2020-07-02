@@ -40,7 +40,9 @@
       margin: 10px 0;
     }
   }
-
+  &__post-placeID{
+    display: none;
+  }
   #map{
     height: 400px;
   }
