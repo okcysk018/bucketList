@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
   before_action :set_category_tags_to_gon, only: [:edit, :new]
-  before_action :set_geocorder_to_gon, only: [:show]
+  # before_action :set_geocorder_to_gon, only: [:show]
   before_action :move_to_login, except: [:index, :show]
   before_action :move_to_show, only: [:edit, :update, :destroy]
   before_action :move_to_index_not_login, except: [:index, :new, :create]
@@ -68,6 +68,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :title,
       :address,
+      :place_id,
       :latitude,
       :longitude,
       :priority,

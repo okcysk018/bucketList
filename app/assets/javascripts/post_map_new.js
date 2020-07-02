@@ -1,8 +1,35 @@
 // $(document).on('turbolinks:load',function(){
 //   $('.formContent').on('keyup', '#post-address', function initAutocomplete(){
-$(document).on('turbolinks:load', function(){
-  function initAutocomplete(){
-    var autocomplete;
+$(document).on('turbolinks:load', function initMap(){
+
+  // // 自動補完関数
+  // function initAutocomplete(){
+  //   var autocomplete;
+  //   //対応させるテキストボックス
+  //   var input = document.getElementById('post-address');
+  //   //オートコンプリートのオプション
+  //   var options = {
+  //     // types: ['(regions)'],                      // 検索タイプ
+  //     types: ['geocode', 'establishment'],                      // 検索タイプ
+  //     // componentRestrictions: {country: 'jp'}     // 日本国内の住所のみ
+  //   };
+  //   autocomplete = new google.maps.places.Autocomplete( input, options);
+  // }
+
+  // initAutocomplete();
+
+  // function initMap() {
+    // let mapInstance = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 2,
+      // zoom: 8,
+      center: {lat: 35.6828387, lng: 139.7594549},
+      // mapTypeControl: false,
+      // panControl: false,
+      // zoomControl: false,
+      // streetViewControl: false
+    });
+
     //対応させるテキストボックス
     var input = document.getElementById('post-address');
     //オートコンプリートのオプション
@@ -11,10 +38,109 @@ $(document).on('turbolinks:load', function(){
       types: ['geocode', 'establishment'],                      // 検索タイプ
       // componentRestrictions: {country: 'jp'}     // 日本国内の住所のみ
     };
-    autocomplete = new google.maps.places.Autocomplete( input, options);
-  }
 
-  initAutocomplete();
+    autocomplete = new google.maps.places.Autocomplete( input, options);
+
+    autocomplete.setFields(['address_components', 'geometry', 'icon', 'name', 'place_id']);
+    // let marker = new google.maps.Marker({
+    //   position: place.geometry.location,
+    //   map: mapInstance
+    // });
+
+    // var request = {
+    //   fields: ["name", "formatted_address", "place_id", "geometry"]
+    // };
+
+    // TODO:カード実装
+    let infoWindow = new google.maps.InfoWindow();
+    // let infoWindow = new google.maps.InfoWindow({
+    //   content: document.getElementById('info-content')
+    // });
+    var infowindow = new google.maps.InfoWindow();
+    var infowindowContent = document.getElementById('infowindow-content');
+    infowindow.setContent(infowindowContent);
+    var marker = new google.maps.Marker({
+      map: map,
+      anchorPoint: new google.maps.Point(0, -29)
+    });
+
+    autocomplete.addListener('place_changed', function() {
+      infowindow.close();
+      marker.setVisible(false);
+      var place = autocomplete.getPlace();
+      // console.log(place)
+      // console.log(place.place_id)
+
+      if (!place.geometry) {
+        // User entered the name of a Place that was not suggested and
+        // pressed the Enter key, or the Place Details request failed.
+        window.alert("No details available for input: '" + place.name + "'");
+        return;
+      }
+
+      // If the place has a geometry, then present it on a map.
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17);  // Why 17? Because it looks good.
+      }
+      marker.setPosition(place.geometry.location);
+      marker.setVisible(true);
+
+      var address = '';
+      if (place.address_components) {
+        // FIXME:最後しか出ない
+        for (var i = 0; i < place.address_components.length; i++) {
+          address = [
+            (place.address_components[i] && place.address_components[i].short_name || ''),
+          ].join(' ');
+          console.log(address)
+        }
+        address = [
+          (place.address_components[2] && place.address_components[2].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+        ].join(' ');
+      }
+
+      infowindowContent.children['place-icon'].src = place.icon;
+      infowindowContent.children['place-name'].textContent = place.name;
+      infowindowContent.children['place-address'].textContent = address;
+      infowindow.open(map, marker);
+      $('#post-placeID').val(place.place_id);
+
+      // NOTE:autoCompleteを利用せずにフォーム入力が変更された場合placeIDを空にする
+      $('.formContent').on('change', '#post-address', function(){
+        $('#post-placeID').val('');
+      })
+    });
+
+    // let service = new google.maps.places.PlacesService(map);
+
+    // service.getDetails(request, function(place, status) {
+    //   if (status === google.maps.places.PlacesServiceStatus.OK) {
+    //     var marker = new google.maps.Marker({
+    //       map: map,
+    //       position: place.geometry.location
+    //     });
+    //     google.maps.event.addListener(marker, "click", function() {
+    //       infowindow.setContent(
+    //         "<div><strong>" +
+    //           place.name +
+    //           "</strong><br>" +
+    //           "Place ID: " +
+    //           place.place_id +
+    //           "<br>" +
+    //           place.formatted_address +
+    //           "</div>"
+    //       );
+    //       infowindow.open(map, this);
+    //     });
+    //   }
+    // });
+  // }
+
 });
 // });
 

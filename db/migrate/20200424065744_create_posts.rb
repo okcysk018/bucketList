@@ -6,6 +6,8 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string  :title,       null: false
       t.text    :description
       t.string  :address
+      t.string  :place_id
+      # TODO:緯度経度は不要
       t.float   :latitude
       t.float   :longitude
       t.date    :deadline,    null: false

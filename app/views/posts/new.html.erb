@@ -31,7 +31,7 @@
                 <%= f.fields_for :images do |image|%>
                   <%= tag.div data: {index: "#{image.index}"}, class: "image-file_group" do%>
                     <i class="fa fa-camera fa-2x"></i>
-                    <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>	
+                    <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>
                     <%= image.file_field :image, class:'image-file-uploader' %>
                     <%# <%= image.file_field :images, class:'image-file-uploader', required: true ,multiple: true %>
                   <% end %>
@@ -69,7 +69,8 @@
         <label class='label' for= "post-address">
           場　　所
         </label>
-        <%= f.text_field :address, placeholder: "目的地を入力してください", class: "form-control input-address", id: "post-address"%>
+        <%= f.text_field :address, placeholder: "目的地を入力してください", class: "form-control input-address", id: "post-address", autocomplete: "off"%>
+        <%= f.text_field :place_id, class: "form-control input-placeID", id: "post-placeID", readonly: "readonly"%>
       </div>
       <div class="form-group-sideSet">
         <label class='label' for= "post-category">

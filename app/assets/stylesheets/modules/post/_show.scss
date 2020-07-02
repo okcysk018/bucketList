@@ -44,6 +44,12 @@
   #map{
     height: 400px;
   }
+  #infowindow-content {
+    display: none;
+  }
+  #map #infowindow-content {
+    display: inline;
+  }
 
   // TODO:mixin
   &__tasks-titleBar{
