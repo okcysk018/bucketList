@@ -1,89 +1,94 @@
   <%# NOTE:card-columnにjscrollを入れると挙動不審なのでjscrollで挟む %>
-  <div class='jscroll'>
-    <div class="card-columns card-list">
-      <% @posts.each do |post| %>
-        <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
-        <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
-          <div class="card animate__animated" id="post-card-info">
-            <% if post.images.present?%>
-              <%# <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link", 'data-no-turbolink'=>true %>
-              <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link"%>
-            <%else%>
-              <%# <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id), 'data-no-turbolink'=>true%>
-              <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id)%>
-            <%end%>
-            <%# CHANGED:<%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;", 'data-no-turbolink' => true do %>
-            <%# <%end%>
-            <%# <div class= "card-img-overlay text-white" id= "post-card-img-overlay"> %>
-              <%# <div class='card-post-user'> %>
-                <%# <%= link_to post.user.nickname, user_path(post.user.id), class:"card-post-user-link"%>
-              <%# </div> %>
-            <%# </div> %>
-
-            <div class='card-body'>
-              <%= link_to post.title, post_path(post.id), class:"card-title", 'data-no-turbolink'=>true%>
-              <%# HACK:showと共有テンプレにしたいけど引数違う %>
-              <div class="card-post-flags">
-                <% if post.done_flag.present? %>
-                  <div class="badge badge-success p-2">
-                    <i class="far fa-check-square"></i>
-                    達成済
-                  </div>
-                <%end%>
-                <% if post.private_flag.present? %>
-                  <div class="badge badge-warning p-2">
-                    <i class="fas fa-lock"></i>
-                    非公開
-                  </div>
-                <%end%>
-              </div>
-              <%if post.reputation %>
-                <div class="card-post-reputation">
-                  <div class="post-reputation-back">
-                    ★★★★★
-                  </div>
-                  <div class="post-reputation-front">
-                    <% case post.reputation %>
-                    <% when 1%>
-                      ★
-                    <% when 2%>
-                      ★★
-                    <% when 3%>
-                      ★★★
-                    <% when 4%>
-                      ★★★★
-                    <% when 5%>
-                      ★★★★★
-                    <%end%>
-                  </div>
-                </div>
+  <%# <div class='jscroll'> %>
+    <%# <div class="card-columns card-list"> %>
+    <div class="grid card-list">
+      <%# <div class='jscroll'> %>
+        <% @posts.each do |post| %>
+          <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
+          <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
+            <div class="grid-item card animate__animated" id="post-card-info">
+              <% if post.images.present?%>
+                <%# <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link", 'data-no-turbolink'=>true %>
+                <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link"%>
+              <%else%>
+                <%# <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id), 'data-no-turbolink'=>true%>
+                <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id)%>
               <%end%>
-              <div class='card-post-user'>
-                <%= link_to "投稿者：#{post.user.nickname}", user_path(post.user.id), class:"card-post-user-link" %>
+              <%# CHANGED:<%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;", 'data-no-turbolink' => true do %>
+              <%# <%end%>
+              <%# <div class= "card-img-overlay text-white" id= "post-card-img-overlay"> %>
+                <%# <div class='card-post-user'> %>
+                  <%# <%= link_to post.user.nickname, user_path(post.user.id), class:"card-post-user-link"%>
+                <%# </div> %>
+              <%# </div> %>
+
+              <div class='card-body'>
+                <%= link_to post.title, post_path(post.id), class:"card-title", 'data-no-turbolink'=>true%>
+                <%# HACK:showと共有テンプレにしたいけど引数違う %>
+                <div class="card-post-flags">
+                  <% if post.done_flag.present? %>
+                    <div class="badge badge-success p-2">
+                      <i class="far fa-check-square"></i>
+                      達成済
+                    </div>
+                  <%end%>
+                  <% if post.private_flag.present? %>
+                    <div class="badge badge-warning p-2">
+                      <i class="fas fa-lock"></i>
+                      非公開
+                    </div>
+                  <%end%>
+                </div>
+                <%if post.reputation %>
+                  <div class="card-post-reputation">
+                    <div class="post-reputation-back">
+                      ★★★★★
+                    </div>
+                    <div class="post-reputation-front">
+                      <% case post.reputation %>
+                      <% when 1%>
+                        ★
+                      <% when 2%>
+                        ★★
+                      <% when 3%>
+                        ★★★
+                      <% when 4%>
+                        ★★★★
+                      <% when 5%>
+                        ★★★★★
+                      <%end%>
+                    </div>
+                  </div>
+                <%end%>
+                <div class='card-post-user'>
+                  <%= link_to "投稿者：#{post.user.nickname}", user_path(post.user.id), class:"card-post-user-link" %>
+                </div>
+              </div>
+              <div class='card-footer'>
+                <div class='card-footer-btns d-flex'>
+                  <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                    <i class="fa fa-plus"></i>
+                    追加
+                  </button>
+                  <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                    <i class="far fa-check-circle"></i>
+                    達成済
+                  </button>
+                  <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                    <i class="far fa-thumbs-up"></i>
+                    いいね
+                  </button>
+                  <%= render 'layouts/modal-message'%>
+                </div>
               </div>
             </div>
-            <div class='card-footer'>
-              <div class='card-footer-btns d-flex'>
-                <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
-                  <i class="fa fa-plus"></i>
-                  追加
-                </button>
-                <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
-                  <i class="far fa-check-circle"></i>
-                  達成済
-                </button>
-                <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
-                  <i class="far fa-thumbs-up"></i>
-                  いいね
-                </button>
-                <%= render 'layouts/modal-message'%>
-              </div>
-            </div>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
+      <%# </div> %>
       <%# NOTE:kaminariの機能強化対応 spanタグなしだと最後のページしか読み込まない %>
-      <span><%= link_to_next_page @posts, '次のページ', class:"next", style:"display:none" %></span>
+      <%# <span> %>
+        <%# <%= link_to_next_page @posts, '次のページ', class:"next", style:"display:none" %>
+      <%# </span> %>
     </div>
 
-  </div>
+  <%# </div> %>

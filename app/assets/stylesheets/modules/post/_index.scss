@@ -14,10 +14,9 @@
 }
 
 .card-list{
-  -webkit-column-count: 4;
-  -moz-column-count: 4;
-  column-count: 4;
+  // column-count: 4;
   // position: relative;
+  height: 100%;
 
   //NOTE:bootstrapによる文字色変更を回避
   a {
@@ -27,9 +26,12 @@
     color: black;
   }
   .card{
-    // width:0rem;
+    margin: 5px;
     width:15rem;
-    display: none;
+    opacity: 0;
+  }
+  .grid-item{
+    float: left;
   }
   .card:hover{
     box-shadow:3px 3px 6px rgba(0,0,0,0.5);

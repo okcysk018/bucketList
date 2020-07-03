@@ -9,8 +9,9 @@ class PostsController < ApplicationController
   before_action :move_to_index, except: [:index, :new, :create]
 
   def index
+    @posts = Post.includes(:user).order("id DESC")
     # NOTE:kaminariの機能強化対応
-    @posts = Post.order("id DESC").includes(:user).page(params[:page]).without_count.per(10)
+    # @posts = Post.order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
   end
 
   def new

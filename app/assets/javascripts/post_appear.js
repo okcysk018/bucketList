@@ -1,4 +1,14 @@
 $(document).on('turbolinks:load', function(){
+  // カードの整列
+  // $('.card-list').imagesLoaded(function(){
+  $('.grid').imagesLoaded(function(){
+    cardAppearByOne();
+    $('.grid').masonry({
+      itemSelector: '.grid-item',
+      columnWidth: 250,
+      isFitWidth: true  //親要素の幅に合わせてカラム数を自動調整
+    });
+  })
 
   // 読込中の表示
   function buildLoadingSpinner(){
@@ -16,9 +26,8 @@ $(document).on('turbolinks:load', function(){
     var count = $(".card").length;
     var index = 0;
     timer = setInterval(function() {
-    // NOTE:'display':'block'では挙動不審になる
-    $(".card").eq(index).css({'display':'inline-block'});
-    $(".card").eq(index).addClass('animate__fadeInDown');
+      $(".card").eq(index).addClass('animate__fadeInUp');
+      // $(".card").eq(index).css({'opacity':'1'});
       index ++;
       if(index == count) {
         clearInterval(timer);
@@ -26,31 +35,31 @@ $(document).on('turbolinks:load', function(){
     }, 200);
   }
 
-  function jscrollReader() {
-    $('.jscroll').jscroll({
-      // 無限に追加する要素を、どこに入れるか
-      // contentSelector: '.jscroll',
-      contentSelector: '.card-list',
-      // 次のページにいくためのリンクの場所 ＞aタグの指定
-      // nextSelector: 'span.next a',
-      nextSelector: 'a.next',
-      // 読込中の表示
-      loadingHtml: buildLoadingSpinner()
-    });
-  }
+  // function jscrollReader() {
+  //   $('.jscroll').jscroll({
+  //     // 無限に追加する要素を、どこに入れるか
+  //     // contentSelector: '.jscroll',
+  //     contentSelector: '.card-list',
+  //     // 次のページにいくためのリンクの場所 ＞aタグの指定
+  //     // nextSelector: 'span.next a',
+  //     nextSelector: 'a.next',
+  //     // 読込中の表示
+  //     loadingHtml: buildLoadingSpinner()
+  //   });
+  // }
 
-  // 初期表示
-  cardAppearByOne();
+//   // 初期表示
+//   cardAppearByOne();
 
-  // FIXME:多重読み込みでしか３ページ以降は表示されない
-  $(window).on('scroll', function() {
-    scrollHeight = $(document).height();
-    scrollPosition = $(window).height() + $(window).scrollTop();
-    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-      // console.log('scroll') // REVIEW
-      cardAppearByOne();
-      jscrollReader();
-    }
-  });
+  // // FIXME:多重読み込みでしか３ページ以降は表示されない
+  // $(window).on('scroll', function() {
+  //   scrollHeight = $(document).height();
+  //   scrollPosition = $(window).height() + $(window).scrollTop();
+  //   if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+  //     // console.log('scroll') // REVIEW
+  //     cardAppearByOne();
+  //     jscrollReader();
+  //   }
+  // });
 
 });
