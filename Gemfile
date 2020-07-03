@@ -83,7 +83,7 @@ gem 'carrierwave' # 画像アップロード
 gem 'mini_magick' # 画像編集（リサイズなど）
 gem 'fog-aws' # S3対応
 # gem 'dropzonejs-rails'
-gem 'geocoder'
+# gem 'geocoder'
 # gem 'gmaps4rails'
 gem 'jquery-turbolinks' # turbolinksとgoogleMapの競合回避
 gem 'kaminari' # ページネーション

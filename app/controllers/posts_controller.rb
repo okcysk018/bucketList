@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
   before_action :set_category_tags_to_gon, only: [:edit, :new]
-  # before_action :set_geocorder_to_gon, only: [:show]
   # before_action :set_api_key
   before_action :move_to_login, except: [:index, :show]
   before_action :move_to_show, only: [:edit, :update, :destroy]
@@ -66,14 +65,12 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :title,
+      :description,
       :address,
       :place_id,
-      :latitude,
-      :longitude,
-      :priority,
       :deadline,
       :budget,
-      :description,
+      :priority,
       :reputation,
       :done_flag,
       :private_flag,
@@ -96,11 +93,6 @@ class PostsController < ApplicationController
     gon.category_tags = Post.tag_counts_on(:categories).where('name LIKE(?) AND id <= ?', "#{params[:term]}%", 13).pluck(:name) #初期値カテゴリータグをtagsテーブルのnameカラム前方一致で取得
   end
 
-  # def set_geocorder_to_gon
-  #   if @post.address.present?
-  #     gon.geocorder = Geocoder.search(@post.address).first.coordinates
-  #   end
-  # end
   def set_api_key
     # TODO:値を渡す
     googleMapAPIKey = Rails.application.credentials.google_map_key

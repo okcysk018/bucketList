@@ -104,9 +104,8 @@ Post.create!([
     description: '初期データ複数タスク',
     deadline: '2030-12-31',
     budget: 100000,
-    address: 'ラスベガス',
-    latitude: 36.1673,
-    longitude: -115.149,
+    address: 'アメリカ合衆国 ネバダ州 ラスベガス',
+    place_id: 'ChIJ0X31pIK3voARo3mz1ebVzDo',
     user_id: 2
   },
   {
@@ -114,9 +113,8 @@ Post.create!([
     description: '初期データ場所',
     deadline: '2030-12-31',
     budget: 100000,
-    address: '沖縄',
-    latitude: 26.3344,
-    longitude: 127.806,
+    address: '日本、沖縄県那覇市',
+    place_id: 'ChIJi7WmQXFp5TQRmF5YFvav2Cw',
     user_id: 2
   },
   {
@@ -387,6 +385,8 @@ Post.create!([
     description: '初期データ',
     deadline: '2030-12-31',
     budget: 100000,
+    address: "インド ウッタル・プラデーシュ Mudila Khurd, ガンジス川",
+    place_id: "ChIJS8aQvmfnljkRJYmLSmqmC_8",
     reputation: 3,
     done_flag: true,
     user_id: 2

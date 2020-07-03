@@ -27,7 +27,6 @@ $(document).on('turbolinks:load',
     // let mapInstance = new google.maps.Map(document.getElementById('map'), {
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 2,
-      // zoom: 8,
       center: {lat: 35.6828387, lng: 139.7594549},
       // mapTypeControl: false,
       // panControl: false,
@@ -57,7 +56,7 @@ $(document).on('turbolinks:load',
           position: place.geometry.location
         });
         if (place.geometry.viewport) {
-          // REVIEW:fitBoundsとは？いい感じにズームしてくれる？
+          // 指定された境界を含むようにビューポートを設定
           map.fitBounds(place.geometry.viewport);
         } else {
           map.setCenter(place.geometry.location);
@@ -66,6 +65,7 @@ $(document).on('turbolinks:load',
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
 
+        // CHANGED:JSでinfowindow設定する場合
         // google.maps.event.addListener(marker, "click", function() {
           // infowindow.setContent(
           //   "<div><strong>" +
