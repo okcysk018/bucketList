@@ -112,15 +112,20 @@
     </div>
   </div>
 
-
   <%# 場所 %>
   <% if @post.address.present? %>
     <div class='post-info'>
+      <div class="post-info__post-placeID"><%= @post.place_id %></div>
       <div class="post-info__post-address">
         <div id="map"></div>
       </div>
     </div>
   <% end %>
+  <div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon">
+    <span id="place-name"  class="title"></span><br>
+    <span id="place-address"></span>
+  </div>
 
   <% if @post.tasks.present? %>
     <div class='post-info'>

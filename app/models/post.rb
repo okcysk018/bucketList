@@ -9,10 +9,6 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :tasks, allow_destroy: true
   acts_as_taggable_on :categories
 
-  # GoogleMap用のカラム
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
-
   # TODO: バリデーション
   validates :title, presence: true, length: { maximum: 40 }
   validates :images, length: {maximum: 10}

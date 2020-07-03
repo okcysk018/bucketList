@@ -6,10 +6,11 @@
         <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
           <div class="card animate__animated" id="post-card-info">
             <% if post.images.present?%>
-              <%# NOTE:post-map.jsの挙動エラー回避のためにturbolinksをOFF %>
-              <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link", 'data-no-turbolink'=>true %>
+              <%# <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link", 'data-no-turbolink'=>true %>
+              <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link"%>
             <%else%>
-              <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id), 'data-no-turbolink'=>true%>
+              <%# <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id), 'data-no-turbolink'=>true%>
+              <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id)%>
             <%end%>
             <%# CHANGED:<%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;", 'data-no-turbolink' => true do %>
             <%# <%end%>

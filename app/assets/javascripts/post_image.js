@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function(){
 
   // プレビュー用のimgタグを生成する関数
   const buildImg = (index, url)=> {
-    const html = `<div class= "form-image-box__main__previews__view" data-index="${index}">
+    const html = `<div class= "form-image-box__main__previews__view" data-index="${index}" id="image-remove-target">
                     <div class="form-image-box__main__previews__view__image">
                       <img class="image${index} input_images", data-index="${index}", src="${url}">
                       <div class="image-remove">削除</div>
@@ -12,7 +12,7 @@ $(document).on('turbolinks:load', function(){
   }
   // 画像用のinputを生成する関数
   const buildFileField = (num)=> {
-    const html = `<div data-index="${num}" class="image-file_group">
+    const html = `<div data-index="${num}" class="image-file_group" id="image-remove-target">
                     <i class="fa fa-camera fa-2x"></i>
                     <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>
                     <input class="image-file-uploader" type="file"
@@ -75,7 +75,8 @@ $(document).on('turbolinks:load', function(){
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
     // プレビューとアップローダの削除
-    $(`div[data-index="${targetIndex}"]`).remove();
+    console.log($(`div[data-index="${targetIndex}"]#image-remove-target`))
+    $(`div[data-index="${targetIndex}"]#image-remove-target`).remove();
     // 画像入力欄が0個にならないようにしておく
     if ($('.image-file-uploader').length == 0) $('.form-image-box__main__uploaders__label').prepend(buildFileField(fileIndex[0]));
     // 削除時に画像が枚数上限以内の場合はアップローダの選択とクリック無効を削除

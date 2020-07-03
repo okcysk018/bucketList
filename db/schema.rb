@@ -32,8 +32,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_055550) do
     t.string "title", null: false
     t.text "description"
     t.string "address"
-    t.float "latitude"
-    t.float "longitude"
+    t.string "place_id"
     t.date "deadline", null: false
     t.integer "budget", null: false
     t.integer "reputation"

@@ -40,9 +40,17 @@
       margin: 10px 0;
     }
   }
-
+  &__post-placeID{
+    display: none;
+  }
   #map{
     height: 400px;
+  }
+  #infowindow-content {
+    display: none;
+  }
+  #map #infowindow-content {
+    display: inline;
   }
 
   // TODO:mixin

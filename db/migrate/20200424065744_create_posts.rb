@@ -6,8 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string  :title,       null: false
       t.text    :description
       t.string  :address
-      t.float   :latitude
-      t.float   :longitude
+      t.string  :place_id
       t.date    :deadline,    null: false
       t.integer :budget,      null: false,                  precision: 7
       t.integer :reputation
