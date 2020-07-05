@@ -33,7 +33,7 @@
     float: left;
     margin: 5px;
     width:15rem;
-    opacity: 0;
+    // opacity: 0;
     // display: none;
   }
   .card:hover{
@@ -78,10 +78,9 @@
   }
 }
 
-.spinner-center{
+.page-load-status{
+  padding: 30px 0;
   text-align: center;
-  // TODO:複数読込防止のためスピナーの高さを調整→要：別の方法模索
-  height: 10000vh;
 }
 
 //TODO:overlay実装用

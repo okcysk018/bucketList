@@ -21,6 +21,7 @@
 //= require turbolinks
 //= require masonry.pkgd.min.js
 //= require imagesloaded.pkgd.min.js
+//= require infinite-scroll.pkgd.min.js
 //= require post_tasks
 //= require_tree .
 //= require jquery.jscroll.min.js

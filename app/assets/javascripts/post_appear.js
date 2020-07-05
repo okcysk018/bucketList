@@ -1,37 +1,5 @@
 $(document).on('turbolinks:load', function(){
 
-  // $('.card-list').imagesLoaded(function(){
-    $('.card-list').imagesLoaded(function(){
-      // FIXME:フェードイン実装でレスポンシブ不可に
-      // $(".card").addClass('animate__fadeInUp');
-      $(".card").css({'opacity':'1'});
-      $('.card-list').masonry({
-        itemSelector: '.card',
-        columnWidth: 250,
-        fitWidth: true  //親要素の幅に合わせてカラム数を自動調整
-      });
-    })
-  // })
-
-  // カードの整列
-  function postCardAppend(){
-    $('.card-list').imagesLoaded(function(){
-      // cardAppearByOne();
-      $(".card").css({'display':'none'});
-      // $('.card-list').append($(".jscroll-added"));
-      $('.card-list').imagesLoaded(function(){
-        $(".card").css({'opacity':'1'});
-        $(".card").css({'display':'inline'});
-        $(".card").addClass('animate__fadeInUp');
-        $('.card-list').masonry({
-          itemSelector: '.card',
-          columnWidth: 250,
-          isFitWidth: true  //親要素の幅に合わせてカラム数を自動調整
-        });
-      })
-    })
-  }
-
   // 読込中の表示
   function buildLoadingSpinner(){
     const html = `<div class='spinner-center'>
@@ -41,6 +9,40 @@ $(document).on('turbolinks:load', function(){
                   </div>`
     return html;
   }
+
+  var $grid = $('.card-list').masonry({
+    itemSelector: '.card',
+    columnWidth: 250,
+    fitWidth: true  //親要素の幅に合わせてカラム数を自動調整
+  });
+
+  var msnry = $grid.data('masonry');
+
+  $('.card-list').imagesLoaded(function(){
+    $grid.infiniteScroll({
+    path: '.next',
+    append: '.card',
+    outlayer: msnry,
+    status: '.page-load-status',
+    history: false,
+    animate: true,
+    // prefill: true,
+    scrollThreshold: 500,
+    });
+  })
+
+  // $('.card-list').imagesLoaded(function(){
+    // $('.card-list').imagesLoaded(function(){
+    //   // $(".card").addClass('animate__fadeInUp');
+    //   $(".card").css({'opacity':'1'});
+    //   // cardAppearByOne();
+    //   $('.card-list').masonry({
+    //     itemSelector: '.card',
+    //     columnWidth: 250,
+    //     fitWidth: true  //親要素の幅に合わせてカラム数を自動調整
+    //   });
+    // })
+  // })
 
   // NOTE:1枚ずつカードをフェードインさせてjscrollで次ページの情報を展開→再読込する関数
   function cardAppearByOne() {
@@ -57,6 +59,7 @@ $(document).on('turbolinks:load', function(){
     }, 200);
   }
 
+  // FIXME:jscrollだと読み込み後の表示がおかしい→infiniteScrollで実装
   function jscrollReader() {
     // card-list
     //    jscroll-inner
@@ -77,18 +80,11 @@ $(document).on('turbolinks:load', function(){
     });
   }
 
-//   // 初期表示
-//   cardAppearByOne();
-
-  // // FIXME:多重読み込みでしか３ページ以降は表示されない
+  // // FIXME:Ajaxだと次ページの読み込み情報を範囲指定できない
   $(window).on('scroll', function() {
     scrollHeight = $(document).height();
     scrollPosition = $(window).height() + $(window).scrollTop();
-    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-      // console.log($('a.next')) // REVIEW
-      // postCardAppend();
-      // jscrollReader();
-      // postCardAppend();
+    // if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
       // $.ajax({
       //   url: "posts/",
       //   type: "GET",
@@ -124,7 +120,7 @@ $(document).on('turbolinks:load', function(){
       //     console.log("some error occured! majioco! punpunmaru!");
       //   }
       // });
-    }
+    // }
   });
 
 });
