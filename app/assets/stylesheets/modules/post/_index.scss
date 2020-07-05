@@ -1,23 +1,26 @@
 // post-index
+.jscroll-added{
+  // position: absolute;
+  // min-height: 100vh;
+  // width: 100%;
+  // right: 50vw;
+  // left: 50vw;
+  // bottom: 0;
+}
+.jscroll{
+  // width: 100%;
+  // height: 100%;
+  // position: relative;
+}
 .jscroll-inner{
   // width: 90vw;
   // height: 100%;
   // position: relative;
 }
-.jscroll-added{
-  // position: absolute;
-  // min-height: 100vh;
-  // width: 90vw;
-  // right: 50vw;
-  // left: 50vw;
-  // bottom: 0;
-}
-
 .card-list{
-  -webkit-column-count: 4;
-  -moz-column-count: 4;
-  column-count: 4;
+  // column-count: 4;
   // position: relative;
+  // height: 100%;
 
   //NOTE:bootstrapによる文字色変更を回避
   a {
@@ -27,9 +30,11 @@
     color: black;
   }
   .card{
-    // width:0rem;
+    float: left;
+    margin: 5px;
     width:15rem;
-    display: none;
+    // opacity: 0;
+    // display: none;
   }
   .card:hover{
     box-shadow:3px 3px 6px rgba(0,0,0,0.5);
@@ -73,10 +78,9 @@
   }
 }
 
-.spinner-center{
+.page-load-status{
+  padding: 30px 0;
   text-align: center;
-  // TODO:複数読込防止のためスピナーの高さを調整→要：別の方法模索
-  height: 10000vh;
 }
 
 //TODO:overlay実装用
