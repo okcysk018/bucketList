@@ -41,14 +41,13 @@ bucketList
 「死ぬまでにやりたい事リスト」をみんなで共有して、人生を豊かにしたい、という思いで作成しました。
 
 ## DEMO
-![](https://i.gyazo.com/db6307fbd7da35dad44f5ccd7c268b6b.jpg)
+![demo](https://github.com/okcysk018/bucketList/blob/master/app/assets/images/bucketlist_intro.gif)
 
 # 使用技術
 ### ■言語
-バックエンド
-Ruby 2.5.1
-フロントエンド
-jquery-rails 4.3.5
+バックエンド Ruby 2.5.1
+
+フロントエンド jquery-rails 4.3.5
 ### ◼︎フレームワーク
 Ruby on Rails 5.2.4.2
 ### ◼︎データベース
@@ -60,7 +59,7 @@ AWS S3
 Capistranoによる自動デプロイ
 
 # DB設計
-![](https://i.gyazo.com/976c811fec7c4b68f0aab916cb433091.png)
+![](https://i.gyazo.com/b76b14aecb50da168420844e814bc62f.png)
 
 ## usersテーブル
 
@@ -94,8 +93,7 @@ Capistranoによる自動デプロイ
 | description | text |  |
 | deadline | date | null: false |
 | address | string |  |
-| latitude | float |  |
-| longitude | float |  |
+| place_id | string |  |
 | reputation | integer |  |
 | priority | integer |  |
 | budget | integer | null: false |
