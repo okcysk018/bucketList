@@ -1,5 +1,48 @@
 $(document).on('turbolinks:load', function(){
 
+  //-------------------------------------//
+  // init Masonry
+
+  var $grid = $('.card-list').masonry({
+    itemSelector: 'none', // select none at first
+    columnWidth: 250,
+    // gutter: '.grid__gutter-sizer',
+    // percentPosition: true,
+    stagger: 30,
+    // nicer reveal transition
+    visibleStyle: { transform: 'translateY(0)', opacity: 1 },
+    hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },
+    fitWidth: true  //親要素の幅に合わせてカラム数を自動調整
+  });
+
+  // get Masonry instance
+  var msnry = $grid.data('masonry');
+
+  // initial items reveal
+  $grid.imagesLoaded( function() {
+    $grid.removeClass('are-images-unloaded');
+    $grid.masonry( 'option', { itemSelector: '.card' });
+    var $items = $grid.find('.card');
+    $grid.masonry( 'appended', $items );
+  });
+
+  //-------------------------------------//
+  // init Infinte Scroll
+  $('.card-list').imagesLoaded(function(){
+    $grid.infiniteScroll({
+      path: '.next',
+      append: '.card',
+      outlayer: msnry,
+      status: '.page-load-status',
+      history: false,
+      animate: true,
+      // prefill: true,
+      scrollThreshold: 500,
+    });
+  })
+
+  //-------------------------------------//
+  // TODO:後学のため以下のコードを残す。いつか消す。
   // 読込中の表示
   function buildLoadingSpinner(){
     const html = `<div class='spinner-center'>
@@ -9,40 +52,6 @@ $(document).on('turbolinks:load', function(){
                   </div>`
     return html;
   }
-
-  var $grid = $('.card-list').masonry({
-    itemSelector: '.card',
-    columnWidth: 250,
-    fitWidth: true  //親要素の幅に合わせてカラム数を自動調整
-  });
-
-  var msnry = $grid.data('masonry');
-
-  $('.card-list').imagesLoaded(function(){
-    $grid.infiniteScroll({
-    path: '.next',
-    append: '.card',
-    outlayer: msnry,
-    status: '.page-load-status',
-    history: false,
-    animate: true,
-    // prefill: true,
-    scrollThreshold: 500,
-    });
-  })
-
-  // $('.card-list').imagesLoaded(function(){
-    // $('.card-list').imagesLoaded(function(){
-    //   // $(".card").addClass('animate__fadeInUp');
-    //   $(".card").css({'opacity':'1'});
-    //   // cardAppearByOne();
-    //   $('.card-list').masonry({
-    //     itemSelector: '.card',
-    //     columnWidth: 250,
-    //     fitWidth: true  //親要素の幅に合わせてカラム数を自動調整
-    //   });
-    // })
-  // })
 
   // NOTE:1枚ずつカードをフェードインさせてjscrollで次ページの情報を展開→再読込する関数
   function cardAppearByOne() {
@@ -59,7 +68,7 @@ $(document).on('turbolinks:load', function(){
     }, 200);
   }
 
-  // FIXME:jscrollだと読み込み後の表示がおかしい→infiniteScrollで実装
+  // FIXME:jscrollだと読み込み後の表示がおかしい→jscroll-addedを中身のカードをアペンドしなおしてリムーブすればいける？
   function jscrollReader() {
     // card-list
     //    jscroll-inner
@@ -80,7 +89,7 @@ $(document).on('turbolinks:load', function(){
     });
   }
 
-  // // FIXME:Ajaxだと次ページの読み込み情報を範囲指定できない
+  // FIXME:Ajaxだと次ページの読み込み情報を範囲指定できない
   $(window).on('scroll', function() {
     scrollHeight = $(document).height();
     scrollPosition = $(window).height() + $(window).scrollTop();
