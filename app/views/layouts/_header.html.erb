@@ -1,25 +1,52 @@
   <nav class= "navbar main-header">
     <%= link_to root_path, class: "navbar-brand main-header__title" do%>
-      <%# TODO:本番環境で相対パスの場合は反映されない要調査、images必要？ %>
-      <%# <img src="../../assets/MyBucketList-logo.png" class="main-header__title--text" width="200" height="50" alt='bucketist-top-page'> %>
       <%= image_tag "MyBucketList-logo.png", size: '200x50', class: "main-header__title--text", alt: "bucketList-top-page" %>
-
     <%end%>
-    <button class="btn btn-light dropdown-toggle main-header__right" type='button' id='main-header-dropdown' data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-      <i class="fas fa-bars navbar-toggler-icon"></i>
-    </button>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby='main-header-dropdown'id="main-header-menu">
-      <% if user_signed_in?%>
-        <%= link_to '新規投稿', new_post_path, class:'dropdown-item'%>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:'dropdown-item'%>
-        <%# TODO: turbolinksの有無 %>
-        <%# <%= link_to '新規投稿', new_post_path, data: {"turbolinks"=>false}%>
-        <%= link_to 'マイページ', user_path(current_user), class:'dropdown-item'%>
-        <%# TODO: ユーザ編集機能 %>
-        <%= link_to 'アカウント編集', edit_user_registration_path, class:'dropdown-item'%>
-      <% else %>
-        <%= link_to 'ログイン', new_user_session_path, class:'dropdown-item'%>
-        <%= link_to '新規登録', new_user_registration_path, class:'dropdown-item'%>
-      <% end %>
+    <div class='main-header__right d-flex'>
+
+      <%= form_with(url: search_posts_path, method: 'GET', model: @post, local: true) do |f| %>
+        <%= tag.div class:"form-inline", id:'post-search' do%>
+          <%= f.text_field :keyword, placeholder:"投稿タイトルで検索", class:"form-control"%>
+          <button type="submit" class='btn btn-light'>
+            <i class="fas fa-search"></i>
+          </button>
+        <%end%>
+      <%end%>
+
+      <button class="btn btn-light dropdown-toggle" type='button' id='main-header-dropdown' data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+        <i class="fas fa-bars navbar-toggler-icon"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby='main-header-dropdown'id="main-header-menu">
+        <% if user_signed_in?%>
+          <%= link_to new_post_path, class:'dropdown-item' do%>
+            <i class="fas fa-plus"></i>
+            新規投稿
+          <%end%>
+          <%= link_to destroy_user_session_path, method: :delete, class:'dropdown-item' do%>
+            <i class="fas fa-sign-out-alt"></i>
+            ログアウト
+          <%end%>
+          <%# TODO: turbolinksの有無 %>
+          <%# <%= link_to '新規投稿', new_post_path, data: {"turbolinks"=>false}%>
+          <%= link_to user_path(current_user), class:'dropdown-item' do%>
+            <i class="far fa-id-card"></i>
+            マイページ
+          <%end%>
+          <%# TODO: ユーザ編集機能 %>
+          <%= link_to edit_user_registration_path, class:'dropdown-item' do%>
+            <i class="fas fa-user-edit"></i>
+            アカウント編集
+          <%end%>
+        <% else %>
+          <%= link_to new_user_session_path, class:'dropdown-item' do%>
+            <i class="fas fa-sign-in-alt"></i>
+            ログイン
+          <%end%>
+          <%= link_to new_user_registration_path, class:'dropdown-item' do%>
+            <i class="fas fa-user-plus"></i>
+            新規登録
+          <%end%>
+        <% end %>
+      </div>
     </div>
   </nav>
