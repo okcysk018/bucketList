@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :set_ransack
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
@@ -20,6 +22,10 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email)
+  end
+
+  def set_ransack
+    @search = Post.ransack(params[:q])
   end
 
 end

@@ -86,4 +86,5 @@ gem 'fog-aws' # S3対応
 # gem 'geocoder'
 # gem 'gmaps4rails'
 gem 'jquery-turbolinks' # turbolinksとgoogleMapの競合回避
-gem 'kaminari' # ページネーション
+gem 'kaminari'  # ページネーション
+gem 'ransack'   # 検索簡易化
