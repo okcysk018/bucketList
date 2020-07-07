@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
   before_action :set_category_tags_to_gon, only: [:edit, :new]
-  before_action :set_ransack
   # before_action :set_api_key
   before_action :move_to_login, except: [:index, :show, :search]
   before_action :move_to_show, only: [:edit, :update, :destroy]
@@ -57,7 +56,7 @@ class PostsController < ApplicationController
 
   def search
     # @posts = Post.search(params[:keyword]).order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
-    @posts = @search.result.order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
+    @posts = @q.result.order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
   end
 
   private
@@ -95,11 +94,6 @@ class PostsController < ApplicationController
   def set_api_key
     # TODO:値を渡す
     googleMapAPIKey = Rails.application.credentials.google_map_key
-  end
-
-  def set_ransack
-    # NOTE:paramsの値を変更するとキーワードを認識できない
-    @search = Post.ransack(params[:q])
   end
 
   def move_to_login
