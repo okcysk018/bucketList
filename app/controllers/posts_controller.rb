@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def index
     # @posts = Post.includes(:user).order("id DESC")
     # NOTE:kaminariの機能強化対応
-    @posts = Post.order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
+    @posts = Post.order("id DESC").includes(:user, :images).page(params[:page]).without_count.per(15)
   end
 
   def new
@@ -56,7 +56,7 @@ class PostsController < ApplicationController
 
   def search
     # @posts = Post.search(params[:keyword]).order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
-    @posts = @q.result.order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
+    @posts = @q.result.order("id DESC").includes(:user, :images).page(params[:page]).without_count.per(15)
   end
 
   private

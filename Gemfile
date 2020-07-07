@@ -48,6 +48,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'bullet'              # N+1問題検知
 end
 
 group :development do
@@ -79,12 +80,12 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'gon'
-gem 'carrierwave' # 画像アップロード
-gem 'mini_magick' # 画像編集（リサイズなど）
-gem 'fog-aws' # S3対応
+gem 'carrierwave'       # 画像アップロード
+gem 'mini_magick'       # 画像編集（リサイズなど）
+gem 'fog-aws'           # S3対応
 # gem 'dropzonejs-rails'
 # gem 'geocoder'
 # gem 'gmaps4rails'
 gem 'jquery-turbolinks' # turbolinksとgoogleMapの競合回避
-gem 'kaminari'  # ページネーション
-gem 'ransack'   # 検索簡易化
+gem 'kaminari'          # ページネーション
+gem 'ransack'           # 検索機能簡易実装
