@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
-  before_action :set_category_tags_to_gon, only: [:edit, :new]
+  before_action :set_category_tags_to_gon, only: [:new, :edit, :search]
   # before_action :set_api_key
   before_action :move_to_login, except: [:index, :show, :search]
   before_action :move_to_show, only: [:edit, :update, :destroy]
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @posts = @search.result.order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
+    # @posts = @search.result.order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
     if @post.destroy
       redirect_to user_path(current_user.id), notice: "削除しました"
     else
@@ -56,7 +56,13 @@ class PostsController < ApplicationController
 
   def search
     # @posts = Post.search(params[:keyword]).order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
-    @posts = @q.result.order("id DESC").includes(:user, :images).page(params[:page]).without_count.per(15)
+    # @posts = params[:categories].present? ? Post.tagged_with(params[:categories]) : Post.all
+    @categories = gon.category_tags
+    if params[:tag_name]
+      @posts = Post.order("id DESC").tagged_with("#{params[:tag_name]}").includes(:user, :images).page(params[:page]).without_count.per(15)
+    else
+      @posts = @q.result.order("id DESC").includes(:user, :images).page(params[:page]).without_count.per(15)
+    end
   end
 
   private

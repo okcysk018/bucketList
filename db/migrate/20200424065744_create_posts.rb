@@ -19,5 +19,6 @@ class CreatePosts < ActiveRecord::Migration[5.2]
     end
     # TODO:ロールバック時のエラー回避
     # add_index :posts, :title
+    # add_index :posts, :address
   end
 end

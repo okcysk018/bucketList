@@ -1,1 +1,39 @@
+  <div class='search-filter'>
+    <% @categories.each do |tag|%>
+      <%# <li class='category-filter d-inline-block'> %>
+        <%= link_to search_posts_path(tag_name: tag), class:'category-filter' do%>
+          <%# HACK:case文辞めたい→アイコン情報をDBに持たせる？ %>
+          <% case tag%>
+            <%when "グルメ"%>
+              <i class="fas fa-utensils"></i>
+            <%when "住処"%>
+              <i class="fas fa-home"></i>
+            <%when "人生"%>
+              <i class="far fa-clock"></i>
+            <%when "アウトドア"%>
+              <i class="fas fa-door-open"></i>
+            <%when "インドア"%>
+              <i class="fas fa-house-user"></i>
+            <%when "エンターテイメント"%>
+              <i class="far fa-clock"></i>
+            <%when "スポーツ"%>
+              <i class="fas fa-running"></i>
+            <%when "愛"%>
+              <i class="far fa-heart"></i>
+            <%when "健康"%>
+              <i class="fas fa-heartbeat"></i>
+            <%when "旅行"%>
+              <i class="fas fa-plane-departure"></i>
+            <%when "仕事"%>
+              <i class="fas fa-user-tie"></i>
+            <%when "スキル"%>
+              <i class="fas fa-tools"></i>
+            <%when "初体験"%>
+              <i class="fas fa-trophy"></i>
+          <% end %>
+          <span><%= tag%></span>
+        <%end%>
+      <%# </li> %>
+    <%end%>
+  </div>
   <%= render 'layouts/card-list'%>

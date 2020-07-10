@@ -72,7 +72,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pry-rails'
-gem "font-awesome-sass"
+gem 'font-awesome-sass', '~> 5.13.0'
 # gem "font-awesome-rails"
 gem "devise"
 gem 'acts-as-taggable-on', '~> 6.0'
