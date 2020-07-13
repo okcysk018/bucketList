@@ -4,12 +4,32 @@
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   padding: 10px 0;
+  background-color: white;
+  margin-bottom: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
   .category-filter{
     margin: 10px;
-    width: 150px;
+    min-width: 100px;
+    display: inline-block;
+    text-align: center;
+    span{
+      display: block;
+      // TODO:折り返し効かない
+      word-break: break-all;
+      word-wrap: break-word;
+    }
   }
 }
-
+.search-result{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  .search-sort{
+    padding: 5px;
+  }
+}
 // card-list
 .jscroll-added{
   // position: absolute;
