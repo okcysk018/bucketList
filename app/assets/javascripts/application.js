@@ -23,5 +23,6 @@
 //= require imagesloaded.pkgd.min.js
 //= require infinite-scroll.pkgd.min.js
 //= require post_tasks
+//= require post_search
 //= require_tree .
 //= require jquery.jscroll.min.js

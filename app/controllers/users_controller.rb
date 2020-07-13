@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order("id DESC").includes(:user).page(params[:page]).without_count.per(15)
+    @posts = @user.posts.order("id DESC").includes(:user, :images).page(params[:page]).without_count.per(15)
   end
 
   # TODO:ユーザ情報編集

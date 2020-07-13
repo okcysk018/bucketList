@@ -16,4 +16,9 @@ class Post < ApplicationRecord
   validates :budget, presence: true, inclusion: 0..9999999
   validates :deadline, presence: true
 
+  # def self.search(search)
+  #   return Post.all unless search
+  #   Post.where(['title LIKE(?) OR address LIKE(?)', "%#{search}%", "%#{search}%"])
+  # end
+
 end

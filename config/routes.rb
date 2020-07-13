@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :comments, only: :create
     # get :map, on: :member
     # get :map, on: :collection
+    get :search, on: :collection
   end
   resources :users, only: :show
 end
