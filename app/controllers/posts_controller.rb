@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # before_action :set_api_key
   before_action :move_to_login, except: [:index, :show, :search]
   before_action :move_to_show, only: [:edit, :update, :destroy]
-  before_action :move_to_index_not_login, except: [:index, :new, :create]
+  before_action :move_to_index_not_login, except: [:index, :new, :create, :search]
   before_action :move_to_index, except: [:index, :new, :create, :search]
 
   def index
