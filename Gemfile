@@ -48,7 +48,6 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
-  gem 'bullet'              # N+1問題検知
 end
 
 group :development do
@@ -56,8 +55,20 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring'                  # RspecなどでRailsをプリロードする
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'rails_best_practices', require: false    # Railsのベストプラクティスを教えてくれる
+  gem 'bullet'                  # N+1問題検知
+
+  #debug
+  gem 'better_errors'          # エラー画面を見やすくする
+  gem 'binding_of_caller'      # better_errorsのエラー画面でREPLが使える
+  gem 'tapp'                   # プリントデバッグがしやすくなる
+  gem 'awesome_print'          # プリントデバッグの出力を整形
+  gem 'hirb'                   # SQLの結果を見やすく整形してくれる
+  gem 'hirb-unicode'           # hirbの日本語対応
+
 end
 
 group :test do
@@ -66,6 +77,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec'                  # テストツール
+  gem 'rspec-rails'            # RailsでRspecが使える
+  gem 'factory_girl_rails'     # テストデータの生成
+  # gem 'database_cleaner'       # テスト実行後にDBをクリア
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
