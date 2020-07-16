@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # before_action :set_api_key
   before_action :move_to_login, except: [:index, :show, :search]
   before_action :move_to_show, only: [:edit, :update, :destroy]
-  before_action :move_to_index_not_login, except: [:index, :new, :create]
+  before_action :move_to_index_not_login, except: [:index, :new, :create, :search]
   before_action :move_to_index, except: [:index, :new, :create, :search]
 
   def index
@@ -113,20 +113,20 @@ class PostsController < ApplicationController
 
   def move_to_index_not_login
     unless user_signed_in?
-      if @post.private_flag.present?
+      if @post.private_flag?
         redirect_to root_path, alert: "非公開の投稿です"
       end
     end
   end
 
   def move_to_index
-    if @post.private_flag.present? && @post.user_id != current_user.id
+    if @post.private_flag? && @post.user_id != current_user.id
       redirect_to root_path, alert: "非公開の投稿です"
     end
   end
 
   def move_to_show
-    unless @post.user_id == current_user.id
+    if @post.user_id != current_user.id
       redirect_to post_path, alert: "不正なリクエストです"
     end
   end
