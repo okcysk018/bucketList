@@ -10,13 +10,13 @@
       <%= @post.title %>
     </h1>
     <div class="post-info__post-flags">
-      <% if @post.done_flag.present? %>
+      <% if @post.done_flag? %>
         <div class="badge badge-success p-2">
           <i class="far fa-check-square"></i>
           達成済
         </div>
       <%end%>
-      <% if @post.private_flag.present? %>
+      <% if @post.private_flag? %>
         <div class="badge badge-warning p-2">
           <i class="fas fa-lock"></i>
           非公開
@@ -113,7 +113,7 @@
   </div>
 
   <%# 場所 %>
-  <% if @post.address.present? %>
+  <% if @post.address? %>
     <div class='post-info'>
       <div class="post-info__post-placeID"><%= @post.place_id %></div>
       <div class="post-info__post-address">
@@ -137,7 +137,7 @@
       </div>
       <ul class="post-info__post-tasks">
         <% @post.tasks.each do |task|%>
-          <% if task.done_flag.present? %>
+          <% if task.done_flag? %>
             <li class='post-task-info'>
               <i class="fas fa-check"></i>
               <div class="post-task-title" style='text-decoration: line-through;'>
@@ -188,7 +188,7 @@
       <% if @comments %>
         <% @comments.each do |comment| %>
           <p>
-            <strong><%= link_to comment.user.nickname, user_path(comment.user_id) %>：</strong><%= comment.text %>
+            <strong><%= link_to comment.user_nickname, user_path(comment.user_id) %>：</strong><%= comment.text %>
           </p>
         <% end %>
       <% end %>

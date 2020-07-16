@@ -2,5 +2,5 @@
   <h4 class="user-posts">
     <%= @user.nickname %>さんの投稿一覧
   </h4>
-  <%= render 'layouts/card-list'%>
+  <%= render 'layouts/card-list', :post => @posts%>
 </div>

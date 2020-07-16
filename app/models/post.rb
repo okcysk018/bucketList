@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many    :images,    dependent: :destroy
   has_many    :tasks,     dependent: :destroy
 
+  delegate :nickname, :to => :user, :prefix => true
+
   accepts_nested_attributes_for :images, allow_destroy: true
   accepts_nested_attributes_for :tasks, allow_destroy: true
   acts_as_taggable_on :categories

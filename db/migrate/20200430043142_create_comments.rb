@@ -8,5 +8,8 @@ class CreateComments < ActiveRecord::Migration[5.2]
       t.text :text
       t.timestamps
     end
+    # TODO:ロールバック時のエラー回避
+    # add_index :comments, :user_id
+    # add_index :comments, :post_id
   end
 end

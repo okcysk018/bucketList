@@ -27,13 +27,13 @@
                 <%= link_to post.title, post_path(post.id), class:"card-title", 'data-no-turbolink'=>true%>
                 <%# HACK:showと共有テンプレにしたいけど引数違う %>
                 <div class="card-post-flags">
-                  <% if post.done_flag.present? %>
+                  <% if post.done_flag? %>
                     <div class="badge badge-success p-2">
                       <i class="far fa-check-square"></i>
                       達成済
                     </div>
                   <%end%>
-                  <% if post.private_flag.present? %>
+                  <% if post.private_flag? %>
                     <div class="badge badge-warning p-2">
                       <i class="fas fa-lock"></i>
                       非公開
@@ -62,7 +62,7 @@
                   </div>
                 <%end%>
                 <div class='card-post-user'>
-                  <%= link_to "投稿者：#{post.user.nickname}", user_path(post.user.id), class:"card-post-user-link" %>
+                  <%= link_to "投稿者：#{post.user_nickname}", user_path(post.user.id), class:"card-post-user-link" %>
                 </div>
               </div>
               <div class='card-footer'>
