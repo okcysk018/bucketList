@@ -1,8 +1,20 @@
 class UsersController < ApplicationController
 
+  # before_action :set_category_tags_to_gon
+
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order("id DESC").includes(:user, :images).page(params[:page]).without_count.per(15)
+    sort = params[:sort] || "id DESC"
+
+    # @categories = gon.category_tags
+
+    # sort = params[:sort] || "id DESC"
+    # if params[:tag_name]
+    #   @posts = @user.posts.order(sort).tagged_with("#{params[:tag_name]}").includes(:images).page(params[:page]).without_count.per(15)
+    @posts = @user.posts.order(sort).includes(:images).page(params[:page]).without_count.per(15)
+    # else
+    #   @posts = @user.posts.order(sort).includes(:images).page(params[:page]).without_count.per(15)
+    # end
   end
 
   # TODO:ユーザ情報編集
@@ -20,6 +32,12 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email)
+  end
+
+  def set_category_tags_to_gon
+    # TODO:多階層カテゴリの実現およびcssの編集
+    # TODO:モデルに記述？
+    gon.category_tags = Post.tag_counts_on(:categories).where('name LIKE(?) AND id <= ?', "#{params[:term]}%", 13).pluck(:name) #初期値カテゴリータグをtagsテーブルのnameカラム前方一致で取得
   end
 
 end

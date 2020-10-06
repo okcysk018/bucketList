@@ -5,13 +5,12 @@ class PostsController < ApplicationController
   # before_action :set_api_key
   before_action :move_to_login, except: [:index, :show, :search]
   before_action :move_to_show, only: [:edit, :update, :destroy]
-  before_action :move_to_index_not_login, except: [:index, :new, :create, :search]
-  before_action :move_to_index, except: [:index, :new, :create, :search]
+  before_action :move_to_search_not_login, except: [:index, :new, :create, :search]
+  before_action :move_to_search, except: [:index, :new, :create, :search]
 
   def index
-    # @posts = Post.includes(:user).order("id DESC")
-    # NOTE:kaminariの機能強化対応
-    @posts = Post.order("id DESC").includes(:user, :images).page(params[:page]).without_count.per(15)
+    # NOTE:トップページのサンプル表示
+    @posts = Post.order("id DESC").includes(:user, :images).find(3,7,5)
   end
 
   def new
@@ -111,17 +110,17 @@ class PostsController < ApplicationController
     end
   end
 
-  def move_to_index_not_login
-    unless user_signed_in?
-      if @post.private_flag?
-        redirect_to root_path, alert: "非公開の投稿です"
+  def move_to_search_not_login
+    if @post.private_flag?
+      unless user_signed_in?
+        redirect_to search_posts_path, alert: "非公開の投稿です"
       end
     end
   end
 
-  def move_to_index
+  def move_to_search
     if @post.private_flag? && @post.user_id != current_user.id
-      redirect_to root_path, alert: "非公開の投稿です"
+      redirect_to search_posts_path, alert: "非公開の投稿です"
     end
   end
 

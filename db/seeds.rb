@@ -60,7 +60,7 @@ Post.create!([
     description: '初期データ',
     deadline: '2030-12-31',
     budget: 0,
-    reputation: 3,
+    reputation: 5,
     priority: 5,
     user_id: 2
   },

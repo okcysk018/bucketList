@@ -1,1 +1,114 @@
-  <%= render 'layouts/card-list', :post => @posts%>
+<div class='topPage'>
+  <div class='topOne'>
+    <div class='topOne__content'>
+      <h2 class='topOne__content__title'>
+        <br>
+        人生で達成したい夢を叶えよう
+      </h2>
+      <p class='topOne__content__text'>
+        BucketListとは英語圏で「死ぬまでにやりたいことリスト」という意味です
+        <br>
+        夢を叶えるための第一歩は言語化することです
+        <br>
+        BucketListを作成、共有して一緒に夢を叶えましょう
+      </p>
+    </div>
+  </div>
+  <div class='topTwo'>
+    <div class='topTwo__content'>
+      <h2 class='topTwo__content__title'>
+        <br>
+        人生で達成したい夢を探そう
+      </h2>
+      <p class='topTwo__content__text'>
+        BucketListでは人にリストを公開することができます
+        <br>
+        同じ夢を持つ仲間が見つかるかもしれません
+        <br>
+        BucketListを検索して参考にするのもいいでしょう
+      </p>
+    </div>
+  </div>
+  <div class='topThree'>
+    <div class='topThree__title'>
+      ピックアップ
+    </div>
+    <div class='topThree__container'>
+      <% @posts.each do |post| %>
+        <div class="card" id="post-card-info">
+          <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link"%>
+          <div class='card-body'>
+            <%= link_to post.title, post_path(post.id), class:"card-title", 'data-no-turbolink'=>true%>
+            <div class="card-post-flags">
+              <% if post.done_flag? %>
+                <div class="badge badge-success p-2">
+                  <i class="far fa-check-square"></i>
+                  達成済
+                </div>
+              <%end%>
+              <% if post.private_flag? %>
+                <div class="badge badge-warning p-2">
+                  <i class="fas fa-lock"></i>
+                  非公開
+                </div>
+              <%end%>
+            </div>
+            <%if post.reputation %>
+              <div class="card-post-reputation">
+                <div class="post-reputation-back">
+                  ★★★★★
+                </div>
+                <div class="post-reputation-front">
+                  <% case post.reputation %>
+                  <% when 1%>
+                    ★
+                  <% when 2%>
+                    ★★
+                  <% when 3%>
+                    ★★★
+                  <% when 4%>
+                    ★★★★
+                  <% when 5%>
+                    ★★★★★
+                  <%end%>
+                </div>
+              </div>
+            <%end%>
+            <div class='card-post-user'>
+              <%= link_to "投稿者：#{post.user_nickname}", user_path(post.user.id), class:"card-post-user-link" %>
+            </div>
+          </div>
+          <div class='card-footer'>
+            <div class='card-footer-btns d-flex'>
+              <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                <i class="fa fa-plus"></i>
+                追加
+              </button>
+              <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                <i class="far fa-check-circle"></i>
+                達成済
+              </button>
+              <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                <i class="far fa-thumbs-up"></i>
+                いいね
+              </button>
+              <%= render 'layouts/modal-message'%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class='topFour'>
+    <div class='topFour__introduction'>
+      <div class='topFour__introduction__content'>
+        <p>今すぐ無料で利用する</p>
+        <%= link_to new_user_registration_path do%>
+          <div class="btn btn-info btn-lg", style="text-align: center;">
+            新規登録
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

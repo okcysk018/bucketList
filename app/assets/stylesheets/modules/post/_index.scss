@@ -1,0 +1,170 @@
+
+// ===============================================================
+// TOPページ
+// ===============================================================
+
+.topPage{
+  .topOne{
+    display: flex;
+    width: 100%;
+    height: 50rem;
+    background-image: image-url("top01");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    position: relative;
+    padding: 0 60px;
+    align-items: center;
+
+    &__content{
+      padding-top: 60px;
+      padding-left: 116px;
+      &__title{
+        font-size: 60px;
+        text-shadow: 0 0 5px $lightBlack;
+        line-height: 1.2;
+        color: $white;
+        font-weight: normal;
+      }
+      &__text{
+        text-shadow: 0 0 5px $lightBlack;
+        font-size: 18px;
+        color: $white;
+        line-height: 1.8;
+        margin: 16px 0 0 0;
+      }
+    }
+  }
+
+  .topTwo{
+    display: flex;
+    width: 100%;
+    height: 50rem;
+    background-image: image-url("top02");
+    background-size: cover;
+    align-items: center;
+    background-position: top center;
+    position: relative;
+    &__content{
+      color: $white;
+      text-shadow: 0 0 5px $lightBlack;
+      text-align: left;
+      max-width: 1040px;
+      width: 100%;
+      margin: 40px auto 0 auto;
+      &__title{
+        font-size: 27px;
+        font-weight: bold;
+        line-height: 1.4;
+      }
+      &__text{
+        font-size: 18px;
+        margin: 20px 0 30px;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  .topThree{
+    // display: flex;
+    // width: 100%;
+    // height: 100%;
+    // align-items: center;
+    padding: 80px 0 40px;
+    background-color: #f8f8f8;
+    &__title{
+      font-size: 28px;
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+    &__container{
+      width: 780px;
+      margin: 25px auto 0;
+      padding: 0 0 100px;
+      display: flex;
+      justify-content: space-around;
+      height: 100%;
+      background-color: #f8f8f8;
+
+      // TODO:テンプレート化したい
+      .card{
+        float: left;
+        margin: 5px;
+        width:15rem;
+        height: 100%;
+        // opacity: 0;
+        // display: none;
+      }
+      .card:hover{
+        box-shadow:3px 3px 6px rgba(0,0,0,0.5);
+      }
+      .card-body{
+        padding: 0.8rem;
+        height: 100%;
+        a {
+          color: black;
+        }
+        a:hover {
+          color: black;
+        }
+        .card-title{
+          font-weight: bold;
+        }
+        .card-post-reputation{
+          @include post-reputation(0%);
+        }
+        .card-post-user{
+          width: 100%;
+          text-align: right;
+          opacity: 0.3;
+          font-size: 0.8rem;
+          padding-top: 10px;
+        }
+      }
+      .card-footer{
+        padding: 0;
+        height: 100%;
+        &-btns{
+          margin-bottom: 0;
+        }
+        &-btn{
+          background-color: white;
+          width: 33.33%;
+          text-align: center;
+          border: 1px solid rgba(67, 74, 84, 0.125);
+          padding: 0.75rem 0;
+          color: $dark_gray;
+          &:hover{
+            box-shadow:3px 3px 6px rgba(0,0,0,0.5);
+            opacity: 1;
+            color: black;
+          }
+        }
+      }
+    }
+  }
+  .topFour{
+    display: flex;
+    width: 100%;
+    height: 50rem;
+    background-image: image-url("start");
+    background-size: cover;
+    align-items: center;
+    background-position: top center;
+    position: relative;
+    &__introduction{
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      &__content{
+        width: 100%;
+        padding-bottom: 50px;
+        font-size: 30px;
+        color: $white;
+        text-shadow: 0 0 5px $lightBlack;
+      }
+
+    }
+  }
+}

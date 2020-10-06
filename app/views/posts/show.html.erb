@@ -101,15 +101,16 @@
     <div class="post-description">
       <%= simple_format @post.description %>
     </div>
-    <div class="post-budget">
-      <%= "¥#{@post.budget.to_s(:delimited)}" %>
-    </div>
-    <div class="post-deadline">
-      <%= @post.deadline %>
-    </div>
-    <div class="post-priority">
-      <%= @post.priority %>
-    </div>
+    <br>
+    <%# <div class="post-priority"> %>
+      <%# <%= @post.priority %>
+    <%# </div> %>
+    <table class="table">
+      <%# <caption>List of users</caption> %>
+      <tr><th></th><th>予定</th><th>実績</th></tr>
+      <tr><td>費用</td><td><%= "¥#{@post.budget.to_s(:delimited)}" %></td><td>-</td></tr>
+      <tr><td>期日</td><td><%= @post.deadline %></td><td>yyyy/mm/dd</td></tr>
+    </table>
   </div>
 
   <%# 場所 %>
