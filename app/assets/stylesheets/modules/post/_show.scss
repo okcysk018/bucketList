@@ -13,7 +13,7 @@
     text-align: center;
   }
   &__post-reputation{
-    @include post-reputation(45%);
+    @include post-star(45%);
   }
 
   &__post-images{

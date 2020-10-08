@@ -16,3 +16,84 @@
 //   font-family: 'Bradley Hand','Segoe Script','Segoe Print',sans-serif;/*手書き風のフォント*/
 //   font-size: 1.3em;/*フォントサイズ*/
 // }
+a {
+  color: black;
+}
+a:hover {
+  color: black;
+}
+
+.list-contents{
+  width: 70%;
+  .post-data{
+    height: 140px;
+    width: 100%;
+    margin: 10px 0;
+    background-color: white;
+    border: 1px solid $light_gray;
+    box-shadow:1px 1px 2px rgba(0,0,0,0.5);
+
+    &__post-img{
+      height: 140px;
+      width: 140px;
+      line-height: 140px;
+      text-align: center;
+      background-color: $light_gray;
+      &__img-file{
+        max-height: 140px;
+        max-width: 140px;
+      }
+    }
+    &__post-body{
+      margin: 10px;
+      width: 100%;
+      position: relative;
+      &__post-flags{
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      &__post-stars{
+        line-height: 20px;
+      }
+      &__post-reputation{
+        @include post-star(0%);
+        margin: 0 5px 5px 0;
+      }
+      &__post-priority{
+        @include post-star(0%);
+        margin: 0 5px 5px 0;
+      }
+      &__set-info{
+        color: $dark-gray;
+        font-size: 0.8rem;
+        vertical-align: middle;
+        line-height: 20px;
+        // TODO:アイコンの中央揃え
+        i{
+          margin: 3px 5px 3px 0px;
+        }
+        span{
+          margin-right: 10px;
+        }
+      }
+      &__post-btns{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        // FIXME:応急処置詳細不明
+        a{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+.user-info-contents{
+  background-color: white;
+  margin-left: 10px;
+  width: 30%;
+  border: 1px solid $light_gray;
+  box-shadow:1px 1px 2px rgba(0,0,0,0.5);
+
+}

@@ -1,17 +1,164 @@
-<div class='user-page container'>
-  <div class='search-result'>
-    <h3><%= @user.nickname %>さんの投稿一覧</h3>
-    <div class='search-sort'>
-      <%= tag.select class:'sort_order', name: :sort_order  do%>
-        <option value="">並び替え</option>
-        <option value="budget_asc">予算の安い順</option>
-        <option value="budget_desc">予算の高い順</option>
-        <option value="deadline_asc">期日の近い順</option>
-        <option value="deadline_desc">期日の遠い順</option>
-        <option value="created_at_asc">投稿の古い順</option>
-        <option value="created_at_desc">投稿の新しい順</option>
-      <%end%>
+<div class='myPage d-flex'>
+  <div class='list-contents'>
+    <div class='search-result'>
+      <h3><%= @user.nickname %>さんの投稿一覧</h3>
+      <div class='search-sort'>
+        <%= tag.select class:'sort_order', name: :sort_order  do%>
+          <option value="">並び替え</option>
+          <option value="budget_asc">予算の安い順</option>
+          <option value="budget_desc">予算の高い順</option>
+          <option value="deadline_asc">期日の近い順</option>
+          <option value="deadline_desc">期日の遠い順</option>
+          <option value="created_at_asc">投稿の古い順</option>
+          <option value="created_at_desc">投稿の新しい順</option>
+          <option value="reputation_asc">評価の低い順</option>
+          <option value="reputation_desc">評価の高い順</option>
+          <option value="priority_asc">優先度の低い順</option>
+          <option value="priority_desc">優先度の高い順</option>
+        <%end%>
+      </div>
+    </div>
+    <div class='post-list'>
+      <% @posts.each.with_index(1) do |post, i| %>
+        <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
+        <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
+          <div class="post-data d-flex">
+            <div class='post-data__post-img'>
+              <% if post.images.present?%>
+                <%= link_to image_tag("#{post.images[0].image.url}", class: "post-data__post-img__img-file"), post_path(post.id)%>
+              <%else%>
+                <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "post-data__post-img__img-file"), post_path(post.id)%>
+              <%end%>
+            </div>
+
+            <div class='post-data__post-body'>
+              <%= link_to "#{i}. #{post.title}", post_path(post.id), class:"post-data__post-body__post-title", 'data-no-turbolink'=>true %>
+              <div class="post-data__post-body__post-flags">
+                <% if post.done_flag? %>
+                  <div class="badge badge-success p-2">
+                    <i class="far fa-check-square"></i>
+                    達成済
+                  </div>
+                <%end%>
+                <% if post.private_flag? %>
+                  <div class="badge badge-warning p-2">
+                    <i class="fas fa-lock"></i>
+                    非公開
+                  </div>
+                <%end%>
+              </div>
+              <div class='post-data__post-body__post-stars d-flex'>
+                <%if post.reputation %>
+                  <div class="post-data__post-body__post-reputation">
+                    <div class="post-reputation-back">
+                      ★★★★★
+                    </div>
+                    <div class="post-reputation-front">
+                      <% case post.reputation %>
+                      <% when 1%>
+                        ★
+                      <% when 2%>
+                        ★★
+                      <% when 3%>
+                        ★★★
+                      <% when 4%>
+                        ★★★★
+                      <% when 5%>
+                        ★★★★★
+                      <%end%>
+                    </div>
+                  </div>
+                <%end%>
+                <%if post.priority %>
+                  <div class="post-data__post-body__post-priority">
+                    <div class="post-priority-back">
+                      ★★★★★
+                    </div>
+                    <div class="post-priority-front">
+                      <% case post.priority %>
+                      <% when 1%>
+                        ★
+                      <% when 2%>
+                        ★★
+                      <% when 3%>
+                        ★★★
+                      <% when 4%>
+                        ★★★★
+                      <% when 5%>
+                        ★★★★★
+                      <%end%>
+                    </div>
+                  </div>
+                <%end%>
+              </div>
+              <div class='post-data__post-body__set-info d-flex'>
+                <span class='post-data__post-body__post-deadline d-flex'>
+                  <i class="fas fa-calendar-day"></i>
+                  <%= post.deadline%>
+                </span>
+                <span class='post-data__post-body__post-budget d-flex'>
+                  <i class="fas fa-coins"></i>
+                  <%= "¥#{post.budget.to_s(:delimited)}"%>
+                </span>
+              </div>
+              <div class='post-data__post-body__set-info d-flex'>
+                <% if post.address%>
+                  <span class='post-data__post-body__post-address d-flex'>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <%= post.address%>
+                  </span>
+                <%end%>
+              </div>
+              <div class='post-data__post-body__post-btns'>
+                <% if current_user.id == post.user_id %>
+                  <%= link_to edit_post_path(post.id) do %>
+                    <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-info'>
+                      <i class="fas fa-edit"></i>
+                      編集
+                    </div>
+                  <% end %>
+                  <%= link_to post_path(post.id), method: :delete do%>
+                    <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-danger'>
+                      <i class="fas fa-trash"></i>
+                      削除
+                    </div>
+                  <%end%>
+                <%else%>
+                  <button class='post-data__post-body__post-btns__post-btn' data-toggle="modal" data-target="#modal">
+                    <i class="fa fa-plus"></i>
+                    追加
+                  </button>
+                  <button class='post-data__post-body__post-btns__post-btn' data-toggle="modal" data-target="#modal">
+                    <i class="far fa-check-circle"></i>
+                    達成済
+                  </button>
+                  <button class='post-data__post-body__post-btns__post-btn' data-toggle="modal" data-target="#modal">
+                    <i class="far fa-thumbs-up"></i>
+                    いいね
+                  </button>
+                  <%= render 'layouts/modal-message'%>
+                <%end%>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+        <%# NOTE:kaminariの機能強化対応 spanタグなしだと最後のページしか読み込まない %>
+        <span class='next-page-info'>
+          <%= link_to_next_page @posts, '次のページ', class:"next", style:"display:none" %>
+        </span>
+        <%# </div> %>
+      <div class="page-load-status">
+        <div class='infinite-scroll-request'>
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="infinite-scroll-last">投稿がありません</div>
+        <div class="infinite-scroll-error">再読み込みしてください</div>
+      </div>
+
     </div>
   </div>
-  <%= render 'layouts/card-list', :post => @posts%>
+  <div class='user-info-contents'>
 </div>
