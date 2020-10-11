@@ -2,21 +2,8 @@
   <div class='list-contents'>
     <div class='search-result'>
       <h3><%= @user.nickname %>さんの投稿一覧</h3>
-      <div class='search-sort'>
-        <%= tag.select class:'sort_order', name: :sort_order  do%>
-          <option value="">並び替え</option>
-          <option value="budget_asc">予算の安い順</option>
-          <option value="budget_desc">予算の高い順</option>
-          <option value="deadline_asc">期日の近い順</option>
-          <option value="deadline_desc">期日の遠い順</option>
-          <option value="created_at_asc">投稿の古い順</option>
-          <option value="created_at_desc">投稿の新しい順</option>
-          <option value="reputation_asc">評価の低い順</option>
-          <option value="reputation_desc">評価の高い順</option>
-          <option value="priority_asc">優先度の低い順</option>
-          <option value="priority_desc">優先度の高い順</option>
-        <%end%>
-      </div>
+      <%# TODO:ransack以外でのソート機能実装方法を考える %>
+      <%# <div class='search-sort'></div> %>
     </div>
     <div class='post-list'>
       <% @posts.each.with_index(1) do |post, i| %>
@@ -124,18 +111,18 @@
                     </div>
                   <%end%>
                 <%else%>
-                  <button class='post-data__post-body__post-btns__post-btn' data-toggle="modal" data-target="#modal">
+                  <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-info' data-toggle="modal" data-target="#modal">
                     <i class="fa fa-plus"></i>
                     追加
-                  </button>
-                  <button class='post-data__post-body__post-btns__post-btn' data-toggle="modal" data-target="#modal">
+                  </div>
+                  <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-success' data-toggle="modal" data-target="#modal">
                     <i class="far fa-check-circle"></i>
                     達成済
-                  </button>
-                  <button class='post-data__post-body__post-btns__post-btn' data-toggle="modal" data-target="#modal">
+                  </div>
+                  <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-light' data-toggle="modal" data-target="#modal">
                     <i class="far fa-thumbs-up"></i>
                     いいね
-                  </button>
+                  </div>
                   <%= render 'layouts/modal-message'%>
                 <%end%>
               </div>
@@ -143,11 +130,10 @@
           </div>
         <% end %>
       <% end %>
-        <%# NOTE:kaminariの機能強化対応 spanタグなしだと最後のページしか読み込まない %>
-        <span class='next-page-info'>
-          <%= link_to_next_page @posts, '次のページ', class:"next", style:"display:none" %>
-        </span>
-        <%# </div> %>
+      <%# CHANGED:無限スクロールしない %>
+      <%# <span class='next-page-info'> %>
+        <%# <%= link_to_next_page @posts, '次のページ', class:"next", style:"display:none" %>
+      <%# </span> %>
       <div class="page-load-status">
         <div class='infinite-scroll-request'>
           <div class="spinner-border" role="status">
@@ -161,4 +147,13 @@
     </div>
   </div>
   <div class='user-info-contents'>
+    <div class='user-info-detail'>
+      <div class='user-img'></div>
+      <div class='user-name'><%= @user.nickname %></div>
+      <div class='user-posts-chart'>
+        <canvas id="myChart" width="90" height="40"></canvas>
+      </div>
+    </div>
+  </div>
+
 </div>

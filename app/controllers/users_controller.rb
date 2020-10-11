@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
+  prepend_before_action :set_user, only: [:show]
   # before_action :set_category_tags_to_gon
 
   def show
-    @user = User.find(params[:id])
     sort = params[:sort] || "id DESC"
 
     # @categories = gon.category_tags
@@ -11,7 +11,11 @@ class UsersController < ApplicationController
     # sort = params[:sort] || "id DESC"
     # if params[:tag_name]
     #   @posts = @user.posts.order(sort).tagged_with("#{params[:tag_name]}").includes(:images).page(params[:page]).without_count.per(15)
-    @posts = @user.posts.order(sort).includes(:images).page(params[:page]).without_count.per(15)
+
+    # TODO:無限スクロールだとindex振れないため
+    # @posts = @user.posts.order(sort).includes(:images).page(params[:page]).without_count.per(15)
+    # FIXME:sortに値が入らない
+    @posts = @user.posts.order(sort).includes(:images)
     # else
     #   @posts = @user.posts.order(sort).includes(:images).page(params[:page]).without_count.per(15)
     # end
@@ -31,8 +35,13 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:nickname, :email)
   end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
 
   def set_category_tags_to_gon
     # TODO:多階層カテゴリの実現およびcssの編集
