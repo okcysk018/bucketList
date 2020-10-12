@@ -95,5 +95,23 @@ a:hover {
   width: 30%;
   border: 1px solid $light_gray;
   box-shadow:1px 1px 2px rgba(0,0,0,0.5);
-
+  .user-info-detail{
+    background-color: $light_gray;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+  .user-posts-chart{
+    position: relative;
+    height: 200px;
+    &::before{
+      content: '投稿数';
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+    }
+  }
 }

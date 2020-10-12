@@ -149,9 +149,10 @@
   <div class='user-info-contents'>
     <div class='user-info-detail'>
       <div class='user-img'></div>
-      <div class='user-name'><%= @user.nickname %></div>
+      <div class='user-name'><%= @user.nickname %>のプロフィール</div>
       <div class='user-posts-chart'>
-        <canvas id="myChart" width="90" height="40"></canvas>
+        <%# <canvas id="myChart" width="90" height="40"></canvas> %>
+        <canvas id="myChart"></canvas>
       </div>
     </div>
   </div>

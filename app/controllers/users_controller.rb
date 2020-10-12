@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     # @posts = @user.posts.order(sort).includes(:images).page(params[:page]).without_count.per(15)
     # FIXME:sortに値が入らない
     @posts = @user.posts.order(sort).includes(:images)
+    gon.done_flag_count = [@posts.where('done_flag = 0').count, @posts.where('done_flag = 1').count]
     # else
     #   @posts = @user.posts.order(sort).includes(:images).page(params[:page]).without_count.per(15)
     # end
