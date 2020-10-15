@@ -9,18 +9,20 @@ ul.tagit {
     background: inherit;
 }
 ul.tagit li.tagit-choice {
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
+    // NOTE:tagitをbadgeの色味に変更
+    // -moz-border-radius: 6px;
+    // border-radius: 6px;
+    // -webkit-border-radius: 6px;
     border: 1px solid #CAD8F3;
 
     background: none;
-    background-color: #DEE7F8;
-
+    // background-color: #DEE7F8;
+    background-color: #5bc0de;
     font-weight: normal;
 }
 ul.tagit li.tagit-choice .tagit-label:not(a) {
-    color: #555;
+    // color: #555;
+    color: white;
 }
 ul.tagit li.tagit-choice a.tagit-close {
     text-decoration: none;
@@ -39,7 +41,8 @@ ul.tagit li.tagit-choice .tagit-close .text-icon {
     color: #777;
 }
 ul.tagit li.tagit-choice:hover, ul.tagit li.tagit-choice.remove {
-    background-color: #bbcef1;
+    // background-color: #bbcef1;
+    background-color: #39b3d7	;
     border-color: #6d95e0;
 }
 ul.tagit li.tagit-choice a.tagLabel:hover,
