@@ -5,156 +5,201 @@
       <%# TODO:ransack以外でのソート機能実装方法を考える %>
       <%# <div class='search-sort'></div> %>
     </div>
-    <div class='post-list'>
-      <% @posts.each.with_index(1) do |post, i| %>
-        <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
-        <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
-          <div class="post-data d-flex">
-            <div class='post-data__post-img'>
-              <% if post.images.present?%>
-                <%= link_to image_tag("#{post.images[0].image.url}", class: "post-data__post-img__img-file"), post_path(post.id)%>
-              <%else%>
-                <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "post-data__post-img__img-file"), post_path(post.id)%>
-              <%end%>
-            </div>
 
-            <div class='post-data__post-body'>
-              <%= link_to "#{i}. #{post.title}", post_path(post.id), class:"post-data__post-body__post-title", 'data-no-turbolink'=>true %>
-              <div class="post-data__post-body__post-flags">
-                <% if post.done_flag? %>
-                  <div class="badge badge-success p-2">
-                    <i class="far fa-check-square"></i>
-                    達成済
-                  </div>
-                <%end%>
-                <% if post.private_flag? %>
-                  <div class="badge badge-warning p-2">
-                    <i class="fas fa-lock"></i>
-                    非公開
-                  </div>
-                <%end%>
-              </div>
-              <div class='post-data__post-body__post-stars d-flex'>
-                <%if post.reputation %>
-                  <div class="post-data__post-body__post-reputation">
-                    <div class="post-reputation-back">
-                      ★★★★★
-                    </div>
-                    <div class="post-reputation-front">
-                      <% case post.reputation %>
-                      <% when 1%>
-                        ★
-                      <% when 2%>
-                        ★★
-                      <% when 3%>
-                        ★★★
-                      <% when 4%>
-                        ★★★★
-                      <% when 5%>
-                        ★★★★★
-                      <%end%>
-                    </div>
-                  </div>
-                <%end%>
-                <%if post.priority %>
-                  <div class="post-data__post-body__post-priority">
-                    <div class="post-priority-back">
-                      ★★★★★
-                    </div>
-                    <div class="post-priority-front">
-                      <% case post.priority %>
-                      <% when 1%>
-                        ★
-                      <% when 2%>
-                        ★★
-                      <% when 3%>
-                        ★★★
-                      <% when 4%>
-                        ★★★★
-                      <% when 5%>
-                        ★★★★★
-                      <%end%>
-                    </div>
-                  </div>
-                <%end%>
-              </div>
-              <div class='post-data__post-body__set-info d-flex'>
-                <span class='post-data__post-body__post-deadline d-flex'>
-                  <i class="fas fa-calendar-day"></i>
-                  <%= post.deadline%>
-                </span>
-                <span class='post-data__post-body__post-budget d-flex'>
-                  <i class="fas fa-coins"></i>
-                  <%= "¥#{post.budget.to_s(:delimited)}"%>
-                </span>
-              </div>
-              <div class='post-data__post-body__set-info d-flex'>
-                <% if post.address%>
-                  <span class='post-data__post-body__post-address d-flex'>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <%= post.address%>
-                  </span>
-                <%end%>
-              </div>
-              <div class='post-data__post-body__post-btns'>
-                <% if current_user.id == post.user_id %>
-                  <%= link_to edit_post_path(post.id) do %>
-                    <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-info'>
-                      <i class="fas fa-edit"></i>
-                      編集
-                    </div>
-                  <% end %>
-                  <%= link_to post_path(post.id), method: :delete do%>
-                    <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-danger'>
-                      <i class="fas fa-trash"></i>
-                      削除
-                    </div>
+    <ul class="list-nav nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="list-nav-link nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">投稿一覧</a>
+      </li>
+      <li class="nav-item">
+        <a class="list-nav-link nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">地図一覧</a>
+      </li>
+      <li class="nav-item">
+        <a class="list-nav-link nav-link" id="item3-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="false">カレンダー一覧</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+        <div class='post-list'>
+          <% @posts.each.with_index(1) do |post, i| %>
+            <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
+            <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
+              <div class="post-data d-flex">
+                <div class='post-data__post-img'>
+                  <% if post.images.present?%>
+                    <%= link_to image_tag("#{post.images[0].image.url}", class: "post-data__post-img__img-file"), post_path(post.id)%>
+                  <%else%>
+                    <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "post-data__post-img__img-file"), post_path(post.id)%>
                   <%end%>
-                <%else%>
-                  <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-info' data-toggle="modal" data-target="#modal">
-                    <i class="fa fa-plus"></i>
-                    追加
+                </div>
+
+                <div class='post-data__post-body'>
+                  <%= link_to "#{i}. #{post.title}", post_path(post.id), class:"post-data__post-body__post-title", 'data-no-turbolink'=>true %>
+                  <div class="post-data__post-body__post-flags">
+                    <% if post.done_flag? %>
+                      <div class="badge badge-success p-2">
+                        <i class="far fa-check-square"></i>
+                        達成済
+                      </div>
+                    <%end%>
+                    <% if post.private_flag? %>
+                      <div class="badge badge-warning p-2">
+                        <i class="fas fa-lock"></i>
+                        非公開
+                      </div>
+                    <%end%>
                   </div>
-                  <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-success' data-toggle="modal" data-target="#modal">
-                    <i class="far fa-check-circle"></i>
-                    達成済
+                  <div class='post-data__post-body__post-stars d-flex'>
+                    <%if post.reputation %>
+                      <div class="post-data__post-body__post-reputation">
+                        <div class="post-reputation-back">
+                          ★★★★★
+                        </div>
+                        <div class="post-reputation-front">
+                          <% case post.reputation %>
+                          <% when 1%>
+                            ★
+                          <% when 2%>
+                            ★★
+                          <% when 3%>
+                            ★★★
+                          <% when 4%>
+                            ★★★★
+                          <% when 5%>
+                            ★★★★★
+                          <%end%>
+                        </div>
+                      </div>
+                    <%end%>
+                    <%if post.priority %>
+                      <div class="post-data__post-body__post-priority">
+                        <div class="post-priority-back">
+                          ★★★★★
+                        </div>
+                        <div class="post-priority-front">
+                          <% case post.priority %>
+                          <% when 1%>
+                            ★
+                          <% when 2%>
+                            ★★
+                          <% when 3%>
+                            ★★★
+                          <% when 4%>
+                            ★★★★
+                          <% when 5%>
+                            ★★★★★
+                          <%end%>
+                        </div>
+                      </div>
+                    <%end%>
                   </div>
-                  <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-light' data-toggle="modal" data-target="#modal">
-                    <i class="far fa-thumbs-up"></i>
-                    いいね
+                  <div class='post-data__post-body__set-info d-flex'>
+                    <span class='post-data__post-body__post-deadline d-flex'>
+                      <i class="fas fa-calendar-day"></i>
+                      <%= post.deadline%>
+                    </span>
+                    <span class='post-data__post-body__post-budget d-flex'>
+                      <i class="fas fa-coins"></i>
+                      <%= "¥#{post.budget.to_s(:delimited)}"%>
+                    </span>
                   </div>
-                  <%= render 'layouts/modal-message'%>
-                <%end%>
+                  <div class='post-data__post-body__set-info d-flex'>
+                    <% if post.address%>
+                      <span class='post-data__post-body__post-address d-flex'>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <%= post.address%>
+                      </span>
+                    <%end%>
+                  </div>
+                  <div class='post-data__post-body__post-btns'>
+                    <% if current_user.id == post.user_id %>
+                      <%= link_to edit_post_path(post.id) do %>
+                        <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-info'>
+                          <i class="fas fa-edit"></i>
+                          編集
+                        </div>
+                      <% end %>
+                      <%= link_to post_path(post.id), method: :delete do%>
+                        <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-danger'>
+                          <i class="fas fa-trash"></i>
+                          削除
+                        </div>
+                      <%end%>
+                    <%else%>
+                      <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-info' data-toggle="modal" data-target="#modal">
+                        <i class="fa fa-plus"></i>
+                        追加
+                      </div>
+                      <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-success' data-toggle="modal" data-target="#modal">
+                        <i class="far fa-check-circle"></i>
+                        達成済
+                      </div>
+                      <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-light' data-toggle="modal" data-target="#modal">
+                        <i class="far fa-thumbs-up"></i>
+                        いいね
+                      </div>
+                      <%= render 'layouts/modal-message'%>
+                    <%end%>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <%# CHANGED:無限スクロールしない %>
+          <%# <span class='next-page-info'> %>
+            <%# <%= link_to_next_page @posts, '次のページ', class:"next", style:"display:none" %>
+          <%# </span> %>
+          <div class="page-load-status">
+            <div class='infinite-scroll-request'>
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
               </div>
             </div>
-          </div>
-        <% end %>
-      <% end %>
-      <%# CHANGED:無限スクロールしない %>
-      <%# <span class='next-page-info'> %>
-        <%# <%= link_to_next_page @posts, '次のページ', class:"next", style:"display:none" %>
-      <%# </span> %>
-      <div class="page-load-status">
-        <div class='infinite-scroll-request'>
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+            <div class="infinite-scroll-last">投稿がありません</div>
+            <div class="infinite-scroll-error">再読み込みしてください</div>
           </div>
         </div>
-        <div class="infinite-scroll-last">投稿がありません</div>
-        <div class="infinite-scroll-error">再読み込みしてください</div>
       </div>
-
+      <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+        今後の実装予定です
+        <div id="map"></div>
+      </div>
+      <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">今後の実装予定です</div>
     </div>
   </div>
-  <div class='user-info-contents'>
-    <div class='user-info-detail'>
-      <div class='user-img'></div>
-      <div class='user-name'><%= @user.nickname %>のプロフィール</div>
+  <div class='user-contents'>
+    <div class='user-info'>
+      <div class='user-info-detail d-flex'>
+        <img class="user-img" src="../../assets/noUserImage.png" alt="sample-user-img">
+        <div class='user-profile'>
+          <div class='user-profile__user-name'><%= @user.nickname %></div>
+        </div>
+      </div>
       <div class='user-posts-chart'>
-        <%# <canvas id="myChart" width="90" height="40"></canvas> %>
         <canvas id="myChart"></canvas>
       </div>
     </div>
+    <% if user_signed_in? && current_user.id == @user.id %>
+      <div class='user-menu'>
+        <%= link_to new_post_path do%>
+          <div class='user-menu-btn btn btn-lg btn-info'>
+            <i class="fas fa-plus"></i>
+            新規投稿
+          </div>
+        <%end%>
+        <%= link_to destroy_user_session_path, method: :delete do%>
+          <div class='user-menu-btn btn btn-lg btn-danger'>
+            <i class="fas fa-sign-out-alt"></i>
+            ログアウト
+          </div>
+        <%end%>
+        <%= link_to edit_user_registration_path do%>
+          <div class='user-menu-btn btn btn-lg btn-light'>
+            <i class="fas fa-user-edit"></i>
+            アカウント編集
+          </div>
+        <%end%>
+      </div>
+    <% end %>
   </div>
 
 </div>

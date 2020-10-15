@@ -22,7 +22,7 @@ $(document).on('turbolinks:load', function(){
             meta.data.forEach(function(element, index) {
               ctx.fillStyle = 'white';
 
-              var fontSize = 14;
+              var fontSize = 12;
               var fontStyle = 'normal';
               var fontFamily = 'Helvetica Neue';
               ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
@@ -46,12 +46,12 @@ $(document).on('turbolinks:load', function(){
           }
         });
 
-        var e = $('#myChart')
-        var textWidth = e.width()/2;
-        var textHeight = e.height()/2 + 10;
+        var ch = $('#myChart')
+        var textWidth = ch.width()/2;
+        var textHeight = ch.height()/2 + 10;
 
         ctx.fillStyle = 'black';
-        var fontSize = e.height() * 9/20;
+        var fontSize = ch.height() * 9/20;
         var fontStyle = 'normal';
         var fontFamily = "Helvetica Neue";
         ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
@@ -91,7 +91,7 @@ $(document).on('turbolinks:load', function(){
       type: 'doughnut',
       data: data,
       options: {
-        cutoutPercentage: 65,
+        cutoutPercentage: 60,
         responsive: true,
         maintainAspectRatio: false,
         legend: {
