@@ -92,35 +92,37 @@ $(document).on('turbolinks:load', function(){
                       <option value="31">31</option>
                     </select>
                       日
-                    <span data-index="${index}" class="deleteButton-task btn btn-light">
+                    <span data-index="${index}" class="deleteButton-task btn btn-danger">
                       <i class="fas fa-backspace"></i>
                       削除
                     </span>
                   </div>`;
+    setIndex += 1;
     return html;
   }
 
   // サブタスクリストのフォームを生成する関数
   // TODO:進行率の表示
   function buildTasklistForm(){
-    // const html = `<div class="formContent__progressBar">
-    //                 <div class="tasklist-progress-percentage">0%</div>
-    //                 <div class="tasklist-progressBar progress">
-    //                   <div class="tasklist-progressBar-current progress-bar-striped bg-primary" style="width:50%"></div>
-    //                 </div>
-    //               </div>
-    const html = `<div class="taskFormArea">
+    const html =  `<div class='formContent__progressBar d-flex'>
+                    <div id='progressBar-percentage'>
+                      0%
+                    </div>
+                    <div class='progressBar-gauge progress'>
+                      <div class='progress-bar-striped bg-primary' id='progressBar-done'></div>
+                    </div>
                   </div>
-                  <span class="addButton-task btn btn-light">
+                  <div class="taskFormArea">
+                  </div>
+                  <span class="addButton-task btn btn-info">
                     <i class="fa fa-plus"></i>
                     タスクを追加
                   </span>`;
     return html;
   }
 
-
   function buildTasklistDeleteBtn(){
-    const html = `<span class="deleteButton-tasklist btn btn-light">
+    const html = `<span class="deleteButton-tasklist btn btn-danger">
                     <i class="fas fa-trash-alt"></i>
                     タスクリストを削除
                   </span>`
@@ -128,25 +130,44 @@ $(document).on('turbolinks:load', function(){
   }
 
   function buildTasklistOpenBtn(){
-    const html = `<span class="openButton-tasklist btn btn-light">
+    const html = `<span class="openButton-tasklist btn btn-info">
                     <i class="fa fa-plus"></i>
                     タスクリストを追加
                   </span>`
     return html;
   }
 
+  // サブタスクの進捗率更新処理
+  function progressTaskPer(){
+    let task_count = $('.taskForm_group').length
+    let done_count = 0
+
+    $('.post-tasks-done:checked').each(function(){
+      done_count += 1;
+    });
+
+    let progressPer = Math.round(100 * done_count / task_count)
+
+    $('#progressBar-percentage').html(progressPer +'%')
+    $('#progressBar-done').css({'width':progressPer+'%'})
+  }
+
+  // サブタスクの進捗率初期表示
+  progressTaskPer();
+
   // サブタスクの識別番号の初期値設定
   let setIndex = $('.taskForm_group').length;
   // サブタスクの上限数
-  const taskLimit = 10
+  const taskLimit = 10;
 
   // $('.hidden-destroy').hide();
 
   // 編集画面描画時サブタスク上限数を超えている際は追加ボタンのクリックと選択を無効化する
   if ($('.taskForm_group').length >= taskLimit) {
     $('.addButton-task').css({'pointer-events':'none'});
-    $('.addButton-task').removeClass('btn-light');
-    $('.addButton-task').addClass('btn-danger');
+    $('.addButton-task').css({'color':'white'});
+    $('.addButton-task').removeClass('btn-info');
+    $('.addButton-task').addClass('btn-light');
   }
 
   // タスク追加ボタン押下時の関数
@@ -156,17 +177,18 @@ $(document).on('turbolinks:load', function(){
     // サブタスク上限数を超えた際は追加ボタンのクリックと選択を無効化する
     if ($('.taskForm_group').length >= taskLimit) {
       $(this).css({'pointer-events':'none'});
-      $(this).removeClass('btn-light');
-      $(this).addClass('btn-danger');
+      $(this).css({'color':'white'});
+      $(this).removeClass('btn-info');
+      $(this).addClass('btn-light');
     }
-    // setIndexを加算
-    setIndex += 1
+    progressTaskPer();
+
   });
   // 削除ボタンの設定
   $('.tasklist').on('click', '.deleteButton-task', function() {
     const targetIndex = $(this).data('index');
     // 該当indexを振られているチェックボックスを取得する
-    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    const hiddenCheck = $(`input[name="post[tasks_attributes][${targetIndex}][_destroy]"].hidden-destroy`);
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
@@ -174,31 +196,50 @@ $(document).on('turbolinks:load', function(){
     // サブタスクが上限以内の場合、削除ボタン非活性を解除する
     if ($('.taskForm_group').length <= taskLimit) {
       $(".addButton-task").css('pointer-events', '');
-      $(".addButton-task").removeClass('btn-danger');
-      $(".addButton-task").addClass('btn-light');
+      $(".addButton-task").css('color', '');
+      $(".addButton-task").removeClass('btn-light');
+      $(".addButton-task").addClass('btn-info');
     }
 
+    progressTaskPer();
+
     // TODO:フォームが存在しない場合、タスク追加ボタンと進行バーを削除
-    // if ($('.taskForm_group').length == 0) {
-    //   $('.formContent__titleBar__titleMemu__menuOptions').append(buildTasklistOpenBtn);
-    //   $('.addButton-task').remove();
-    //   $('.formContent__progressBar').remove();
-    //   $('taskFormArea').addClass('.hidden-edit');
-    //   $('.taskFormArea').removeClass();
-    // }
+    if ($('.taskForm_group').length == 0) {
+      $('.formContent__titleBar__titleMemu__menuOptions').append(buildTasklistOpenBtn);
+      $('.deleteButton-tasklist').remove();
+      $('.addButton-task').remove();
+      $('.formContent__progressBar').remove();
+      // $('.taskFormArea').addClass('.hidden-edit');
+      $('.taskFormArea').removeClass();
+    }
   });
   // タスクリスト追加ボタンの設定
   $('.tasklist').on('click', '.openButton-tasklist', function() {
     $('.tasklist').append(buildTasklistForm);
-    // $(this).parent().append(buildTasklistDeleteBtn);
+    $('.taskFormArea').append(buildTaskForm(setIndex));
+    $(this).parent().append(buildTasklistDeleteBtn);
     $(this).remove();
+
   });
 
+  // サブタスク達成フラグの設定
+  $('.tasklist').on('change', '.post-tasks-done', function(){
+    progressTaskPer();
+  })
+
   // TODO:タスクリスト削除ボタンの設定
-  // $('.tasklist').on('click', '.deleteButton-tasklist', function() {
-  //   $('.taskForm_group').remove();
-  //   $(this).parent().append(buildTasklistOpenBtn);
-  //   $(this).remove();
-  // });
+  $('.tasklist').on('click', '.deleteButton-tasklist', function() {
+    // サブタスクの削除チェックボックスを全取得する
+    const hiddenCheck = $(`.taskFormArea`).children(`.hidden-destroy`);
+    // もしチェックボックスが存在すればチェックを入れる
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
+
+    $('.taskFormArea').removeClass();
+    $('.taskForm_group').remove();
+    $('.formContent__progressBar').remove();
+    $('.addButton-task').remove();
+    $(this).parent().append(buildTasklistOpenBtn);
+    $(this).remove();
+  });
 
 });
