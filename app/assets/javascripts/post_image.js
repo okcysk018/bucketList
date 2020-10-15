@@ -75,7 +75,6 @@ $(document).on('turbolinks:load', function(){
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
     // プレビューとアップローダの削除
-    console.log($(`div[data-index="${targetIndex}"]#image-remove-target`))
     $(`div[data-index="${targetIndex}"]#image-remove-target`).remove();
     // 画像入力欄が0個にならないようにしておく
     if ($('.image-file-uploader').length == 0) $('.form-image-box__main__uploaders__label').prepend(buildFileField(fileIndex[0]));
