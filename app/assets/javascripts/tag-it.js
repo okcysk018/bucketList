@@ -474,7 +474,6 @@ $(document).on('turbolinks:load', function(){
 
             var label = $(this.options.onTagClicked ? '<a class="tagit-label"></a>' : '<span class="tagit-label"></span>').text(value);
 
-            // TODO:badgeの追加
             // Create tag.
             var tag = $('<li></li>')
                 .addClass('tagit-choice ui-widget-content ui-state-default ui-corner-all')

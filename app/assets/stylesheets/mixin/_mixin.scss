@@ -1,4 +1,4 @@
-@mixin post-reputation($left-per){
+@mixin post-star($left-per){
   position: relative;
   height: 20px;
   width: 80px;
@@ -8,6 +8,14 @@
     color: #ffcc33;
   }
   .post-reputation-back{
+    color: $gray;
+    position: absolute;
+  }
+  .post-priority-front{
+    position: absolute;
+    color: #83d895;
+  }
+  .post-priority-back{
     color: $gray;
     position: absolute;
   }

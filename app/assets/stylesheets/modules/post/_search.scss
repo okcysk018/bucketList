@@ -78,7 +78,7 @@
       font-weight: bold;
     }
     .card-post-reputation{
-      @include post-reputation(0%);
+      @include post-star(0%);
     }
     .card-post-user{
       width: 100%;

@@ -13,7 +13,10 @@
     text-align: center;
   }
   &__post-reputation{
-    @include post-reputation(45%);
+    @include post-star(50%);
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
   }
 
   &__post-images{

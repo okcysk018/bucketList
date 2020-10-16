@@ -11,13 +11,21 @@ $(document).on('turbolinks:load', function(){
     } else if (this_value == "budget_desc") {
       html = "&sort=budget+desc"
     } else if (this_value == "deadline_asc") {
-      html = "&sort=created_at+asc"
+      html = "&sort=deadline+asc"
     } else if (this_value == "deadline_desc") {
-      html = "&sort=created_at+desc"
+      html = "&sort=deadline+desc"
     } else if (this_value == "created_at_asc") {
       html = "&sort=created_at+asc"
     } else if (this_value == "created_at_desc") {
       html = "&sort=created_at+desc"
+    } else if (this_value == "reputation_asc") {
+      html = "&sort=reputation+asc"
+    } else if (this_value == "reputation_desc") {
+      html = "&sort=reputation+desc"
+    } else if (this_value == "priority_asc") {
+      html = "&sort=priority+asc"
+    } else if (this_value == "priority_desc") {
+      html = "&sort=priority+desc"
     } else {
       html = ""
     };
@@ -52,6 +60,14 @@ $(document).on('turbolinks:load', function(){
         var sort = 5
       } else if (selected_option == "created_at+desc") {
         var sort = 6
+      } else if (selected_option == "reputation+asc") {
+        var sort = 7
+      } else if (selected_option == "reputation+desc") {
+        var sort = 8
+      } else if (selected_option == "priority+asc") {
+        var sort = 9
+      } else if (selected_option == "priority+desc") {
+        var sort = 10
       }
 
       var add_selected = $('select[name=sort_order]').children()[sort]

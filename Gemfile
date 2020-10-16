@@ -104,3 +104,4 @@ gem 'fog-aws'           # S3対応
 gem 'jquery-turbolinks' # turbolinksとgoogleMapの競合回避
 gem 'kaminari'          # ページネーション
 gem 'ransack'           # 検索機能簡易実装
+gem 'chart-js-rails'
