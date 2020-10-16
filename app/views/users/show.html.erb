@@ -181,7 +181,7 @@
     <% if user_signed_in? && current_user.id == @user.id %>
       <div class='user-menu'>
         <%= link_to new_post_path do%>
-          <div class='user-menu-btn btn btn-lg btn-info'>
+          <div class='user-menu-btn btn btn-lg btn-success'>
             <i class="fas fa-plus"></i>
             新規投稿
           </div>
@@ -193,7 +193,7 @@
           </div>
         <%end%>
         <%= link_to edit_user_registration_path do%>
-          <div class='user-menu-btn btn btn-lg btn-light'>
+          <div class='user-menu-btn btn btn-lg btn-info'>
             <i class="fas fa-user-edit"></i>
             アカウント編集
           </div>

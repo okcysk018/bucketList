@@ -165,7 +165,7 @@
 
         <%# CHANGED:<%= link_to "編集",edit_post_path(@post.id), data: {"turbolinks"=>false} %>
         <%= link_to "編集",edit_post_path(@post.id), class:'btn btn-info btn-lg post-edit-btn' %>
-        <%= link_to "削除", post_path(@post.id), class:'btn btn-info btn-lg post-delete-btn', method: :delete%>
+        <%= link_to "削除", post_path(@post.id), class:'btn btn-danger btn-lg post-delete-btn', method: :delete%>
       </div>
     </div>
   <% end %>
