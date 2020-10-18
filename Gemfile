@@ -69,6 +69,9 @@ group :development do
   gem 'hirb'                   # SQLの結果を見やすく整形してくれる
   gem 'hirb-unicode'           # hirbの日本語対応
 
+  gem 'capistrano-git-copy', require: false
+
+
 end
 
 group :test do
