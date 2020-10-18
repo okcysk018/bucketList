@@ -171,8 +171,8 @@
       <div class='user-info-detail d-flex'>
         <%# CHANGED:階層が異なるため本番環境で表示されない %>
         <%# <img class="user-img" src="../../assets/noUserImage.png" alt="sample-user-img"> %>
-        <%# <%= image_tag asset_path("noUserImage", alt: "sample-user-img"), class: "user-img" %>
-        <%= image_tag "/images/noUserImage.png", alt: "sample-user-img", class: "user-img" %>
+        <%= image_tag asset_path("noUserImage", alt: "sample-user-img"), class: "user-img" %>
+        <%# <%= image_tag "/images/noUserImage.png", alt: "sample-user-img", class: "user-img" %>
         <div class='user-profile'>
           <div class='user-profile__user-name'><%= @user.nickname %></div>
         </div>
