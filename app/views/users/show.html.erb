@@ -111,7 +111,7 @@
                     <%end%>
                   </div>
                   <div class='post-data__post-body__post-btns'>
-                    <% if current_user.id == post.user_id %>
+                    <% if user_signed_in? && current_user.id == post.user_id %>
                       <%= link_to edit_post_path(post.id) do %>
                         <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-info'>
                           <i class="fas fa-edit"></i>
