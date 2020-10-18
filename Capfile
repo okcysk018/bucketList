@@ -14,8 +14,6 @@ require "capistrano/deploy"
 # or
 # require "capistrano/scm/git"
 # install_plugin Capistrano::SCM::Git
-require 'capistrano/git_copy'
-install_plugin Capistrano::GitCopy::SCM
 
 # Include tasks from other gems included in your Gemfile
 #
