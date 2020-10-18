@@ -71,7 +71,6 @@ group :development do
 
   gem 'capistrano-git-copy', require: false
 
-
 end
 
 group :test do
