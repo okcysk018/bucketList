@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id           :bigint           not null, primary key
+#  address      :string(255)
+#  budget       :integer          not null
+#  deadline     :date             not null
+#  description  :text(65535)
+#  done_flag    :boolean          default(FALSE)
+#  priority     :integer
+#  private_flag :boolean          default(FALSE)
+#  reputation   :integer
+#  title        :string(255)      not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  place_id     :string(255)
+#  user_id      :integer          not null
+#
 class Post < ApplicationRecord
 
   belongs_to  :user

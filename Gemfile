@@ -60,6 +60,7 @@ group :development do
 
   gem 'rails-erd'               # モデルのER図をPDF出力
   gem 'rails_best_practices', require: false    # Railsのベストプラクティスを教えてくれる
+  gem 'annotate'                # テーブル情報をモデルファイルに追記
   gem 'bullet'                  # N+1問題検知
 
   #debug
