@@ -58,6 +58,7 @@ group :development do
   gem 'spring'                  # RspecなどでRailsをプリロードする
   gem 'spring-watcher-listen', '~> 2.0.0'
 
+  gem 'rails-erd'               # モデルのER図をPDF出力
   gem 'rails_best_practices', require: false    # Railsのベストプラクティスを教えてくれる
   gem 'bullet'                  # N+1問題検知
 
