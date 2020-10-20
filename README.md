@@ -71,7 +71,7 @@ AWS S3
 Capistrano
 
 # DB設計
-![](https://i.gyazo.com/b76b14aecb50da168420844e814bc62f.png)
+![erd](https://github.com/okcysk018/bucketList/blob/master/erd.png)
 
 ## usersテーブル
 
