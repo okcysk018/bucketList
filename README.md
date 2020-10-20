@@ -40,9 +40,13 @@ bucketList
 
 ## Feature
 ### トップページ
-![01_top_page](https://user-images.githubusercontent.com/60644410/96550078-5bb2ef80-12eb-11eb-8c52-170ee5f364e2.png)
+<p align="center">
+  <a href="01_top_page"><img src="https://user-images.githubusercontent.com/60644410/96550078-5bb2ef80-12eb-11eb-8c52-170ee5f364e2.png" width="500px;"/></a>
+</p>
+
 ### 検索画面
-![02_search](https://user-images.githubusercontent.com/60644410/96550257-9452c900-12eb-11eb-899e-a33399ad36ce.png)
+無限スクロール、フィルター、ソート機能
+![02_search_compressed](https://user-images.githubusercontent.com/60644410/96558026-0d571e00-12f6-11eb-82f3-cee6cbc3c02b.gif)
 ### ユーザマイページ
 ![03_my_page](https://user-images.githubusercontent.com/60644410/96550283-9e74c780-12eb-11eb-808b-9d3176356228.png)
 ### 新規投稿/投稿編集画面
