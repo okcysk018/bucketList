@@ -14,10 +14,9 @@ bucketList
 - 画像投稿機能
 - サブタスク管理機能
 - GoogleMapAPI
+- 検索機能
 
 ## 実装予定機能
-
-- 検索機能
 - カレンダー連携機能
 - ユーザフォロー機能
 - コミュニティ機能
@@ -27,7 +26,6 @@ bucketList
 - 管理者機能
 - アカウント管理機能
 - 動画投稿機能
-
 - その他
 
 ## 本番環境(デプロイ先　テストアカウント＆ID)
@@ -40,23 +38,33 @@ bucketList
 
 「死ぬまでにやりたい事リスト」をみんなで共有して、人生を豊かにしたい、という思いで作成しました。
 
-## DEMO
-![demo](https://github.com/okcysk018/bucketList/blob/master/app/assets/images/bucketlist_intro.gif)
+## Feature
+### トップページ
+![01_top_page](https://user-images.githubusercontent.com/60644410/96550078-5bb2ef80-12eb-11eb-8c52-170ee5f364e2.png)
+### 検索画面
+![02_search](https://user-images.githubusercontent.com/60644410/96550257-9452c900-12eb-11eb-899e-a33399ad36ce.png)
+### ユーザマイページ
+![03_my_page](https://user-images.githubusercontent.com/60644410/96550283-9e74c780-12eb-11eb-808b-9d3176356228.png)
+### 新規投稿/投稿編集画面
+![04_post](https://user-images.githubusercontent.com/60644410/96550299-a3d21200-12eb-11eb-85cf-8bf4ec3465c4.png)
+### 投稿詳細画面
+![05_post_show](https://user-images.githubusercontent.com/60644410/96550314-aaf92000-12eb-11eb-846f-9a1a8ddc6ce7.png)
 
 # 使用技術
 ### ■言語
 バックエンド Ruby 2.5.1
 
 フロントエンド jquery-rails 4.3.5
-### ◼︎フレームワーク
+### ■フレームワーク
 Ruby on Rails 5.2.4.2
-### ◼︎データベース
+### ■データベース
 MySQL 0.5.3
-### ◼︎インフラ
+### ■インフラ
 AWS EC2
+
 AWS S3
-### デプロイ
-Capistranoによる自動デプロイ
+### ■デプロイ
+Capistrano
 
 # DB設計
 ![](https://i.gyazo.com/b76b14aecb50da168420844e814bc62f.png)
