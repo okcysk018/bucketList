@@ -62,6 +62,7 @@ group :development do
   gem 'rails_best_practices', require: false    # Railsのベストプラクティスを教えてくれる
   gem 'annotate'                # テーブル情報をモデルファイルに追記
   gem 'bullet'                  # N+1問題検知
+  gem 'rubocop', require: false # コード解析
   # gem 'guard'                # ファイルの変更を監視して作業を自動化 ※bundlerを使わないほうがいいためコメントアウト
   # gem 'guard-rspec'            # ファイルが変更されたらRsepcを自動実行
   # gem 'guard-livereload'       # ファイルが変更されたらページを自動リロード
