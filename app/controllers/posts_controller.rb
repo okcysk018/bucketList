@@ -62,9 +62,9 @@ class PostsController < ApplicationController
 
     sort = params[:sort] || "id DESC"
     if params[:tag_name]
-      @posts = Post.order(sort).tagged_with("#{params[:tag_name]}").includes(:user, :images).page(params[:page]).without_count.per(15)
+      @posts = Post.private_post.order(sort).tagged_with("#{params[:tag_name]}").includes(:user, :images).page(params[:page]).without_count.per(15)
     else
-      @posts = @q.result.order(sort).includes(:user, :images).page(params[:page]).without_count.per(15)
+      @posts = @q.result.private_post.order(sort).includes(:user, :images).page(params[:page]).without_count.per(15)
     end
   end
 

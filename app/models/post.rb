@@ -47,6 +47,8 @@ class Post < ApplicationRecord
   #   done_flag == 1
   # end
 
+  scope :private_post, -> {where(private_flag: 0)}
+
   # def self.search(search)
   #   return Post.all unless search
   #   Post.where(['title LIKE(?) OR address LIKE(?)', "%#{search}%", "%#{search}%"])
