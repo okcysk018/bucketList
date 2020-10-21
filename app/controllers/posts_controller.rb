@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
 
+  include ApplicationHelper
+
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
   before_action :set_category_tags_to_gon, only: [:new, :edit, :search]
   # before_action :set_api_key
   before_action :move_to_login, except: [:index, :show, :search]
   before_action :move_to_show, only: [:edit, :update, :destroy]
-  before_action :move_to_search_not_login, except: [:index, :new, :create, :search]
   before_action :move_to_search, except: [:index, :new, :create, :search]
 
   def index
@@ -110,22 +111,21 @@ class PostsController < ApplicationController
     end
   end
 
-  def move_to_search_not_login
-    if @post.private_flag?
-      unless user_signed_in?
-        redirect_to search_posts_path, alert: "非公開の投稿です"
-      end
-    end
-  end
+  # TODO:要調査
+  # def move_to_search_not_login
+  #   if @post.private_flag? && !(user_signed_in?)
+  #       redirect_to search_posts_path, alert: "非公開の投稿です"
+  #   end
+  # end
 
   def move_to_search
-    if @post.private_flag? && @post.user_id != current_user.id
+    if @post.private_flag? && not_current_user_is?(@post)
       redirect_to search_posts_path, alert: "非公開の投稿です"
     end
   end
 
   def move_to_show
-    if @post.user_id != current_user.id
+    if not_current_user_is?(@post)
       redirect_to post_path, alert: "不正なリクエストです"
     end
   end
