@@ -43,7 +43,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-
   def set_category_tags_to_gon
     # TODO:多階層カテゴリの実現およびcssの編集
     # TODO:モデルに記述？
