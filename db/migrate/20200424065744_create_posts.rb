@@ -9,8 +9,10 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string  :place_id
       t.date    :deadline,    null: false
       t.integer :budget,      null: false,                  precision: 7
-      t.integer :reputation
       t.integer :priority
+      # t.date    :actual_date
+      # t.integer :cost,                                      precision: 7
+      t.integer :reputation
       t.boolean :done_flag,                 default: false
       t.boolean :private_flag,              default: false
       t.timestamps

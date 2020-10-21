@@ -110,19 +110,19 @@
         </div>
       </div>
       <ul class="post-info__post-tasks">
-        <% @post.tasks.each do |task|%>
+        <% @post.tasks.each.with_index(1) do |task, i|%>
           <% if task.done_flag? %>
             <li class='post-task-info'>
-              <i class="fas fa-check"></i>
+              <%# <i class="fas fa-check"></i> %>
               <div class="post-task-title" style='text-decoration: line-through;'>
-                <%= task.title %>
+                <%= "#{i}.#{task.title}" %>
               </div>
             </li>
           <%else%>
             <li class='post-task-info'>
-              <i class="fas fa-circle"></i>
+              <%# <i class="fas fa-circle"></i> %>
               <div class="post-task-title">
-                <%= task.title %>
+                <%= "#{i}.#{task.title}" %>
               </div>
             </li>
           <%end%>

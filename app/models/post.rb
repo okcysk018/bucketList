@@ -37,9 +37,22 @@ class Post < ApplicationRecord
   validates :budget, presence: true, inclusion: 0..9999999
   validates :deadline, presence: true
 
+  # with_options if: :post_done? do
+  #   validates :cost, presence: true, inclusion: 0..9999999
+  #   validates :actual_date, presence: true
+  #   validates :reputation, presence: true
+  # end
+
+  # def post_done?
+  #   done_flag == 1
+  # end
+
   # def self.search(search)
   #   return Post.all unless search
   #   Post.where(['title LIKE(?) OR address LIKE(?)', "%#{search}%", "%#{search}%"])
   # end
+
+  # HACK:post.private_flag?を認識しなくなるので保留
+  # enum private_flag: {public_post: 0, private_post: 1}
 
 end

@@ -21,7 +21,6 @@
       <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
         <div class='post-list'>
           <% @posts.each.with_index(1) do |post, i| %>
-            <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
             <% if post.private_flag == false || current_user_has?(post) %>
               <div class="post-data d-flex">
                 <div class='post-data__post-img'>
@@ -45,23 +44,7 @@
                     <%end%>
                     <%if post.priority %>
                       <div class="post-data__post-body__post-priority">
-                        <div class="post-priority-back">
-                          ★★★★★
-                        </div>
-                        <div class="post-priority-front">
-                          <% case post.priority %>
-                          <% when 1%>
-                            ★
-                          <% when 2%>
-                            ★★
-                          <% when 3%>
-                            ★★★
-                          <% when 4%>
-                            ★★★★
-                          <% when 5%>
-                            ★★★★★
-                          <%end%>
-                        </div>
+                        <%= render 'layouts/post-priority', :post => post %>
                       </div>
                     <%end%>
                   </div>
