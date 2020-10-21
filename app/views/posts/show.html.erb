@@ -10,41 +10,14 @@
       <%= @post.title %>
     </h1>
     <div class="post-info__post-flags">
-      <% if @post.done_flag? %>
-        <div class="badge badge-success p-2">
-          <i class="far fa-check-square"></i>
-          達成済
-        </div>
-      <%end%>
-      <% if @post.private_flag? %>
-        <div class="badge badge-warning p-2">
-          <i class="fas fa-lock"></i>
-          非公開
-        </div>
-      <%end%>
+      <%= render 'layouts/post-flags', :post => @post %>
     </div>
     <div class="post-info__post-category">
       <%= render 'posts/category_list', category_list: @post.category_list %>
     </div>
     <div class="post-info__post-reputation">
       <%if @post.reputation %>
-        <div class="post-reputation-back">
-          ★★★★★
-        </div>
-        <div class="post-reputation-front">
-          <% case @post.reputation %>
-          <% when 1%>
-            ★
-          <% when 2%>
-            ★★
-          <% when 3%>
-            ★★★
-          <% when 4%>
-            ★★★★
-          <% when 5%>
-            ★★★★★
-          <%end%>
-        </div>
+        <%= render 'layouts/post-reputation', :post => @post %>
       <%end%>
     </div>
   </div>
@@ -109,7 +82,7 @@
       <%# <caption>List of users</caption> %>
       <tr><th></th><th>予定</th><th>実績</th></tr>
       <tr><td>費用</td><td><%= "¥#{@post.budget.to_s(:delimited)}" %></td><td>-</td></tr>
-      <tr><td>期日</td><td><%= @post.deadline %></td><td>yyyy/mm/dd</td></tr>
+      <tr><td>期日</td><td><%= l @post.deadline %></td><td>yyyy/mm/dd</td></tr>
     </table>
   </div>
 
@@ -159,11 +132,9 @@
     </div>
   <% end %>
 
-  <% if user_signed_in? && current_user.id == @post.user.id %>
+  <% if current_user_has?(@post) %>
     <div class='post-info'>
       <div class='post-info__post-btns'>
-
-        <%# CHANGED:<%= link_to "編集",edit_post_path(@post.id), data: {"turbolinks"=>false} %>
         <%= link_to "編集",edit_post_path(@post.id), class:'btn btn-info btn-lg post-edit-btn' %>
         <%= link_to "削除", post_path(@post.id), class:'btn btn-danger btn-lg post-delete-btn', method: :delete%>
       </div>

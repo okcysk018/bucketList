@@ -1,4 +1,4 @@
-  <%= form_with(model: @post, local: true) do |f| %>
+  <%= form_with(model: post, local: true) do |f| %>
     <div class='formContent'>
       <div class='form-group'>
         <label class='label' for='post-title'>
@@ -26,27 +26,18 @@
           <div class="form-image-box__main">
             <div class="form-image-box__main__uploaders">
               <label class="form-image-box__main__uploaders__label">
-                <%# NOTE:edit画面の場合 %>
-                <% if @post.persisted? %>
-                  <%= tag.div class: "image-file_group", data: {index: "#{@post.images.count}"} do%>
-                    <i class="fa fa-camera fa-2x"></i>
-                    <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>
-                    <%= f.file_field :image, name: "post[images_attributes][#{@post.images.count}][image]", id: "post_images_attributes_#{@post.images.count}_image", class:'image-file-uploader'%>
-                  <% end %>
-                <%# NOTE:new画面の場合 %>
-                <%else%>
-                  <%= tag.div class: "image-file_group", data: {index: "#{@post.images.count}"}, id: "image-remove-target" do%>
-                    <i class="fa fa-camera fa-2x"></i>
-                    <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>
-                    <%= f.file_field :image, name: "post[images_attributes][#{@post.images.count}][image]", id: "post_images_attributes_#{@post.images.count}_image", class:'image-file-uploader'%>
-                  <% end %>
+                <%# CHANGED:@post.persistedを条件分岐にimage-remove-targetの有無で分けてたけど意味ない %>
+                <%= tag.div class: "image-file_group", data: {index: "#{post.images.count}"}, id: "image-remove-target" do%>
+                  <i class="fa fa-camera fa-2x"></i>
+                  <p>ここをクリックかドラッグ＆ドロップでファイルをアップロードできます</p>
+                  <%= f.file_field :image, name: "post[images_attributes][#{post.images.count}][image]", id: "post_images_attributes_#{post.images.count}_image", class:'image-file-uploader'%>
                 <% end %>
               </label>
             </div>
             <%# TODO:レスポンシヴ,カードにする%>
             <div class="form-image-box__main__previews">
-              <% if @post.persisted? %>
-                <% @post.images.each_with_index do |image, i|%>
+              <% if post.persisted? %>
+                <% post.images.each_with_index do |image, i|%>
                   <%= tag.div class: "form-image-box__main__previews__view", data: {index: "#{i}"}, id: "image-remove-target" do%>
                     <div class="form-image-box__main__previews__view__image">
                       <%= image_tag image.image.url, data: { index: i }, class: 'input_images'%>
@@ -100,7 +91,7 @@
         </label>
         <%# TODO: クラス変更の際はautocomplete.jsも併せて変更する%>
         <div class='post-category'>
-          <%= f.text_field :category_list, value: @post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "category-field", id: "post-category"%>
+          <%= f.text_field :category_list, value: post.category_list.join(','), placeholder: "カンマ区切りでカテゴリを入力してください", class: "category-field", id: "post-category"%>
         </div>
       </div>
       <div class="form-group form-group-sideSet">
@@ -158,7 +149,7 @@
         </div>
         <div class='formContent__titleBar__titleMemu'>
           <div class='formContent__titleBar__titleMemu__menuOptions'>
-            <% if @post.persisted? && @post.tasks.present? %>
+            <% if post.persisted? && post.tasks.present? %>
               <%# TODO:達成済表示/非表示機能実装 %>
               <%# <span class='hideButton-achieveTask btn btn-info'>
                 <i class="fas fa-minus"></i>
@@ -181,7 +172,7 @@
           </div>
         </div>
       </div>
-      <% if @post.persisted? && @post.tasks.present? %>
+      <% if post.persisted? && post.tasks.present? %>
         <%# TODO:進行率の表示 %>
         <div class='formContent__progressBar d-flex'>
           <div id='progressBar-percentage'>
@@ -201,7 +192,7 @@
                 削除
               <% end %>
             <% end %>
-            <% if @post.persisted? %>
+            <% if post.persisted? %>
               <%= task.check_box :_destroy, data:{ index: task.index }, class: 'hidden-destroy' %>
             <% end %>
           <% end %>
@@ -214,7 +205,7 @@
     </div>
 
     <div class='form-submit'>
-      <% if @post.persisted? %>
+      <% if post.persisted? %>
         <%= f.submit "更新する", class:'btn btn-success btn-lg', onclick:"submit();", type:'button'%>
       <%else%>
         <%= f.submit "登録する", class:'btn btn-success btn-lg', onclick:"submit();", type:'button'%>

@@ -52,4 +52,27 @@
       <%end%>
     </div>
   </div>
-  <%= render 'layouts/card-list', :post => @posts%>
+  <%# <div class='jscroll'> %>
+    <%# <div class="card-columns card-list"> %>
+    <div class="card-list">
+      <%# <div class='jscroll'> %>
+        <% @posts.each do |post| %>
+          <%= render 'layouts/card', :post => post %>
+        <%end%>
+      <%# </div> %>
+      <%# NOTE:kaminariの機能強化対応 spanタグなしだと最後のページしか読み込まない %>
+      <span class='next-page-info'>
+        <%= link_to_next_page @posts, '次のページ', class:"next", style:"display:none" %>
+      </span>
+      <%# </div> %>
+    </div>
+    <div class="page-load-status">
+      <div class='infinite-scroll-request'>
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div class="infinite-scroll-last">投稿がありません</div>
+      <div class="infinite-scroll-error">再読み込みしてください</div>
+    </div>
+  <%# </div> %>

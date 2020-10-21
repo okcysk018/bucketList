@@ -22,7 +22,7 @@
         <div class='post-list'>
           <% @posts.each.with_index(1) do |post, i| %>
             <%# REVIEW:コントローラかモデルに記述でif文省略可能？ %>
-            <% if post.private_flag == false || (user_signed_in? && current_user.id == post.user_id) %>
+            <% if post.private_flag == false || current_user_has?(post) %>
               <div class="post-data d-flex">
                 <div class='post-data__post-img'>
                   <% if post.images.present?%>
@@ -35,39 +35,12 @@
                 <div class='post-data__post-body'>
                   <%= link_to "#{i}. #{post.title}", post_path(post.id), class:"post-data__post-body__post-title", 'data-no-turbolink'=>true %>
                   <div class="post-data__post-body__post-flags">
-                    <% if post.done_flag? %>
-                      <div class="badge badge-success p-2">
-                        <i class="far fa-check-square"></i>
-                        達成済
-                      </div>
-                    <%end%>
-                    <% if post.private_flag? %>
-                      <div class="badge badge-warning p-2">
-                        <i class="fas fa-lock"></i>
-                        非公開
-                      </div>
-                    <%end%>
+                    <%= render 'layouts/post-flags', :post => post %>
                   </div>
                   <div class='post-data__post-body__post-stars d-flex'>
                     <%if post.reputation %>
                       <div class="post-data__post-body__post-reputation">
-                        <div class="post-reputation-back">
-                          ★★★★★
-                        </div>
-                        <div class="post-reputation-front">
-                          <% case post.reputation %>
-                          <% when 1%>
-                            ★
-                          <% when 2%>
-                            ★★
-                          <% when 3%>
-                            ★★★
-                          <% when 4%>
-                            ★★★★
-                          <% when 5%>
-                            ★★★★★
-                          <%end%>
-                        </div>
+                        <%= render 'layouts/post-reputation', :post => post %>
                       </div>
                     <%end%>
                     <%if post.priority %>
@@ -95,7 +68,7 @@
                   <div class='post-data__post-body__set-info d-flex'>
                     <span class='post-data__post-body__post-deadline d-flex'>
                       <i class="fas fa-calendar-day"></i>
-                      <%= post.deadline%>
+                      <%= l post.deadline%>
                     </span>
                     <span class='post-data__post-body__post-budget d-flex'>
                       <i class="fas fa-coins"></i>
@@ -111,7 +84,7 @@
                     <%end%>
                   </div>
                   <div class='post-data__post-body__post-btns'>
-                    <% if user_signed_in? && current_user.id == post.user_id %>
+                    <% if current_user_has?(post) %>
                       <%= link_to edit_post_path(post.id) do %>
                         <div class='post-data__post-body__post-btns__post-btn btn btn-sm btn-info'>
                           <i class="fas fa-edit"></i>

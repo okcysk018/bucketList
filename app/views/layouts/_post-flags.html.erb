@@ -1,0 +1,12 @@
+                  <% if post.done_flag? %>
+                    <div class="badge badge-success p-2">
+                      <i class="far fa-check-square"></i>
+                      達成済
+                    </div>
+                  <%end%>
+                  <% if post.private_flag? %>
+                    <div class="badge badge-warning p-2">
+                      <i class="fas fa-lock"></i>
+                      非公開
+                    </div>
+                  <%end%>
