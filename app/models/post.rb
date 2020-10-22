@@ -18,13 +18,12 @@
 #  user_id      :integer          not null
 #
 class Post < ApplicationRecord
-
   belongs_to  :user
   has_many    :comments,  dependent: :destroy
   has_many    :images,    dependent: :destroy
   has_many    :tasks,     dependent: :destroy
 
-  delegate :nickname, :to => :user, :prefix => true
+  delegate :nickname, to: :user, prefix: true
 
   accepts_nested_attributes_for :images, allow_destroy: true
   accepts_nested_attributes_for :tasks, allow_destroy: true
@@ -54,7 +53,6 @@ class Post < ApplicationRecord
   #   Post.where(['title LIKE(?) OR address LIKE(?)', "%#{search}%", "%#{search}%"])
   # end
 
-  # HACK:post.private_flag?を認識しなくなるので保留
+  # HACK: post.private_flag?を認識しなくなるので保留
   # enum private_flag: {public_post: 0, private_post: 1}
-
 end

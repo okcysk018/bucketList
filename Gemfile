@@ -59,7 +59,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'rails-erd'               # モデルのER図をPDF出力
-  gem 'rails_best_practices', require: false    # Railsのベストプラクティスを教えてくれる
+  gem 'rails_best_practices', require: false # Railsのベストプラクティスを教えてくれる
   gem 'annotate'                # テーブル情報をモデルファイルに追記
   gem 'bullet'                  # N+1問題検知
   gem 'rubocop', require: false # コード解析
@@ -78,7 +78,6 @@ group :development do
   gem 'hirb-unicode'            # hirbの日本語対応
 
   gem 'capistrano-git-copy', require: false
-
 end
 
 group :test do

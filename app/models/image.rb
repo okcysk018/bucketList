@@ -22,5 +22,4 @@ class Image < ApplicationRecord
 
   validates :post, presence: true
   validates :image, presence: true
-
 end

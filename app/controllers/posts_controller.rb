@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   include ApplicationHelper
 
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
@@ -11,7 +10,7 @@ class PostsController < ApplicationController
 
   def index
     # NOTE:トップページのサンプル表示
-    @posts = Post.order("id DESC").includes(:user, :images).find(3,7,5)
+    @posts = Post.order("id DESC").includes(:user, :images).find(3, 7, 5)
   end
 
   def new
@@ -61,14 +60,15 @@ class PostsController < ApplicationController
     @categories = gon.category_tags
 
     sort = params[:sort] || "id DESC"
-    if params[:tag_name]
-      @posts = Post.private_post.order(sort).tagged_with("#{params[:tag_name]}").includes(:user, :images).page(params[:page]).without_count.per(15)
-    else
-      @posts = @q.result.private_post.order(sort).includes(:user, :images).page(params[:page]).without_count.per(15)
+    @posts = if params[:tag_name]
+               Post.private_post.order(sort).tagged_with(params[:tag_name].to_s).includes(:user, :images).page(params[:page]).without_count.per(15)
+             else
+               @q.result.private_post.order(sort).includes(:user, :images).page(params[:page]).without_count.per(15)
     end
   end
 
   private
+
   def post_params
     params.require(:post).permit(
       :title,
@@ -84,10 +84,10 @@ class PostsController < ApplicationController
       :category_list,
       images_attributes: [:id, :image, :_destroy],
       tasks_attributes: [:id, :title, :done_flag, :deadline, :_destroy]
-      # images_attributes: [:id, {image: []}, :_destroy]
+    # images_attributes: [:id, {image: []}, :_destroy]
     ).merge(
       user_id: current_user.id
-    );
+    )
   end
 
   def set_post
@@ -95,15 +95,15 @@ class PostsController < ApplicationController
   end
 
   def set_category_tags_to_gon
-    # TODO:多階層カテゴリの実現およびcssの編集
+    # TODO: 多階層カテゴリの実現およびcssの編集
     # TODO:モデルに記述？
     gon.category_tags = Post.tag_counts_on(:categories).where('name LIKE(?) AND id <= ?', "#{params[:term]}%", 13).pluck(:name) #初期値カテゴリータグをtagsテーブルのnameカラム前方一致で取得
   end
 
-  def set_api_key
-    # TODO:値を渡す
-    googleMapAPIKey = Rails.application.credentials.google_map_key
-  end
+  # def set_api_key
+  #   # TODO:値を渡す
+  #   googleMapAPIKey = Rails.application.credentials.google_map_key
+  # end
 
   def move_to_login
     unless user_signed_in?
@@ -111,7 +111,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # TODO:要調査
+  # CHANGED: not_current_user_is?の実装で不要に
   # def move_to_search_not_login
   #   if @post.private_flag? && !(user_signed_in?)
   #       redirect_to search_posts_path, alert: "非公開の投稿です"
@@ -125,9 +125,6 @@ class PostsController < ApplicationController
   end
 
   def move_to_show
-    if not_current_user_is?(@post)
-      redirect_to post_path, alert: "不正なリクエストです"
-    end
+    redirect_to post_path, alert: "不正なリクエストです" if not_current_user_is?(@post)
   end
-
 end
