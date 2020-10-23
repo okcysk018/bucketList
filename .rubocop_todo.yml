@@ -28,13 +28,6 @@ Style/ClassAndModuleChildren:
     - 'app/controllers/users/unlocks_controller.rb'
     - 'test/test_helper.rb'
 
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles, IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_brackets
-Style/IndentArray:
-  EnforcedStyle: consistent
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
@@ -43,15 +36,6 @@ Style/IndentationConsistency:
   Exclude:
     - 'app/uploaders/image_uploader.rb'
     - 'config/initializers/carrierwave.rb'
-
-# Offense count: 12
-# Cop supports --auto-correct.
-Style/LeadingCommentSpace:
-  Exclude:
-    - 'Gemfile'
-    - 'app/controllers/posts_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'config/unicorn.rb'
 
 # Offense count: 36
 # Cop supports --auto-correct.
@@ -80,12 +64,6 @@ Style/SpaceAroundOperators:
 # SupportedStyles: space, no_space
 Style/SpaceInsideBlockBraces:
   Enabled: false
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/SpaceInsideBrackets:
-  Exclude:
-    - 'config/environments/production.rb'
 
 # Offense count: 6
 # Cop supports --auto-correct.

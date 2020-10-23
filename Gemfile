@@ -67,7 +67,7 @@ group :development do
   # gem 'guard-rspec'            # ファイルが変更されたらRsepcを自動実行
   # gem 'guard-livereload'       # ファイルが変更されたらページを自動リロード
 
-  #debug
+  # debug
   gem 'better_errors'           # エラー画面を見やすくする
   gem 'binding_of_caller'       # better_errorsのエラー画面でREPLが使える
   gem 'pry-rails'               # binding pry
