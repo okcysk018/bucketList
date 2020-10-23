@@ -1,0 +1,65 @@
+AllCops:
+  # 除外するディレクトリ（自動生成されたファイル）
+  # デフォルト設定にある"vendor/**/*"が無効化されないように記述
+  Exclude:
+    - bin/*
+    - node_modules/**/*
+    - db/**/*
+    - vendor/**/*
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'test/**'
+
+  # Rails向けのRails copsを実行。"rubocop -R"と同じ
+  Rails:
+    enabled: true
+
+# "Missing top-level class documentation comment."を無効
+Style/Documentation:
+  Enabled: false
+
+# "Prefer single-quoted strings when you don't need string interpolation or special symbols."を無効
+Style/StringLiterals:
+  Enabled: false
+
+# "Line is too long"を無効
+Layout/LineLength:
+  Enabled: false
+
+#'frozen_string_literal: true'を無効
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 英語以外のコメントチェックを無効
+Style/AsciiComments:
+  Enabled: false
+
+Etrics/MethodLength:
+  Enabled: true
+  Max: 18
+
+# メソッド、変数名文字数制限
+Metrics/AbcSize:
+  Max: 30
+
+# namespaceが引っかかるため
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# if~else~endの方がひと目で分かりやすいと思うためfalse。詳細は以下を参照
+Style/GuardClause:
+  Enabled: false
+
+# 数字に対して3桁ごとに_
+Style/NumericLiterals:
+  Enabled: false
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_brackets
+Style/IndentArray:
+  Enabled: false
+
+
+inherit_from: .rubocop_todo.yml

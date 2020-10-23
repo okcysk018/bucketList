@@ -59,20 +59,25 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'rails-erd'               # モデルのER図をPDF出力
-  gem 'rails_best_practices', require: false    # Railsのベストプラクティスを教えてくれる
+  gem 'rails_best_practices', require: false # Railsのベストプラクティスを教えてくれる
   gem 'annotate'                # テーブル情報をモデルファイルに追記
   gem 'bullet'                  # N+1問題検知
+  gem 'rubocop', require: false # コード解析
+  # gem 'guard'                # ファイルの変更を監視して作業を自動化 ※bundlerを使わないほうがいいためコメントアウト
+  # gem 'guard-rspec'            # ファイルが変更されたらRsepcを自動実行
+  # gem 'guard-livereload'       # ファイルが変更されたらページを自動リロード
 
-  #debug
-  gem 'better_errors'          # エラー画面を見やすくする
-  gem 'binding_of_caller'      # better_errorsのエラー画面でREPLが使える
-  gem 'tapp'                   # プリントデバッグがしやすくなる
-  gem 'awesome_print'          # プリントデバッグの出力を整形
-  gem 'hirb'                   # SQLの結果を見やすく整形してくれる
-  gem 'hirb-unicode'           # hirbの日本語対応
+  # debug
+  gem 'better_errors'           # エラー画面を見やすくする
+  gem 'binding_of_caller'       # better_errorsのエラー画面でREPLが使える
+  gem 'pry-rails'               # binding pry
+  gem 'pry-byebug'              # pryでデバックコマンドが使える
+  gem 'tapp'                    # プリントデバッグがしやすくなる
+  gem 'awesome_print'           # プリントデバッグの出力を整形
+  gem 'hirb'                    # SQLの結果を見やすく整形してくれる
+  gem 'hirb-unicode'            # hirbの日本語対応
 
   gem 'capistrano-git-copy', require: false
-
 end
 
 group :test do
@@ -90,7 +95,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'pry-rails'
 gem 'font-awesome-sass', '~> 5.13.0'
 # gem "font-awesome-rails"
 gem "devise"
@@ -98,7 +102,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
-gem 'gon'
+gem 'gon'               # rubyからjsに変数を渡す
 gem 'carrierwave'       # 画像アップロード
 gem 'mini_magick'       # 画像編集（リサイズなど）
 gem 'fog-aws'           # S3対応

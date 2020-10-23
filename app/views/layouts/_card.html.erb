@@ -1,0 +1,48 @@
+            <div class="card" id="post-card-info">
+            <%# FIXME:フェードイン実装でレスポンシブ不可に %>
+            <%# <div class="card animate__animated animate__fadeInUp" id="post-card-info"> %>
+              <% if post.images.present?%>
+                <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link"%>
+              <%else%>
+                <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id)%>
+              <%end%>
+              <%# CHANGED:<%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;", 'data-no-turbolink' => true do %>
+              <%# <%end%>
+              <%# <div class= "card-img-overlay text-white" id= "post-card-img-overlay"> %>
+                <%# <div class='card-post-user'> %>
+                  <%# <%= link_to post.user.nickname, user_path(post.user.id), class:"card-post-user-link"%>
+                <%# </div> %>
+              <%# </div> %>
+
+              <div class='card-body'>
+                <%= link_to post.title, post_path(post.id), class:"card-title", 'data-no-turbolink'=>true%>
+                <div class="card-post-flags">
+                  <%= render 'layouts/post-flags', :post => post %>
+                </div>
+                <%if post.reputation %>
+                  <div class="card-post-reputation">
+                    <%= render 'layouts/post-reputation', :post => post %>
+                  </div>
+                <%end%>
+                <div class='card-post-user'>
+                  <%= link_to "投稿者：#{post.user_nickname}", user_path(post.user.id), class:"card-post-user-link" %>
+                </div>
+              </div>
+              <div class='card-footer'>
+                <div class='card-footer-btns d-flex'>
+                  <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                    <i class="fa fa-plus"></i>
+                    追加
+                  </button>
+                  <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                    <i class="far fa-check-circle"></i>
+                    達成済
+                  </button>
+                  <button class='card-footer-btn' data-toggle="modal" data-target="#modal">
+                    <i class="far fa-thumbs-up"></i>
+                    いいね
+                  </button>
+                  <%= render 'layouts/modal-message'%>
+                </div>
+              </div>
+            </div>
