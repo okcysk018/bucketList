@@ -41,14 +41,13 @@ Etrics/MethodLength:
 
 # メソッド、変数名文字数制限
 Metrics/AbcSize:
-  Max: 27
+  Max: 30
 
 # namespaceが引っかかるため
 Style/ClassAndModuleChildren:
   Enabled: false
 
 # if~else~endの方がひと目で分かりやすいと思うためfalse。詳細は以下を参照
-# https://docs.rubocop.org/rubocop/cops_style.html#styleguardclause
 Style/GuardClause:
   Enabled: false
 

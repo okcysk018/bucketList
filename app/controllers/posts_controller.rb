@@ -58,12 +58,12 @@ class PostsController < ApplicationController
     # @posts = params[:categories].present? ? Post.tagged_with(params[:categories]) : Post.all
     # NOTE: フィルターにカテゴリー名を渡す
     @categories = gon.category_tags
-
     sort = params[:sort] || "id DESC"
-    @posts = if params[:tag_name]
-               Post.private_post.order(sort).tagged_with(params[:tag_name].to_s).includes(:user, :images).page(params[:page]).without_count.per(15)
-             else
-               @q.result.private_post.order(sort).includes(:user, :images).page(params[:page]).without_count.per(15)
+
+    if params[:tag_name]
+      @posts = Post.private_post.order(sort).tagged_with(params[:tag_name].to_s).includes(:user, :images).page(params[:page]).without_count.per(15)
+    else
+      @posts = @q.result.private_post.order(sort).includes(:user, :images).page(params[:page]).without_count.per(15)
     end
   end
 
