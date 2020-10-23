@@ -1,20 +1,20 @@
 # 初期ユーザ
 User.create!([
-               {
-                 email: 'test@email.com',
-                 nickname: 'test_user',
-                 password: 'tttttttt'
-               },
-               {
-                 email: 'post@email.com',
-                 nickname: 'post_user',
-                 password: 'pppppppp'
-               },
-               {
-                 email: 'show@email.com',
-                 nickname: 'show_user',
-                 password: 'ssssssss'
-               }
+              {
+                email: 'test@email.com',
+                nickname: 'test_user',
+                password: 'tttttttt'
+              },
+              {
+                email: 'post@email.com',
+                nickname: 'post_user',
+                password: 'pppppppp'
+              },
+              {
+                email: 'show@email.com',
+                nickname: 'show_user',
+                password: 'ssssssss'
+              }
              ])
 
 # 初期投稿データ
@@ -531,7 +531,7 @@ Image.create!([
               ])
 
 # HACK: ハードコーディング避けたい
-default_image_file=["6.muscle.jpeg", "7.world.jpeg", "8.marriage.jpeg", "9.skyDiving.jpeg", "10.horseRide.jpeg", "11.killimanjaro.jpeg", "12.cuba.jpeg", "13.vegas.jpeg", "14.sucuba.jpeg", "15.spain.jpeg", "16.rugby.jpeg", "17.dance.jpeg", "18.bungee.jpeg", "19.cube.jpeg", "20.backflip.jpeg", "21.Italia.jpeg", "22.Egypt.jpeg", "23.programing.jpeg", "24.surfing.jpeg", "25.pet.jpeg", "26.breadCake.jpeg", "27.Surrealism.jpeg", "28.durian.jpeg", "29.moving.jpeg", "30.skyscrapers.jpeg", "31.jobChange.jpeg", "32.debate.jpeg", "33.freelancer.jpeg", "34.promotion.jpeg", "35.sumo.jpeg", "36.Atlantic.jpeg", "37.love_at_first_sight.jpeg", "38.volcano.jpeg", "39.volunteer.jpeg", "40.Olympic.jpeg", "41.poker.jpeg", "42.DucksAndDrakes.jpeg", "43.life.jpeg", "44.agriculture.jpeg", "45.nightlife.jpeg", "46.cocktail.jpeg", "47.bike.jpeg", "48.across_America.jpeg", "49.languages.jpeg", "50.investMyLife.jpeg", "51.Turkey.jpeg", "52.India.jpeg", "53.letter.jpeg", "54.triathlon.jpeg", "55.pilot.jpeg", "56.moon.jpeg"]
+default_image_file = ["6.muscle.jpeg", "7.world.jpeg", "8.marriage.jpeg", "9.skyDiving.jpeg", "10.horseRide.jpeg", "11.killimanjaro.jpeg", "12.cuba.jpeg", "13.vegas.jpeg", "14.sucuba.jpeg", "15.spain.jpeg", "16.rugby.jpeg", "17.dance.jpeg", "18.bungee.jpeg", "19.cube.jpeg", "20.backflip.jpeg", "21.Italia.jpeg", "22.Egypt.jpeg", "23.programing.jpeg", "24.surfing.jpeg", "25.pet.jpeg", "26.breadCake.jpeg", "27.Surrealism.jpeg", "28.durian.jpeg", "29.moving.jpeg", "30.skyscrapers.jpeg", "31.jobChange.jpeg", "32.debate.jpeg", "33.freelancer.jpeg", "34.promotion.jpeg", "35.sumo.jpeg", "36.Atlantic.jpeg", "37.love_at_first_sight.jpeg", "38.volcano.jpeg", "39.volunteer.jpeg", "40.Olympic.jpeg", "41.poker.jpeg", "42.DucksAndDrakes.jpeg", "43.life.jpeg", "44.agriculture.jpeg", "45.nightlife.jpeg", "46.cocktail.jpeg", "47.bike.jpeg", "48.across_America.jpeg", "49.languages.jpeg", "50.investMyLife.jpeg", "51.Turkey.jpeg", "52.India.jpeg", "53.letter.jpeg", "54.triathlon.jpeg", "55.pilot.jpeg", "56.moon.jpeg"]
 
 default_image_file.each.with_index(3) do |name, i|
   Image.create!(
