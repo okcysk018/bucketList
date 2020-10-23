@@ -51,4 +51,8 @@ Style/ClassAndModuleChildren:
 Style/GuardClause:
   Enabled: false
 
+# 数字に対して3桁ごとに_
+Style/NumericLiterals:
+  Enabled: false
+
 inherit_from: .rubocop_todo.yml

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def set_ransack
     # NOTE:paramsの値を変更するとキーワードを認識できない
-    query = {title_or_address_or_user_nickname_cont: params[:q]}
+    query = { title_or_address_or_user_nickname_cont: params[:q] }
     @q = Post.ransack(query)
   end
 end

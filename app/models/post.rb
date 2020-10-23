@@ -31,8 +31,8 @@ class Post < ApplicationRecord
 
   # TODO: バリデーション
   validates :title, presence: true, length: { maximum: 40 }
-  validates :images, length: {maximum: 10}
-  validates :tasks, length: {maximum: 10}
+  validates :images, length: { maximum: 10 }
+  validates :tasks, length: { maximum: 10 }
   validates :budget, presence: true, inclusion: 0..9999999
   validates :deadline, presence: true
 
@@ -46,7 +46,7 @@ class Post < ApplicationRecord
   #   done_flag == 1
   # end
 
-  scope :private_post, -> {where(private_flag: 0)}
+  scope :private_post, -> { where(private_flag: 0) }
 
   # def self.search(search)
   #   return Post.all unless search
