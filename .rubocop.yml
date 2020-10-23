@@ -3,9 +3,8 @@ AllCops:
   # デフォルト設定にある"vendor/**/*"が無効化されないように記述
   Exclude:
     - bin/*
-    - db/schema.rb
     - node_modules/**/*
-    - db/migrate/*
+    - db/**/*
     - vendor/**/*
     - 'config/**/*'
     - 'script/**/*'
@@ -54,5 +53,13 @@ Style/GuardClause:
 # 数字に対して3桁ごとに_
 Style/NumericLiterals:
   Enabled: false
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
+# SupportedStyles: special_inside_parentheses, consistent, align_brackets
+Style/IndentArray:
+  Enabled: false
+
 
 inherit_from: .rubocop_todo.yml
