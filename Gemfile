@@ -88,7 +88,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'rspec'                  # テストツール
   gem 'rspec-rails'            # RailsでRspecが使える
-  gem 'factory_girl_rails'     # テストデータの生成
+  # gem 'factory_girl_rails'     # テストデータの生成
   # gem 'database_cleaner'       # テスト実行後にDBをクリア
 end
 
