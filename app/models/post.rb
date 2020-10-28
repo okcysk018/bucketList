@@ -33,8 +33,10 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 40 }
   validates :images, length: { maximum: 10 }
   validates :tasks, length: { maximum: 10 }
-  validates :budget, presence: true, inclusion: 0..9999999
+  validates :budget, presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than => 10000000, only_integer: true }
   validates :deadline, presence: true
+  validates :reputation, inclusion: 1..5, allow_blank: true
+  validates :priority, inclusion: 1..5, allow_blank: true
 
   # with_options if: :post_done? do
   #   validates :cost, presence: true, inclusion: 0..9999999
