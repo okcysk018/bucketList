@@ -59,7 +59,7 @@
                     </span>
                   </div>
                   <div class='post-data__post-body__set-info d-flex'>
-                    <% if post.address%>
+                    <% if post.address.present? %>
                       <span class='post-data__post-body__post-address d-flex'>
                         <i class="fas fa-map-marker-alt"></i>
                         <%= post.address%>

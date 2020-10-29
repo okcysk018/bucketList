@@ -37,6 +37,14 @@ class Post < ApplicationRecord
   validates :deadline, presence: true
   validates :reputation, inclusion: 1..5, allow_blank: true
   validates :priority, inclusion: 1..5, allow_blank: true
+  validates :place_id, presence: true, if: :address_present?
+  validates :address, presence: true, if: -> { place_id.present? }
+
+  def address_present?
+    if place_id.blank? && address.present?
+      errors.add(:address, "は候補の中から選択してください")
+    end
+  end
 
   # with_options if: :post_done? do
   #   validates :cost, presence: true, inclusion: 0..9999999
@@ -55,6 +63,24 @@ class Post < ApplicationRecord
   #   Post.where(['title LIKE(?) OR address LIKE(?)', "%#{search}%", "%#{search}%"])
   # end
 
-  # HACK: post.private_flag?を認識しなくなるので保留
-  # enum private_flag: {public_post: 0, private_post: 1}
+  # HACK: テストは通るがビューが通らなくなる
+  # validate  :deadline_valid?
+
+  # private
+
+  # def deadline_valid?
+  #   date = deadline_before_type_cast
+  #   return if date.blank?
+  #   # YYYY-MM-DDに対して個別取得
+  #   y = date[0, 4].to_i
+  #   m = date[5, 2].to_i
+  #   d = date[8, 2].to_i
+  #   y = date[1].to_i # 日付形式が変更されてnilになる
+  #   m = date[2].to_i # 日付形式が変更されてnilになる
+  #   d = date[3].to_i # 日付形式が変更されてnilになる
+  #   unless Date.valid_date?(date)
+  #     errors.add(:deadline, "は不正な値です")
+  #   end
+  # end
+
 end

@@ -22,5 +22,13 @@ class Task < ApplicationRecord
   belongs_to :post, optional: true
 
   validates :post, presence: true
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 40 }
+
+  # validate  :deadline_valid?
+
+  # private
+  # def deadline_valid?
+  #   errors.add(:deadline, "は以前の日付を選択してください") if deadline.nil? || deadline > post.deadline
+  # end
+
 end

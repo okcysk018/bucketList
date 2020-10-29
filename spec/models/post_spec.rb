@@ -71,8 +71,72 @@ describe Post do
       expect(post.errors[:budget]).to include("は整数で入力してください")
     end
 
-    # Faker::Number.between(from: 1, to: 10) #=> 7
-    # Faker::Number.within(range: 1..10) #=> 7
+    # it "deadline日付制限チェック 存在しない日付で登録できない" do
+    #   post = build(:post, deadline: '2020-02-31')
+    #   post.valid?
+    #   expect(post.errors[:deadline]).to include("は不正な値です")
+    # end
+
+    it "地図情報制限チェック place_id未入力の場合" do
+      post = build(:post, address: '日本、東京都東京')
+      post.valid?
+      expect(post.errors[:address]).to include("は候補の中から選択してください")
+    end
+
+    it "地図情報制限チェック address未入力の場合" do
+      post = build(:post, place_id: 'ChIJXSModoWLGGARILWiCfeu2M0')
+      post.valid?
+      expect(post.errors[:address]).to include("を入力してください")
+    end
+
+    it "地図情報制限チェック 登録可能" do
+      post = build(:post, address: '日本、東京都東京', place_id: 'ChIJXSModoWLGGARILWiCfeu2M0')
+      expect(post).to be_valid
+    end
+
+    it "reputation制限チェック 選択候補以外の場合" do
+      post = build(:post, reputation: 6)
+      post.valid?
+      expect(post.errors[:reputation]).to include("は一覧にありません")
+    end
+
+    it "reputation制限チェック 選択候補の場合" do
+      post = build(:post, reputation: Faker::Number.between(from: 1, to: 5))
+      expect(post).to be_valid
+    end
+
+    it "priority制限チェック 選択候補以外の場合" do
+      post = build(:post, priority: 0)
+      post.valid?
+      expect(post.errors[:priority]).to include("は一覧にありません")
+    end
+
+    it "priority制限チェック 選択候補の場合" do
+      post = build(:post, priority: Faker::Number.within(range: 1..5))
+      expect(post).to be_valid
+    end
+
+    it "image枚数制限チェック 11枚以上の場合" do
+      post = build(:post_eleven_images)
+      post.valid?
+      expect(post.errors[:images]).to include("は10文字以内で入力してください")
+    end
+
+    it "image枚数制限チェック 10枚以下の場合" do
+      post = build(:post_ten_images)
+      expect(post).to be_valid
+    end
+
+    it "task個数制限チェック 11以上の場合" do
+      post = build(:post_eleven_tasks)
+      post.valid?
+      expect(post.errors[:tasks]).to include("は10文字以内で入力してください")
+    end
+
+    it "task個数制限チェック 10以下の場合" do
+      post = build(:post_ten_tasks)
+      expect(post).to be_valid
+    end
 
   end
 end
