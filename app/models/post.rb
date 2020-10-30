@@ -46,6 +46,7 @@ class Post < ApplicationRecord
     end
   end
 
+  # TODO: 予実管理用カラム
   # with_options if: :post_done? do
   #   validates :cost, presence: true, inclusion: 0..9999999
   #   validates :actual_date, presence: true
