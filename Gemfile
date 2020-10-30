@@ -94,6 +94,8 @@ group :test do
   gem 'rspec-rails'             # RailsでRspecが使える
   gem 'factory_bot_rails'       # テストデータの生成
   gem 'faker'                   # ダミーデータ生成
+  gem 'rails-controller-testing'
+  gem 'database_cleaner'        # コンソールでidが初期化されない際に利用
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -63,4 +63,20 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include ControllerMacros, type: :controller
+
+  # NOTE: コンソールでidの初期化ができない際に利用
+  RSpec.configure do |config|
+    # truncateを実行して処理する
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with :truncation
+
+    # exampleが終わる度に実行
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
+  end
 end
