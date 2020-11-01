@@ -9,7 +9,6 @@ describe PostsController do
   let(:post_private) { create(:post, :private_post, user_id: user.id) }
   let(:params) { { user_id: user.id, post: attributes_for(:post) } }
   let(:invalid_params) { { user_id: user.id, post: attributes_for(:post, title: nil, budget: nil, deadline: nil) } }
-  # let!(:post_public) {create(:post)}
   let(:update_attributes) do { title: 'updated_title', budget: 2000 } end
   let(:not_update_attributes) do { title: '', budget: -1 } end
 
@@ -314,6 +313,10 @@ describe PostsController do
             session: {}
           }
 
+          it 'DBテーブル更新確認' do
+            expect{ subject }.not_to change(Post, :count)
+          end
+
           it 'DB更新不可' do
             subject
             post_public.reload
@@ -329,19 +332,30 @@ describe PostsController do
       end
 
       context '投稿が存在しない場合' do
+        subject {
+          patch :update,
+          post: attributes_for(:post)
+        }
+
         it 'エラーになる' do
+          pending 'FIXME: モック?'
+          expect { subject }.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
     end
 
     context '別ユーザログイン済' do
-      context '投稿詳細画面遷移' do
-        # login other_user
+      it '投稿詳細画面遷移' do
+        login other_user
+        patch :update, params: {id: post_public.id, post: update_attributes}
+        expect(response).to redirect_to post_path
       end
     end
 
     context '未ログイン' do
-      context 'ログイン画面遷移' do
+      it 'ログイン画面遷移' do
+        patch :update, params: {id: post_public.id, post: update_attributes}
+        expect(response).to redirect_to new_user_session_path
       end
     end
   end
