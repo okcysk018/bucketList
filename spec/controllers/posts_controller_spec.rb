@@ -174,8 +174,8 @@ describe PostsController do
           get :edit, params: { id: post_public }
         end
 
-        it "@postの値のチェック" do
-          pending 'インスタンス変数とテストデータが同一になってしまう'
+        # HACK: 不要かも
+        xit "@postの値のチェック" do
           expect(assigns(:post)).not_to eq post_public
         end
 
@@ -332,13 +332,16 @@ describe PostsController do
       end
 
       context '投稿が存在しない場合' do
+        before do
+          delete :destroy, params: {id: post_public.id}
+        end
+
         subject {
           patch :update,
-          post: attributes_for(:post)
+          params: {id: post_public.id}
         }
 
         it 'エラーになる' do
-          pending 'FIXME: モック?'
           expect { subject }.to raise_exception(ActiveRecord::RecordNotFound)
         end
       end
@@ -361,6 +364,76 @@ describe PostsController do
   end
 
   describe 'DELETE #destroy' do
+    context '投稿ユーザログイン済' do
+      before do
+        login user
+      end
+
+      context '投稿が存在する場合' do
+        context '削除成功' do
+          subject {
+            delete :destroy,
+            params: {id: post_public.id}
+          }
+
+          it 'DBテーブル削除確認' do
+            expect{ subject }.to change(Post, :count).by(-1)
+          end
+
+          it 'ユーザマイページ画面遷移' do
+            subject
+            expect(response).to redirect_to(user_path(user.id))
+          end
+        end
+
+        # FIXME: 失敗するケースのモック作成
+        xcontext '削除失敗' do
+          subject {
+            delete :destroy,
+            params: {id: post_public.id}
+          }
+
+          it 'DBテーブル削除確認' do
+            expect{ subject }.not_to change(Post, :count)
+          end
+
+          it '投稿詳細画面遷移' do
+            subject
+            expect(response).to redirect_to(post_path)
+          end
+        end
+      end
+
+      context '投稿が存在しない場合' do
+        before do
+          delete :destroy, params: {id: post_public.id}
+        end
+
+        subject {
+          delete :destroy,
+          params: {id: post_public.id}
+        }
+
+        it 'エラーになる' do
+          expect { subject }.to raise_exception(ActiveRecord::RecordNotFound)
+        end
+      end
+    end
+
+    context '別ユーザログイン済' do
+      it '投稿詳細画面遷移' do
+        login other_user
+        delete :destroy, params: {id: post_public.id}
+        expect(response).to redirect_to post_path
+      end
+    end
+
+    context '未ログイン' do
+      it 'ログイン画面遷移' do
+        delete :destroy, params: {id: post_public.id}
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
   end
 
 end
