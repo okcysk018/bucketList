@@ -437,7 +437,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rbenv
   capistrano3-unicorn
-  capybara (>= 2.15)
+  capybara
   carrierwave
   chart-js-rails
   chromedriver-helper
