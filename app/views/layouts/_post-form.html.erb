@@ -141,6 +141,7 @@
         <%= f.select :reputation, [1,2,3,4,5], include_blank: '-', class: "form-control", id:"post-reputation"%>
       </div>
     </div>
+
     <div class='formContent tasklist'>
       <div class='formContent__titleBar'>
         <div class='formContent__titleBar__formTitle'>
@@ -173,7 +174,6 @@
         </div>
       </div>
       <% if post.persisted? && post.tasks.present? %>
-        <%# TODO:進行率の表示 %>
         <div class='formContent__progressBar d-flex'>
           <div id='progressBar-percentage'>
           </div>
@@ -192,9 +192,8 @@
                 削除
               <% end %>
             <% end %>
-            <% if post.persisted? %>
-              <%= task.check_box :_destroy, data:{ index: task.index }, class: 'hidden-destroy' %>
-            <% end %>
+            <%# TODO: if post.persisted?なくていいか一応確認%>
+            <%= task.check_box :_destroy, data:{ index: task.index }, class: 'hidden-destroy' %>
           <% end %>
         </div>
           <span class='addButton-task btn btn-info'>
@@ -206,9 +205,11 @@
 
     <div class='form-submit'>
       <% if post.persisted? %>
-        <%= f.submit "更新する", class:'btn btn-success btn-lg', onclick:"submit();", type:'button'%>
+        <%= f.submit "更新する", class:'btn btn-success btn-lg', onclick:"submit();"%>
       <%else%>
-        <%= f.submit "登録する", class:'btn btn-success btn-lg', onclick:"submit();", type:'button'%>
+        <%# NOTE:type:'button'のせいでcapybaraが正常に遷移しなかった %>
+        <%# CHANGED:<%= f.submit "登録する", class:'btn btn-success btn-lg', onclick:"submit();", type:'button'%>
+        <%= f.submit "登録する", class:'btn btn-success btn-lg', onclick:"submit();"%>
       <% end %>
     </div>
   <% end %>
