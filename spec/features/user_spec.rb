@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-feature 'post' do
+feature 'user' do
   given!(:user) { create(:user) }
   given(:posts) { create_list(:post, 20) }
 
@@ -26,7 +26,7 @@ feature 'post' do
       login_as(user, :scope => :user)
       visit user_path(user.id)
       find('.user-contents').click_on 'ログアウト'
-      # マイページにリダイレクトされる
+      # トップページにリダイレクトされる
       expect(current_path).to eq root_path(posts)
       # ログアウトメッセージ出力
       expect(page).to have_content 'ログアウトしました'
