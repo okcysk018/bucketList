@@ -419,7 +419,7 @@ Post.create!([
                 budget: 1000000,
                 user_id: 2
               }
-             ])
+            ])
 
 # 初期データサブタスク
 Task.create!([

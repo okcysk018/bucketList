@@ -48,6 +48,10 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  # gem 'rspec'                   # テストツール
+  # gem 'rspec-rails'             # RailsでRspecが使える
+  # gem 'factory_bot_rails'       # テストデータの生成
+  # gem 'faker'                   # ダミーデータ生成
 end
 
 group :development do
@@ -77,19 +81,22 @@ group :development do
   gem 'hirb'                    # SQLの結果を見やすく整形してくれる
   gem 'hirb-unicode'            # hirbの日本語対応
 
-  gem 'capistrano-git-copy', require: false
+  # gem 'capistrano-git-copy', require: false
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  # gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-  gem 'rspec'                  # テストツール
-  gem 'rspec-rails'            # RailsでRspecが使える
-  gem 'factory_girl_rails'     # テストデータの生成
-  # gem 'database_cleaner'       # テスト実行後にDBをクリア
+  gem 'rspec'                   # テストツール
+  gem 'rspec-rails'             # RailsでRspecが使える
+  gem 'factory_bot_rails'       # テストデータの生成
+  gem 'faker'                   # ダミーデータ生成
+  gem 'rails-controller-testing'
+  gem 'database_cleaner'        # コンソールでidが初期化されない際に利用
+  gem 'capybara'                # 統合テスト用
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

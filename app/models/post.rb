@@ -33,9 +33,20 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 40 }
   validates :images, length: { maximum: 10 }
   validates :tasks, length: { maximum: 10 }
-  validates :budget, presence: true, inclusion: 0..9999999
+  validates :budget, presence: true, :numericality => { :greater_than_or_equal_to => 0, :less_than => 10000000, only_integer: true }
   validates :deadline, presence: true
+  validates :reputation, inclusion: 1..5, allow_blank: true
+  validates :priority, inclusion: 1..5, allow_blank: true
+  validates :place_id, presence: true, if: :address_present?
+  validates :address, presence: true, if: -> { place_id.present? }
 
+  def address_present?
+    if place_id.blank? && address.present?
+      errors.add(:address, "は候補の中から選択してください")
+    end
+  end
+
+  # TODO: 予実管理用カラム
   # with_options if: :post_done? do
   #   validates :cost, presence: true, inclusion: 0..9999999
   #   validates :actual_date, presence: true
@@ -46,13 +57,31 @@ class Post < ApplicationRecord
   #   done_flag == 1
   # end
 
-  scope :private_post, -> { where(private_flag: 0) }
+  scope :public_post, -> { where(private_flag: 0) }
 
   # def self.search(search)
   #   return Post.all unless search
   #   Post.where(['title LIKE(?) OR address LIKE(?)', "%#{search}%", "%#{search}%"])
   # end
 
-  # HACK: post.private_flag?を認識しなくなるので保留
-  # enum private_flag: {public_post: 0, private_post: 1}
+  # HACK: テストは通るがビューが通らなくなる
+  # validate  :deadline_valid?
+
+  # private
+
+  # def deadline_valid?
+  #   date = deadline_before_type_cast
+  #   return if date.blank?
+  #   # YYYY-MM-DDに対して個別取得
+  #   y = date[0, 4].to_i
+  #   m = date[5, 2].to_i
+  #   d = date[8, 2].to_i
+  #   y = date[1].to_i # 日付形式が変更されてnilになる
+  #   m = date[2].to_i # 日付形式が変更されてnilになる
+  #   d = date[3].to_i # 日付形式が変更されてnilになる
+  #   unless Date.valid_date?(date)
+  #     errors.add(:deadline, "は不正な値です")
+  #   end
+  # end
+
 end

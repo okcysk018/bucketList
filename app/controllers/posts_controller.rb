@@ -4,13 +4,13 @@ class PostsController < ApplicationController
   prepend_before_action :set_post, only: [:show, :edit, :destroy, :update]
   before_action :set_category_tags_to_gon, only: [:new, :edit, :search]
   # before_action :set_api_key
+  before_action :move_to_search, only: [:show, :edit]
   before_action :move_to_login, except: [:index, :show, :search]
   before_action :move_to_show, only: [:edit, :update, :destroy]
-  before_action :move_to_search, except: [:index, :new, :create, :search]
 
   def index
     # NOTE:トップページのサンプル表示
-    @posts = Post.order("id DESC").includes(:user, :images).find(3, 7, 5)
+    @posts = Post.order("id DESC").includes(:user, :images).find(3, 5, 7)
   end
 
   def new
@@ -61,9 +61,9 @@ class PostsController < ApplicationController
     sort = params[:sort] || "id DESC"
 
     @posts = if params[:tag_name]
-               Post.private_post.order(sort).tagged_with(params[:tag_name].to_s).includes(:user, :images).page(params[:page]).without_count.per(15)
+               Post.public_post.order(sort).tagged_with(params[:tag_name].to_s).includes(:user, :images).page(params[:page]).without_count.per(15)
              else
-               @q.result.private_post.order(sort).includes(:user, :images).page(params[:page]).without_count.per(15)
+               @q.result.public_post.order(sort).includes(:user, :images).page(params[:page]).without_count.per(15)
              end
   end
 
@@ -105,12 +105,6 @@ class PostsController < ApplicationController
   #   googleMapAPIKey = Rails.application.credentials.google_map_key
   # end
 
-  def move_to_login
-    unless user_signed_in?
-      redirect_to new_user_session_path, alert: "ログインしてください"
-    end
-  end
-
   # CHANGED: not_current_user_is?の実装で不要に
   # def move_to_search_not_login
   #   if @post.private_flag? && !(user_signed_in?)
@@ -119,12 +113,15 @@ class PostsController < ApplicationController
   # end
 
   def move_to_search
-    if @post.private_flag? && not_current_user_is?(@post)
-      redirect_to search_posts_path, alert: "非公開の投稿です"
-    end
+    redirect_to search_posts_path, alert: "非公開の投稿です" if @post.private_flag? && not_current_user_is?(@post)
+  end
+
+  def move_to_login
+    redirect_to new_user_session_path, alert: "ログインしてください" unless user_signed_in?
   end
 
   def move_to_show
     redirect_to post_path, alert: "不正なリクエストです" if not_current_user_is?(@post)
   end
+
 end
