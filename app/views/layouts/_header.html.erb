@@ -8,7 +8,7 @@
       <%= form_tag(search_posts_path, method: 'GET', local: true, enforce_utf8: false) do%>
         <%= tag.div class:"form-inline", id:'search-form' do%>
           <%= text_field_tag :q, params[:q], placeholder:"投稿タイトル, 目的地, ユーザ名", class:"form-control", id:'search-keyword'%>
-          <button type="submit" class='btn btn-light'>
+          <button type="submit" class='btn btn-light search-btn'>
             <i class="fas fa-search"></i>
           </button>
         <%end%>

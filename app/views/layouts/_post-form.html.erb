@@ -81,6 +81,9 @@
         </label>
         <%# NOTE:エンター押下で投稿を防ぐためにボタンのsubmitを無効化、onsubmit:"return false;"はautocompleteのサジェストにかけないと意味なし%>
         <%= f.text_field :address, placeholder: "目的地を入力してください", class: "form-control input-address", id: "post-address", autocomplete: "off"%>
+        <label class='label' id= "post-placeID" for= "post-placeID">
+          place_id
+        </label>
         <%= f.text_field :place_id, class: "form-control input-placeID", id: "post-placeID", readonly: "readonly"%>
         <%# FIXME:"Map: Expected mapDiv of type Element but was passed null."のため苦肉の策でmapを用意%>
         <div id="map" style="display:none;"></div>
@@ -122,15 +125,15 @@
 
     <div class='formContent'>
       <div class='form-group form-check'>
-        <%= f.check_box :private_flag, class: "form-check-input"%>
         <label class='form-check-label'>
+          <%= f.check_box :private_flag, class: "form-check-input"%>
           非 公 開 に す る
         </label>
       </div>
       <%# TODO:達成済の場合、評価必須、JS実装 %>
       <div class='form-group form-check'>
-        <%= f.check_box :done_flag, class: "form-check-input"%>
         <label class='form-check-label'>
+          <%= f.check_box :done_flag, class: "form-check-input"%>
           達 成 済 に す る
         </label>
       </div>
@@ -205,10 +208,9 @@
 
     <div class='form-submit'>
       <% if post.persisted? %>
-        <%= f.submit "更新する", class:'btn btn-success btn-lg', onclick:"submit();"%>
+        <%= f.submit "更新する", class:'btn btn-success btn-lg', onclick:"submit();" %>
       <%else%>
-        <%# NOTE:type:'button'のせいでcapybaraが正常に遷移しなかった %>
-        <%# CHANGED:<%= f.submit "登録する", class:'btn btn-success btn-lg', onclick:"submit();", type:'button'%>
+        <%# FIXME:type:'button'のせいでcapybaraが正常に遷移しなかった,テスト時はtype:'button'の記載を削除すること %>
         <%= f.submit "登録する", class:'btn btn-success btn-lg', onclick:"submit();"%>
       <% end %>
     </div>
