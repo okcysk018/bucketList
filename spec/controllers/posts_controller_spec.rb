@@ -261,7 +261,9 @@ describe PostsController do
 
         it "新規投稿画面に遷移" do
           subject
-          expect(response).to redirect_to new_post_path
+          # REVIEW: 意図したテストになっているか
+          # CHANGED:expect(response).to redirect_to new_post_path
+          expect(response).to render_template :new
         end
       end
 
@@ -326,7 +328,8 @@ describe PostsController do
 
           it '編集画面遷移' do
             subject
-            expect(response).to redirect_to(edit_post_path)
+            # CHANGED:expect(response).to redirect_to(edit_post_path)
+            expect(response).to render_template :edit
           end
         end
       end

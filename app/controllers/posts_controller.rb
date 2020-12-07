@@ -24,7 +24,9 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post.id), notice: "投稿しました"
     else
-      redirect_to new_post_path, alert: "投稿に失敗しました"
+      # CHANGED:redirect_to new_post_path, alert: "投稿に失敗しました"
+      flash.now[:alert] = "投稿に失敗しました"
+      render :new
     end
   end
 
@@ -35,7 +37,9 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post.id), notice: "更新しました"
     else
-      redirect_to edit_post_path, alert: "更新に失敗しました"
+      # CHANGED:redirect_to edit_post_path, alert: "更新に失敗しました"
+      flash.now[:alert] = "更新に失敗しました"
+      render :edit
     end
   end
 

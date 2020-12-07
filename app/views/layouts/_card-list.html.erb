@@ -25,7 +25,6 @@
 
               <div class='card-body'>
                 <%= link_to post.title, post_path(post.id), class:"card-title", 'data-no-turbolink'=>true%>
-                <%# HACK:showと共有テンプレにしたいけど引数違う %>
                 <div class="card-post-flags">
                   <% if post.done_flag? %>
                     <div class="badge badge-success p-2">
