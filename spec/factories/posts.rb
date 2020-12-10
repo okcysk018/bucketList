@@ -2,7 +2,7 @@ FactoryBot.define do
 
   factory :post, class: Post do
     title       { Faker::Nation.nationality }
-    deadline    { '2020-01-01' }
+    deadline    { Faker::Date.in_date_period }
     budget      { 1000 }
     user
 
