@@ -35,16 +35,9 @@ module CheckFromValue
 
   # 項目に値があること
   def check_form_value_for(post)
-    expect(page).to have_field 'タスク詳細', with: nil
-    expect(page).to have_no_selector '.input_images'
-    expect(page).to have_field '場　　所', with: nil
-    expect(page).to have_field 'カテゴリ', with: nil
-    expect(find('#post_priority').value).to eq ''
-    expect(page).to have_unchecked_field('非 公 開 に す る')
-    expect(page).to have_unchecked_field('達 成 済 に す る')
-    expect(find('#post_reputation').value).to eq ''
-    expect(page).to have_no_selector '.taskFormArea'
+    expect(page).to have_field 'タスク詳細', with: post.description
+    expect(find('#post_priority').value).to eq post.priority.to_s
+    expect(find('#post_reputation').value).to eq post.reputation.to_s
   end
-
 
 end

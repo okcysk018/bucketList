@@ -2,9 +2,11 @@
             <%# FIXME:フェードイン実装でレスポンシブ不可に %>
             <%# <div class="card animate__animated animate__fadeInUp" id="post-card-info"> %>
               <% if post.images.present?%>
-                <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link"%>
+                <%# <%= link_to image_tag("#{post.images[0].image.url}", class: "card-img"), post_path(post.id), class: "card-img-link", 'data-no-turbolink'=>true %>
+                <%= link_to image_tag("#{post.images[0].image.url}", alt: 'card-img-link', class: "card-img"), post_path(post.id)%>
               <%else%>
-                <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id)%>
+                <%# <%= link_to image_tag("noImage.jpg", alt: 'sample-image', class: "card-img"), post_path(post.id), 'data-no-turbolink'=>true%>
+                <%= link_to image_tag("noImage.jpg", alt: 'card-img-link', class: "card-img sample-img"), post_path(post.id)%>
               <%end%>
               <%# CHANGED:<%= link_to post_path(post.id),  class: "card-img-overlay text-white", id: "post-card-img-overlay", style: "text-decoration: none;", 'data-no-turbolink' => true do %>
               <%# <%end%>
