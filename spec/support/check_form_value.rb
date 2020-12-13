@@ -33,7 +33,7 @@ module CheckFromValue
     expect(page).to have_field '予　　算', with: post.budget
   end
 
-  # 項目に値があること
+  # 通常項目に値があること
   def check_form_value_for(post)
     expect(page).to have_field 'タスク詳細', with: post.description
     expect(find('#post_priority').value).to eq post.priority.to_s
