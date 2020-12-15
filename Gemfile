@@ -61,6 +61,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'                  # RspecなどでRailsをプリロードする
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'   # rspecの高速化
 
   gem 'rails-erd'               # モデルのER図をPDF出力
   gem 'rails_best_practices', require: false # Railsのベストプラクティスを教えてくれる

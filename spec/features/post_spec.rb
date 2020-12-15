@@ -71,7 +71,7 @@ feature 'post' do
 
       end
 
-      scenario "トップページ→投稿画面に遷移して項目を投稿→ 検索→ マイページ→ 詳細→ 編集→ マイページ→ 詳細→ 削除" do
+      scenario "トップページ→ 投稿画面に遷移して項目を投稿→ 検索→ マイページ→ 詳細→ 編集→ マイページ→ 詳細→ 削除" do
         visit root_path
         click_on '新規投稿'
         expect(current_path).to eq new_post_path
@@ -165,17 +165,22 @@ feature 'post' do
         }.to change(user.posts, :count).by(-1)
       end
 
-      scenario "マイページ→編集画面に遷移して項目を編集→ 検索→ マイページ→ 削除" do
+      scenario "マイページ→ 編集画面に遷移して項目を編集→ 検索→ マイページ→ 削除", js: true do
         all('.post-data').last.click_on '編集'
         expect(current_path).to eq edit_post_path(post_public)
 
         check_required_value_for(post_public)
         check_form_no_value?
-        expect(find_field('場　　所').value).to eq nil
+        expect(find_field('場　　所').value).to eq ''
 
         expect {
           input_required_value_for(post_all_contents)
           input_form_value_for(post_all_contents)
+          # HACK:jsを用いたサブタスク追加
+          find('.openButton-tasklist').click
+          expect(page).to have_selector '.taskForm_group'
+          fill_in 'post_tasks_attributes_0_title', with: Faker::Nation.nationality
+
           click_on '更新する'
 
           expect(current_path).to eq post_path(post_public.id)
